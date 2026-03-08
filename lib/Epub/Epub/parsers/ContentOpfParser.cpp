@@ -260,9 +260,10 @@ void XMLCALL ContentOpfParser::startElement(void* userData, const XML_Char* name
       if (strcmp(metaName, "cover") == 0) {
         self->coverItemId = metaContent;
       } else if (strcmp(metaName, "calibre:series") == 0 && self->series.empty()) {
-        self->series = trim(std::string(metaContent)).substr(0, MAX_DESCRIPTION_LENGTH);
+        self->series = trim(std::string(metaContent, std::min(strlen(metaContent), size_t{MAX_DESCRIPTION_LENGTH})));
       } else if (strcmp(metaName, "calibre:series_index") == 0 && self->seriesIndex.empty()) {
-        self->seriesIndex = trim(std::string(metaContent)).substr(0, MAX_DESCRIPTION_LENGTH);
+        self->seriesIndex =
+            trim(std::string(metaContent, std::min(strlen(metaContent), size_t{MAX_DESCRIPTION_LENGTH})));
       }
     }
 
@@ -273,7 +274,7 @@ void XMLCALL ContentOpfParser::startElement(void* userData, const XML_Char* name
     if (metaProperty) {
       if (strcmp(metaProperty, "belongs-to-collection") == 0 && self->series.empty()) {
         if (metaContent) {
-          self->series = trim(std::string(metaContent)).substr(0, MAX_DESCRIPTION_LENGTH);
+          self->series = trim(std::string(metaContent, std::min(strlen(metaContent), size_t{MAX_DESCRIPTION_LENGTH})));
         } else {
           self->state = IN_BOOK_SERIES;
           return;
@@ -281,7 +282,8 @@ void XMLCALL ContentOpfParser::startElement(void* userData, const XML_Char* name
       }
       if (strcmp(metaProperty, "group-position") == 0 && self->seriesIndex.empty()) {
         if (metaContent) {
-          self->seriesIndex = trim(std::string(metaContent)).substr(0, MAX_DESCRIPTION_LENGTH);
+          self->seriesIndex =
+              trim(std::string(metaContent, std::min(strlen(metaContent), size_t{MAX_DESCRIPTION_LENGTH})));
         } else {
           self->state = IN_BOOK_SERIES_INDEX;
           return;
