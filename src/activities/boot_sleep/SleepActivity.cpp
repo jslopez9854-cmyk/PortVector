@@ -614,6 +614,9 @@ void SleepActivity::renderBlankSleepScreen() const {
 }
 
 void SleepActivity::renderOverlaySleepScreen() const {
+  // Overlay pictures always use portrait orientation regardless of the reader's orientation preference.
+  const auto savedOrientation = renderer.getOrientation();
+  renderer.setOrientation(GfxRenderer::Portrait);
   const auto pageWidth = renderer.getScreenWidth();
   const auto pageHeight = renderer.getScreenHeight();
 
@@ -782,5 +785,6 @@ void SleepActivity::renderOverlaySleepScreen() const {
     LOG_DBG("SLP", "No overlay image found, displaying page without overlay");
   }
 
+  renderer.setOrientation(savedOrientation);
   renderer.displayBuffer(HalDisplay::HALF_REFRESH);
 }
