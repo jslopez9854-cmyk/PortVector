@@ -326,8 +326,8 @@ void CrossPointWebServer::handleStatus() const {
   doc["rssi"] = status.rssi;
   doc["freeHeap"] = status.freeHeapBytes;
   doc["uptime"] = status.uptimeSeconds;
-  doc["sdTotal"] = Storage.sdTotalBytes();
-  doc["sdUsed"] = Storage.sdUsedBytes();
+  doc["sdTotal"] = status.sdTotalBytes;
+  doc["sdUsed"] = status.sdUsedBytes;
 
   String json;
   serializeJson(doc, json);

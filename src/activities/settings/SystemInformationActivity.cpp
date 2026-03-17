@@ -8,6 +8,17 @@
 #include "components/UITheme.h"
 #include "fontIds.h"
 
+static std::string formatBytes(uint64_t bytes) {
+  if (bytes >= 1024ULL * 1024 * 1024) {
+    char buf[16];
+    snprintf(buf, sizeof(buf), "%.1f GB", bytes / (1024.0 * 1024 * 1024));
+    return buf;
+  }
+  char buf[16];
+  snprintf(buf, sizeof(buf), "%u MB", static_cast<unsigned>(bytes / (1024 * 1024)));
+  return buf;
+}
+
 void SystemInformationActivity::onEnter() {
   Activity::onEnter();
   requestUpdate();
@@ -28,12 +39,12 @@ void SystemInformationActivity::render(RenderLock&&) {
 
   renderer.clearScreen();
 
-  GUI.drawHeader(renderer, Rect{0, metrics.topPadding, pageWidth, metrics.headerHeight},
-                 tr(STR_SYSTEM_INFO), CROSSPOINT_VERSION);
+  GUI.drawHeader(renderer, Rect{0, metrics.topPadding, pageWidth, metrics.headerHeight}, tr(STR_SYSTEM_INFO),
+                 CROSSPOINT_VERSION);
 
   const auto status = SystemStatus::collect();
 
-  // Layout: label on the left, value on the right of the midpoint
+  // Layout: label on the left, value right of the midpoint
   const int leftX = metrics.verticalSpacing * 3;
   const int valueX = pageWidth / 2;
   const int lineH = renderer.getLineHeight(UI_10_FONT_ID);
@@ -45,6 +56,7 @@ void SystemInformationActivity::render(RenderLock&&) {
     renderer.drawText(UI_10_FONT_ID, valueX, y, value.c_str());
   };
 
+  // Device
   drawRow(0, "Version", status.version);
   drawRow(1, "Free heap", std::to_string(status.freeHeapBytes / 1024) + " KB");
 
@@ -55,13 +67,22 @@ void SystemInformationActivity::render(RenderLock&&) {
   snprintf(uptimeBuf, sizeof(uptimeBuf), "%uh %02um %02us", h, m, s);
   drawRow(2, "Uptime", uptimeBuf);
 
+  // SD card
+  const std::string sdUsed = formatBytes(status.sdUsedBytes) + " / " + formatBytes(status.sdTotalBytes);
+  drawRow(3, "SD card", status.sdTotalBytes > 0 ? sdUsed : "N/A");
+
+  // WiFi (shown as-is; "Off" when not connected)
   std::string wifiLabel = status.wifiMode;
   if (status.rssi != 0) {
     wifiLabel += " (" + std::to_string(status.rssi) + " dBm)";
   }
-  drawRow(3, "WiFi", wifiLabel);
-  drawRow(4, "IP address", status.ip);
-  drawRow(5, "MAC address", status.macAddress);
+  drawRow(4, "WiFi", wifiLabel);
+  if (status.wifiMode != "Off") {
+    drawRow(5, "IP address", status.ip);
+    drawRow(6, "MAC address", status.macAddress);
+  } else {
+    drawRow(5, "MAC address", status.macAddress);
+  }
 
   const auto labels = mappedInput.mapLabels(tr(STR_BACK), "", "", "");
   GUI.drawButtonHints(renderer, labels.btn1, labels.btn2, labels.btn3, labels.btn4);

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <Arduino.h>
+#include <HalStorage.h>
 #include <WiFi.h>
 
 // Snapshot of device system status, shared between the web server and the
@@ -13,6 +14,9 @@ struct SystemStatus {
   std::string macAddress;
   uint32_t freeHeapBytes;
   uint32_t uptimeSeconds;
+  uint64_t sdTotalBytes;
+  uint64_t sdUsedBytes;
+  uint64_t sdFreeBytes;
 
   static SystemStatus collect() {
     SystemStatus s;
@@ -20,6 +24,9 @@ struct SystemStatus {
     s.freeHeapBytes = ESP.getFreeHeap();
     s.uptimeSeconds = millis() / 1000;
     s.macAddress = WiFi.macAddress().c_str();
+    s.sdTotalBytes = Storage.sdTotalBytes();
+    s.sdUsedBytes = Storage.sdUsedBytes();
+    s.sdFreeBytes = Storage.sdFreeBytes();
 
     const wifi_mode_t mode = WiFi.getMode();
     const bool isAP = (mode == WIFI_MODE_AP) || (mode == WIFI_MODE_APSTA);
