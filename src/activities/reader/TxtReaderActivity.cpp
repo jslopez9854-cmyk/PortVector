@@ -144,7 +144,6 @@ void TxtReaderActivity::loop() {
       requestUpdate();
     } else {
       onGoHome();
-      return;
     }
   }
 }
