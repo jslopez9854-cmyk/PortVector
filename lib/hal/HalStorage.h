@@ -46,8 +46,8 @@ class HalStorage {
   bool removeDir(const char* path);
 
   uint64_t sdTotalBytes() const;
-  uint64_t sdUsedBytes() const;
-  uint64_t sdFreeBytes() const;
+  uint64_t sdUsedBytes();
+  uint64_t sdFreeBytes();
 
   static HalStorage& getInstance() { return instance; }
 

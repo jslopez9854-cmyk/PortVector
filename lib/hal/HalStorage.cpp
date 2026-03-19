@@ -60,12 +60,12 @@ uint64_t HalStorage::sdTotalBytes() const {
   return SDCard.sdTotalBytes();
 }
 
-uint64_t HalStorage::sdUsedBytes() const {
+uint64_t HalStorage::sdUsedBytes() {
   StorageLock lock;
   return SDCard.sdUsedBytes();
 }
 
-uint64_t HalStorage::sdFreeBytes() const {
+uint64_t HalStorage::sdFreeBytes() {
   uint64_t total = sdTotalBytes();
   uint64_t used = sdUsedBytes();
   if (total <= used) return 0;
