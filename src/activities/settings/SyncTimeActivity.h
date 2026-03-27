@@ -15,6 +15,10 @@ class SyncTimeActivity final : public Activity {
  private:
   enum State { CONNECTING, SYNCING, SUCCESS, FAILED };
   State state = CONNECTING;
+  time_t preSyncTime = 0;
+  time_t prevSyncTime = 0;
+  int32_t driftSeconds = 0;
+  bool hadTimeBeforeSync = false;
   void onWifiSelectionComplete(bool success);
   void onWifiSelectionCancelled();
   void performSync();

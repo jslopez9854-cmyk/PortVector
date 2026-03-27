@@ -55,6 +55,10 @@ bool isSynced();
 /// may have drifted.  Cleared on NTP sync.
 bool isApproximate();
 
+/// Returns the epoch of the last successful NTP sync (from NVS), or 0 if
+/// no sync has ever been recorded.
+time_t lastSyncTime();
+
 /// Format the current time for display.  Returns "--:--" if the clock was
 /// never synced, prefixes with "~" if approximate.
 /// When use24h is false, formats as "2:05pm" / "12:30am".

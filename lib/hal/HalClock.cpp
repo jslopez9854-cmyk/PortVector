@@ -227,6 +227,8 @@ bool isSynced() {
 
 bool isApproximate() { return clockApproximate; }
 
+time_t lastSyncTime() { return nvsReadSyncTime(); }
+
 void formatTime(char* buf, size_t bufSize, bool use24h) {
   if (!isSynced()) {
     snprintf(buf, bufSize, "--:--");
