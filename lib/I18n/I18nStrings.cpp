@@ -1376,6 +1376,8 @@ const char* const STRINGS_EN[] = {
     "OPDS Browser",
     "Cover + Custom",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recents",
     "Recent Books",
     "No recent books",
@@ -2305,6 +2307,8 @@ const char* const STRINGS_ES[] = {
     "Navegador OPDS",
     "Portada + Pers.",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recientes",
     "Libros recientes",
     "No hay libros recientes",
@@ -3432,6 +3436,8 @@ const char* const STRINGS_FR[] = {
     "Navigateur OPDS",
     "Couverture + Perso",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "R\xC3"
     "\xA9"
     "cents",
@@ -4366,6 +4372,8 @@ const char* const STRINGS_DE[] = {
     "OPDS-Browser",
     "Umschlag + Eigenes",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Zuletzt",
     "Zuletzt gelesen",
     "Keine B\xC3"
@@ -6143,6 +6151,8 @@ const char* const STRINGS_CS[] = {
     "\xAD"
     "",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Ned\xC3"
     "\xA1"
     "vn\xC3"
@@ -7373,6 +7383,8 @@ const char* const STRINGS_PO[] = {
     "Navegador OPDS",
     "Capa + personalizado",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recentes",
     "Livros recentes",
     "Sem livros recentes",
@@ -14796,6 +14808,8 @@ const char* const STRINGS_RU[] = {
     "\xB9"
     "",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "\xD0"
     "\x9D"
     "\xD0"
@@ -17719,6 +17733,8 @@ const char* const STRINGS_SV[] = {
     "sare",
     "Omslag + Valfri",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Senaste",
     "Senaste b\xC3"
     "\xB6"
@@ -19100,6 +19116,8 @@ const char* const STRINGS_RO[] = {
     "\x83"
     " + Personalizat",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recente",
     "C\xC4"
     "\x83"
@@ -20193,6 +20211,8 @@ const char* const STRINGS_CA[] = {
     "Navegador OPDS",
     "Portada + Personalitzat",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recents",
     "Llibres recents",
     "No hi ha llibres recents",
@@ -28580,6 +28600,8 @@ const char* const STRINGS_UK[] = {
     "\xB0"
     "",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "\xD0"
     "\x9E"
     "\xD1"
@@ -37725,6 +37747,8 @@ const char* const STRINGS_BE[] = {
     "\xB9"
     "",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "\xD0"
     "\x9D"
     "\xD1"
@@ -40189,6 +40213,8 @@ const char* const STRINGS_IT[] = {
     "Browser OPDS",
     "Copertina + Personalizzato",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recenti",
     "Libri Recenti",
     "Nessun libro recente",
@@ -41502,6 +41528,8 @@ const char* const STRINGS_PL[] = {
     "\x82"
     "asne",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Ostatnie",
     "Ostatnio czytane",
     "Brak ostatnio czytanych",
@@ -42733,6 +42761,8 @@ const char* const STRINGS_FI[] = {
     "OPDS-selain",
     "Kansi + mukautettu",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Viimeisimm\xC3"
     "\xA4"
     "t",
@@ -43762,6 +43792,8 @@ const char* const STRINGS_DA[] = {
     "OPDS Browser",
     "Omslag + Brugerdefineret",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Seneste",
     "Seneste b\xC3"
     "\xB8"
@@ -44523,6 +44555,8 @@ const char* const STRINGS_NL[] = {
     "OPDS-browser",
     "Omslag + Aangepast",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Recent",
     "Recente boeken",
     "Geen recente boeken",
@@ -46144,6 +46178,8 @@ const char* const STRINGS_TR[] = {
     "\x96"
     "zel",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "Son Okunanlar",
     "Son Kitaplar",
     "Son okunan kitap yok",
@@ -49169,6 +49205,8 @@ const char* const STRINGS_VI[] = {
     "\x89"
     "nh",
     "Page overlay",
+    "Keep Screen",
+    "Unpin",
     "G\xE1"
     "\xBA"
     "\xA7"

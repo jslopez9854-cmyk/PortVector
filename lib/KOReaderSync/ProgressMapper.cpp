@@ -2,6 +2,7 @@
 
 #include <Logging.h>
 
+#include <algorithm>
 #include <cmath>
 
 KOReaderPosition ProgressMapper::toKOReader(const std::shared_ptr<Epub>& epub, const CrossPointPosition& pos) {
@@ -107,8 +108,14 @@ CrossPointPosition ProgressMapper::toCrossPoint(const std::shared_ptr<Epub>& epu
 }
 
 std::string ProgressMapper::generateXPath(int spineIndex, int pageNumber, int totalPages) {
-  // Use 0-based DocFragment indices for KOReader
-  // Use a simple xpath pointing to the DocFragment - KOReader will use the percentage for fine positioning within it
-  // Avoid specifying paragraph numbers as they may not exist in the target document
-  return "/body/DocFragment[" + std::to_string(spineIndex) + "]/body";
+  const int fragment = spineIndex + 1;
+
+  if (totalPages > 0 && pageNumber > 0) {
+    const float progress = static_cast<float>(pageNumber) / static_cast<float>(totalPages);
+    const int segment = static_cast<int>(progress * 20.0f) + 1;
+    return "/body/DocFragment[" + std::to_string(fragment) +
+           "]/body/p[" + std::to_string(segment) + "]";
+  }
+
+  return "/body/DocFragment[" + std::to_string(fragment) + "]/body";
 }
