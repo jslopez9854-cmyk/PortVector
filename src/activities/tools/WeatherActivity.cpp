@@ -644,9 +644,7 @@ void WeatherActivity::render(RenderLock&&) {
 
     // Large temperature
     snprintf(buf, sizeof(buf), "%.0f%s", convertTemp(weather.temperature), tempUnitSuffix());
-    renderer.drawCenteredText(LEXEND_18_FONT_ID, y, buf, true, EpdFontFamily::BOLD);
-    y += renderer.getLineHeight(LEXEND_18_FONT_ID) + 4;
-
+renderer.drawCenteredText(BOOKERLY_18_FONT_ID, y, buf, true, EpdFontFamily::BOLD);
     // Feels like
     snprintf(buf, sizeof(buf), "%s %.0f%s", tr(STR_FEELS_LIKE), convertTemp(weather.feelsLike), tempUnitSuffix());
     renderer.drawCenteredText(UI_10_FONT_ID, y, buf);

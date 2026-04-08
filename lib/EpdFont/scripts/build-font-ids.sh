@@ -104,6 +104,41 @@ ruby -rdigest -e 'puts [
 ].map{|f| Digest::SHA256.hexdigest(File.read(f)).to_i(16) }.sum % (2 ** 32) - (2 ** 31)'
 ))"
 
+echo "#define LITERATA_12_FONT_ID ($(
+ruby -rdigest -e 'puts [
+  "./literata_12_regular.h",
+  "./literata_12_bold.h",
+  "./literata_12_bolditalic.h",
+  "./literata_12_italic.h",
+].map{|f| Digest::SHA256.hexdigest(File.read(f)).to_i(16) }.sum % (2 ** 32) - (2 ** 31)'
+))"
+
+echo "#define LITERATA_14_FONT_ID ($(
+ruby -rdigest -e 'puts [
+  "./literata_14_regular.h",
+  "./literata_14_bold.h",
+  "./literata_14_bolditalic.h",
+  "./literata_14_italic.h",
+].map{|f| Digest::SHA256.hexdigest(File.read(f)).to_i(16) }.sum % (2 ** 32) - (2 ** 31)'
+))"
+
+echo "#define LITERATA_16_FONT_ID ($(
+ruby -rdigest -e 'puts [
+  "./literata_16_regular.h",
+  "./literata_16_bold.h",
+  "./literata_16_bolditalic.h",
+  "./literata_16_italic.h",
+].map{|f| Digest::SHA256.hexdigest(File.read(f)).to_i(16) }.sum % (2 ** 32) - (2 ** 31)'
+))"
+
+echo "#define LITERATA_18_FONT_ID ($(
+ruby -rdigest -e 'puts [
+  "./literata_18_regular.h",
+  "./literata_18_bold.h",
+  "./literata_18_bolditalic.h",
+  "./literata_18_italic.h",
+].map{|f| Digest::SHA256.hexdigest(File.read(f)).to_i(16) }.sum % (2 ** 32) - (2 ** 31)'
+))"
 echo "#define UI_10_FONT_ID ($(
 ruby -rdigest -e 'puts [
   "./bokerlam_12_regular.h",

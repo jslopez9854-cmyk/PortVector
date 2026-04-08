@@ -44,7 +44,13 @@ inline const std::vector<SettingInfo>& getSettingsList() {
                           StrId::STR_CAT_DISPLAY),
       SettingInfo::Toggle(StrId::STR_DARK_MODE, &CrossPointSettings::darkMode, "darkMode",
                           StrId::STR_CAT_DISPLAY),
-      SettingInfo::Enum(StrId::STR_TEMP_UNIT, &CrossPointSettings::temperatureUnit,
+      SettingInfo::Toggle(
+    StrId::STR_CLOCK_FORMAT,
+    &CrossPointSettings::clock12Hour,
+    "clock12Hour",
+    StrId::STR_CAT_DISPLAY),
+    
+    SettingInfo::Enum(StrId::STR_TEMP_UNIT, &CrossPointSettings::temperatureUnit,
                         {StrId::STR_CELSIUS, StrId::STR_FAHRENHEIT}, "temperatureUnit", StrId::STR_CAT_DISPLAY),
       // CrossPet home screen widgets — stored in crosspet.json
       SettingInfo::DynamicToggle(
@@ -70,11 +76,12 @@ inline const std::vector<SettingInfo>& getSettingsList() {
 
       // --- Reader ---
       SettingInfo::Enum(StrId::STR_FONT_FAMILY, &CrossPointSettings::fontFamily,
-                        {StrId::STR_BOOKERLY, StrId::STR_LEXEND, StrId::STR_BOKERLAM}, "fontFamily",
-                        StrId::STR_CAT_READER),
-      SettingInfo::Enum(StrId::STR_FONT_SIZE, &CrossPointSettings::fontSize,
-                        {StrId::STR_SMALL, StrId::STR_MEDIUM, StrId::STR_LARGE, StrId::STR_X_LARGE}, "fontSize",
-                        StrId::STR_CAT_READER),
+                  {StrId::STR_BOOKERLY, StrId::STR_BOKERLAM, StrId::STR_LITERATA},
+                  "fontFamily", StrId::STR_CAT_READER),
+
+SettingInfo::Enum(StrId::STR_FONT_SIZE, &CrossPointSettings::fontSize,
+                  {StrId::STR_SMALL, StrId::STR_MEDIUM, StrId::STR_LARGE, StrId::STR_X_LARGE},
+                  "fontSize", StrId::STR_CAT_READER),
       SettingInfo::Enum(StrId::STR_LINE_SPACING, &CrossPointSettings::lineSpacing,
                         {StrId::STR_TIGHT, StrId::STR_NORMAL, StrId::STR_WIDE}, "lineSpacing", StrId::STR_CAT_READER),
       SettingInfo::Value(StrId::STR_SCREEN_MARGIN, &CrossPointSettings::screenMargin, {5, 40, 5}, "screenMargin",

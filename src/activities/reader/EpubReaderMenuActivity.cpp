@@ -9,7 +9,11 @@
 #include "fontIds.h"
 
 // Font family/size label arrays for rendering current values
-static const StrId fontFamilyLabels[] = {StrId::STR_BOOKERLY, StrId::STR_LEXEND, StrId::STR_BOKERLAM};
+static const StrId fontFamilyLabels[] = {
+  StrId::STR_BOOKERLY,
+  StrId::STR_BOKERLAM,
+  StrId::STR_LITERATA
+};
 static const StrId fontSizeLabels[] = {StrId::STR_SMALL, StrId::STR_MEDIUM, StrId::STR_LARGE, StrId::STR_X_LARGE};
 
 EpubReaderMenuActivity::EpubReaderMenuActivity(GfxRenderer& renderer, MappedInputManager& mappedInput,
@@ -36,7 +40,7 @@ std::vector<EpubReaderMenuActivity::MenuItem> EpubReaderMenuActivity::buildMenuI
   items.push_back({MenuAction::SELECT_CHAPTER, StrId::STR_SELECT_CHAPTER});
   items.push_back({MenuAction::GO_TO_PERCENT, StrId::STR_GO_TO_PERCENT});
   if (hasFootnotes) items.push_back({MenuAction::FOOTNOTES, StrId::STR_FOOTNOTES});
-  if (hasStarredPages) items.push_back({MenuAction::STARRED_PAGES, StrId::STR_STARRED_PAGES});
+if (hasStarredPages) items.push_back({MenuAction::STARRED_PAGES, StrId::STR_STAR_PAGE});
 
   // DISPLAY section
   items.push_back({MenuAction::FONT_FAMILY, StrId::STR_FONT_FAMILY});

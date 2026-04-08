@@ -176,9 +176,24 @@ void ClockActivity::render(RenderLock&&) {
     const int startY = (pageHeight - totalH) / 2;
 
     // Time row: HH:MM with active field highlighted
-    char timeBuf[6];
-    snprintf(timeBuf, sizeof(timeBuf), "%02d:%02d", editTime.tm_hour, editTime.tm_min);
-    renderer.drawCenteredText(UI_12_FONT_ID, startY, timeBuf, true, EpdFontFamily::BOLD);
+    char timeBuf[16];
+
+if (SETTINGS.clock12Hour) {
+    int hour = editTime.tm_hour;
+    int displayHour = hour % 12;
+    if (displayHour == 0) displayHour = 12;
+
+    const char* ampm = (hour >= 12) ? "PM" : "AM";
+
+    snprintf(timeBuf, sizeof(timeBuf), "%d:%02d %s",
+             displayHour,
+             editTime.tm_min,
+             ampm);
+} else {
+    snprintf(timeBuf, sizeof(timeBuf), "%02d:%02d",
+             editTime.tm_hour,
+             editTime.tm_min);
+}
 
     // Date row
     char dateBuf[64];
@@ -211,9 +226,26 @@ void ClockActivity::render(RenderLock&&) {
     getLocalTime(&timeinfo, 0);
 
     extern bool g_clockApproximate;
-    char timeBuf[8];
-    snprintf(timeBuf, sizeof(timeBuf), "%s%02d:%02d", g_clockApproximate ? "~" : "",
-             timeinfo.tm_hour, timeinfo.tm_min);
+  char timeBuf[16];
+
+if (SETTINGS.clock12Hour) {
+    int hour = timeinfo.tm_hour;
+    int displayHour = hour % 12;
+    if (displayHour == 0) displayHour = 12;
+
+    const char* ampm = (hour >= 12) ? "PM" : "AM";
+
+    snprintf(timeBuf, sizeof(timeBuf), "%s%d:%02d %s",
+             g_clockApproximate ? "~" : "",
+             displayHour,
+             timeinfo.tm_min,
+             ampm);
+} else {
+    snprintf(timeBuf, sizeof(timeBuf), "%s%02d:%02d",
+             g_clockApproximate ? "~" : "",
+             timeinfo.tm_hour,
+             timeinfo.tm_min);
+}
 
     const char* dayNames[] = {tr(STR_DAY_SUN), tr(STR_DAY_MON), tr(STR_DAY_TUE), tr(STR_DAY_WED),
         tr(STR_DAY_THU), tr(STR_DAY_FRI), tr(STR_DAY_SAT)};

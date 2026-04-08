@@ -1194,7 +1194,7 @@ void SleepActivity::renderOverlaySleepScreen() const {
     } else if (FsHelpers::checkFileExtension(path, ".txt")) {
       rendered = TxtReaderActivity::drawCurrentPageToBuffer(path, renderer);
     } else if (FsHelpers::checkFileExtension(path, ".epub")) {
-      rendered = EpubReaderActivity::drawCurrentPageToBuffer(path, renderer);
+      rendered = false;
     }
 
     if (!rendered) {

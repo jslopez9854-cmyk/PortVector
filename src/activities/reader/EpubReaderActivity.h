@@ -3,7 +3,6 @@
 #include <Epub/FootnoteEntry.h>
 #include <Epub/Section.h>
 
-#include "BookmarkStore.h"
 #include "EpubReaderMenuActivity.h"
 #include "activities/Activity.h"
 
@@ -20,39 +19,17 @@ class EpubReaderActivity final : public Activity {
   int cachedChapterTotalPageCount = 0;
   unsigned long lastPageTurnTime = 0UL;
   unsigned long pageTurnDuration = 0UL;
-
-  // Reading time estimate: circular buffer of manual page turn durations (ms)
-  unsigned long pageTurnTimes[10] = {};
-  int pageTurnTimesIdx = 0;
-  int pageTurnTimesCount = 0;
-  unsigned long lastUserPageTurnMs = 0;
-
-  // Session timer: millis() at reader entry
-  unsigned long sessionStartMs = 0;
   // Signals that the next render should reposition within the newly loaded section
   // based on a cross-book percentage jump.
   bool pendingPercentJump = false;
   // Normalized 0.0-1.0 progress within the target spine item, computed from book percentage.
   float pendingSpineProgress = 0.0f;
+  // Pending paragraph index from KOReader sync (resolved to page via Section paragraph LUT)
+  bool pendingParagraphLookup = false;
+  uint16_t pendingParagraphIndex = 0;
   bool pendingScreenshot = false;
   bool skipNextButtonCheck = false;  // Skip button processing for one frame after subactivity exit
   bool automaticPageTurnActive = false;
-  bool bookCompletionNotified = false;
-  bool ignoreFrontButtons = false;
-
-  // Chapter completion celebration (Phase 2)
-  int lastCompletedSpineIndex = -1;   // prevents double-fire on back-then-forward
-  int chapterCompleteCount = 0;       // show popup every 3rd chapter
-  bool showChapterPopup = false;
-  unsigned long chapterPopupTime = 0;
-
-  // Milestone toast (Phase 3)
-  bool showMilestoneToast = false;
-  unsigned long milestoneToastTime = 0;
-  char milestoneText[48] = {};
-
-  // Bookmarks (starred pages)
-  BookmarkStore bookmarkStore;
 
   // Footnote support
   std::vector<FootnoteEntry> currentPageFootnotes;
@@ -67,7 +44,6 @@ class EpubReaderActivity final : public Activity {
   void renderContents(std::unique_ptr<Page> page, int orientedMarginTop, int orientedMarginRight,
                       int orientedMarginBottom, int orientedMarginLeft);
   void renderStatusBar() const;
-  int getEstimatedMinutesLeft() const;
   void saveProgress(int spineIndex, int currentPage, int pageCount);
   // Jump to a percentage of the book (0-100), mapping it to spine and page.
   void jumpToPercent(int percent);
@@ -75,14 +51,10 @@ class EpubReaderActivity final : public Activity {
   void applyOrientation(uint8_t orientation);
   void toggleAutoPageTurn(uint8_t selectedPageTurnOption);
   void pageTurn(bool isForwardTurn);
-  void openStarredPages();
 
   // Footnote navigation
   void navigateToHref(const std::string& href, bool savePosition = false);
   void restoreSavedPosition();
-
-  // Resolve correct TOC index considering current page within multi-chapter spine items
-  int resolveCurrentTocIndex() const;
 
  public:
   explicit EpubReaderActivity(GfxRenderer& renderer, MappedInputManager& mappedInput, std::unique_ptr<Epub> epub)
@@ -92,9 +64,4 @@ class EpubReaderActivity final : public Activity {
   void loop() override;
   void render(RenderLock&& lock) override;
   bool isReaderActivity() const override { return true; }
-
-  // Renders the last saved page to the frame buffer without flushing to display.
-  // Used by SleepActivity to prepare the background for the overlay sleep mode.
-  // Returns false if the page cannot be loaded (missing cache / file error).
-  static bool drawCurrentPageToBuffer(const std::string& filePath, GfxRenderer& renderer);
 };

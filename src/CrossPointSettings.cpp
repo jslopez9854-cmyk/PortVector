@@ -235,35 +235,27 @@ float CrossPointSettings::getReaderLineCompression() const {
     case BOOKERLY:
     default:
       switch (lineSpacing) {
-        case TIGHT:
-          return 0.95f;
-        case NORMAL:
-        default:
-          return 1.0f;
-        case WIDE:
-          return 1.1f;
+        case TIGHT: return 0.95f;
+        case NORMAL: default: return 1.0f;
+        case WIDE: return 1.1f;
       }
-    case LEXEND:
-      switch (lineSpacing) {
-        case TIGHT:
-          return 0.90f;
-        case NORMAL:
-        default:
-          return 0.95f;
-        case WIDE:
-          return 1.0f;
-      }
+
     case BOKERLAM:
       switch (lineSpacing) {
-        case TIGHT:
-          return 0.95f;
-        case NORMAL:
-        default:
-          return 1.0f;
-        case WIDE:
-          return 1.1f;
+        case TIGHT: return 0.95f;
+        case NORMAL: default: return 1.0f;
+        case WIDE: return 1.1f;
+      }
+
+    case LITERATA:
+      switch (lineSpacing) {
+        case TIGHT: return 0.95f;
+        case NORMAL: default: return 1.0f;
+        case WIDE: return 1.1f;
       }
   }
+
+  return 1.0f;  // fallback safety
 }
 
 unsigned long CrossPointSettings::getSleepTimeoutMs() const {
@@ -303,39 +295,29 @@ int CrossPointSettings::getReaderFontId() const {
     case BOOKERLY:
     default:
       switch (fontSize) {
-        case SMALL:
-          return BOOKERLY_12_FONT_ID;
-        case MEDIUM:
-        default:
-          return BOOKERLY_14_FONT_ID;
-        case LARGE:
-          return BOOKERLY_16_FONT_ID;
-        case EXTRA_LARGE:
-          return BOOKERLY_18_FONT_ID;
+        case SMALL: return BOOKERLY_12_FONT_ID;
+        case MEDIUM: default: return BOOKERLY_14_FONT_ID;
+        case LARGE: return BOOKERLY_16_FONT_ID;
+        case EXTRA_LARGE: return BOOKERLY_18_FONT_ID;
       }
-    case LEXEND:
-      switch (fontSize) {
-        case SMALL:
-          return LEXEND_12_FONT_ID;
-        case MEDIUM:
-        default:
-          return LEXEND_14_FONT_ID;
-        case LARGE:
-          return LEXEND_16_FONT_ID;
-        case EXTRA_LARGE:
-          return LEXEND_18_FONT_ID;
-      }
+
+
     case BOKERLAM:
       switch (fontSize) {
-        case SMALL:
-          return BOKERLAM_12_FONT_ID;
-        case MEDIUM:
-        default:
-          return BOKERLAM_14_FONT_ID;
-        case LARGE:
-          return BOKERLAM_16_FONT_ID;
-        case EXTRA_LARGE:
-          return BOKERLAM_18_FONT_ID;
+        case SMALL: return BOKERLAM_12_FONT_ID;
+        case MEDIUM: default: return BOKERLAM_14_FONT_ID;
+        case LARGE: return BOKERLAM_16_FONT_ID;
+        case EXTRA_LARGE: return BOKERLAM_18_FONT_ID;
+      }
+
+    case LITERATA:
+      switch (fontSize) {
+        case SMALL: return LITERATA_12_FONT_ID;
+        case MEDIUM: default: return LITERATA_14_FONT_ID;
+        case LARGE: return LITERATA_16_FONT_ID;
+        case EXTRA_LARGE: return LITERATA_18_FONT_ID;
       }
   }
+
+  return BOOKERLY_14_FONT_ID; // fallback safety
 }

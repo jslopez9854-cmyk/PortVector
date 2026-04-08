@@ -6,15 +6,11 @@
 #include <WiFi.h>
 #include <esp_sntp.h>
 
-#include <FontDecompressor.h>
-
 #include "KOReaderCredentialStore.h"
 #include "KOReaderDocumentId.h"
 #include "MappedInputManager.h"
 #include "activities/network/WifiSelectionActivity.h"
 #include "components/UITheme.h"
-
-extern FontDecompressor fontDecompressor;
 #include "fontIds.h"
 
 namespace {
@@ -93,7 +89,6 @@ void KOReaderSyncActivity::performSync() {
     documentHash = KOReaderDocumentId::calculate(epubPath);
   }
   if (documentHash.empty()) {
-    wifiOff();
     {
       RenderLock lock(*this);
       state = SYNC_FAILED;
@@ -111,12 +106,6 @@ void KOReaderSyncActivity::performSync() {
   }
   requestUpdateAndWait();
 
-  // Free font cache to reclaim heap for TLS handshake (~12-48KB)
-  // ESP32-C3 has ~46KB free after WiFi; TLS needs ~50KB for 16KB buffers + handshake state.
-  // Font cache refills lazily on next render.
-  fontDecompressor.clearCache();
-  LOG_DBG("KOSync", "Cleared font cache, heap: %u", (unsigned)ESP.getFreeHeap());
-
   // Fetch remote progress
   const auto result = KOReaderSyncClient::getProgress(documentHash, remoteProgress);
 
@@ -132,7 +121,6 @@ void KOReaderSyncActivity::performSync() {
   }
 
   if (result != KOReaderSyncClient::OK) {
-    wifiOff();
     {
       RenderLock lock(*this);
       state = SYNC_FAILED;
@@ -144,11 +132,24 @@ void KOReaderSyncActivity::performSync() {
 
   // Convert remote progress to CrossPoint position
   hasRemoteProgress = true;
+  {
+    RenderLock lock(*this);
+    statusMessage = tr(STR_MAPPING_REMOTE);
+  }
+  requestUpdateAndWait();
+
   KOReaderPosition koPos = {remoteProgress.progress, remoteProgress.percentage};
   remotePosition = ProgressMapper::toCrossPoint(epub, koPos, currentSpineIndex, totalPagesInSpine);
 
   // Calculate local progress in KOReader format (for display)
-  CrossPointPosition localPos = {currentSpineIndex, currentPage, totalPagesInSpine};
+  {
+    RenderLock lock(*this);
+    statusMessage = tr(STR_MAPPING_LOCAL);
+  }
+  requestUpdateAndWait();
+
+  CrossPointPosition localPos = {currentSpineIndex, currentPage, totalPagesInSpine, localParagraphIndex,
+                                 hasLocalParagraphIndex};
   localProgress = ProgressMapper::toKOReader(epub, localPos);
 
   {
@@ -174,16 +175,14 @@ void KOReaderSyncActivity::performUpload() {
   requestUpdateAndWait();
 
   // Convert current position to KOReader format
-  CrossPointPosition localPos = {currentSpineIndex, currentPage, totalPagesInSpine};
+  CrossPointPosition localPos = {currentSpineIndex, currentPage, totalPagesInSpine, localParagraphIndex,
+                                 hasLocalParagraphIndex};
   KOReaderPosition koPos = ProgressMapper::toKOReader(epub, localPos);
 
   KOReaderProgress progress;
   progress.document = documentHash;
   progress.progress = koPos.xpath;
   progress.percentage = koPos.percentage;
-
-  // Free font cache for TLS heap (same as performSync)
-  fontDecompressor.clearCache();
 
   const auto result = KOReaderSyncClient::updateProgress(progress);
 
@@ -202,6 +201,7 @@ void KOReaderSyncActivity::performUpload() {
   {
     RenderLock lock(*this);
     state = UPLOAD_COMPLETE;
+    uploadCompleteTime = millis();
   }
   requestUpdate(true);
 }
@@ -233,6 +233,18 @@ void KOReaderSyncActivity::onExit() {
   Activity::onExit();
 
   wifiOff();
+}
+
+void KOReaderSyncActivity::closeCancelled() {
+  if (closeRequested) {
+    return;
+  }
+
+  closeRequested = true;
+  ActivityResult result;
+  result.isCancelled = true;
+  setResult(std::move(result));
+  finish();
 }
 
 void KOReaderSyncActivity::render(RenderLock&&) {
@@ -352,10 +364,12 @@ void KOReaderSyncActivity::render(RenderLock&&) {
 void KOReaderSyncActivity::loop() {
   if (state == NO_CREDENTIALS || state == SYNC_FAILED || state == UPLOAD_COMPLETE) {
     if (mappedInput.wasReleased(MappedInputManager::Button::Back)) {
-      ActivityResult result;
-      result.isCancelled = true;
-      setResult(std::move(result));
-      finish();
+      closeCancelled();
+      return;
+    }
+
+    if (state == UPLOAD_COMPLETE && millis() - uploadCompleteTime >= 3000) {
+      closeCancelled();
     }
     return;
   }
@@ -384,10 +398,7 @@ void KOReaderSyncActivity::loop() {
     }
 
     if (mappedInput.wasReleased(MappedInputManager::Button::Back)) {
-      ActivityResult result;
-      result.isCancelled = true;
-      setResult(std::move(result));
-      finish();
+      closeCancelled();
     }
     return;
   }
@@ -406,10 +417,7 @@ void KOReaderSyncActivity::loop() {
     }
 
     if (mappedInput.wasReleased(MappedInputManager::Button::Back)) {
-      ActivityResult result;
-      result.isCancelled = true;
-      setResult(std::move(result));
-      finish();
+      closeCancelled();
     }
     return;
   }

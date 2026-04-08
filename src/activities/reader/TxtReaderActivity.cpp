@@ -417,8 +417,6 @@ void TxtReaderActivity::renderStatusBar() const {
 void TxtReaderActivity::saveProgress() const {
   FsFile f;
   if (Storage.openFileForWrite("TRS", txt->getCachePath() + "/progress.bin", f)) {
-    // 6-byte format: page(2 bytes LE) + file offset(4 bytes LE)
-    // The offset lets drawCurrentPageToBuffer render without requiring index.bin.
     const size_t offset = (currentPage < static_cast<int>(pageOffsets.size())) ? pageOffsets[currentPage] : 0;
     uint8_t data[6];
     data[0] = currentPage & 0xFF;
@@ -429,6 +427,15 @@ void TxtReaderActivity::saveProgress() const {
     data[5] = (offset >> 24) & 0xFF;
     f.write(data, 6);
     f.close();
+
+    uint8_t progressPercent = 0;
+    if (totalPages > 0) {
+      int percent = ((currentPage + 1) * 100) / totalPages;
+      if (percent > 100) percent = 100;
+      progressPercent = static_cast<uint8_t>(percent);
+    }
+
+    RECENT_BOOKS.updateBookProgress(txt->getPath(), progressPercent);
   }
 }
 

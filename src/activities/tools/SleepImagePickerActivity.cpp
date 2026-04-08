@@ -214,7 +214,7 @@ bool SleepImagePickerActivity::renderBookPage() {
   if (FsHelpers::checkFileExtension(path, ".txt"))
     return TxtReaderActivity::drawCurrentPageToBuffer(path, renderer);
   if (FsHelpers::checkFileExtension(path, ".epub"))
-    return EpubReaderActivity::drawCurrentPageToBuffer(path, renderer);
+    return false;
   return false;
 }
 

@@ -4,6 +4,7 @@
 #include <GfxRenderer.h>
 #include <HalStorage.h>
 #include <Logging.h>
+#include <Utf8.h>
 #include <expat.h>
 
 #include "../../Epub.h"
@@ -39,6 +40,51 @@ constexpr int NUM_SKIP_TAGS = sizeof(SKIP_TAGS) / sizeof(SKIP_TAGS[0]);
 
 bool isWhitespace(const char c) { return c == ' ' || c == '\r' || c == '\n' || c == '\t'; }
 
+static int utf8SafeTruncateBuffer(const char* buffer, int len) {
+  if (!buffer || len <= 0) return 0;
+
+  int i = 0;
+  int lastValid = 0;
+
+  while (i < len) {
+    unsigned char c = static_cast<unsigned char>(buffer[i]);
+    int charLen = 0;
+
+    if ((c & 0x80) == 0x00) {
+      charLen = 1;
+    } else if ((c & 0xE0) == 0xC0) {
+      charLen = 2;
+    } else if ((c & 0xF0) == 0xE0) {
+      charLen = 3;
+    } else if ((c & 0xF8) == 0xF0) {
+      charLen = 4;
+    } else {
+      break;
+    }
+
+    if (i + charLen > len) {
+      break;
+    }
+
+    bool valid = true;
+    for (int j = 1; j < charLen; ++j) {
+      unsigned char cc = static_cast<unsigned char>(buffer[i + j]);
+      if ((cc & 0xC0) != 0x80) {
+        valid = false;
+        break;
+      }
+    }
+
+    if (!valid) {
+      break;
+    }
+
+    lastValid = i + charLen;
+    i += charLen;
+  }
+
+  return lastValid;
+}
 // given the start and end of a tag, check to see if it matches a known tag
 bool matches(const char* tag_name, const char* possible_tags[], const int possible_tag_count) {
   for (int i = 0; i < possible_tag_count; i++) {
@@ -386,6 +432,7 @@ void XMLCALL ChapterHtmlSlimParser::startElement(void* userData, const XML_Char*
                 // Create page for image - only break if image won't fit remaining space
                 if (self->currentPage && !self->currentPage->elements.empty() &&
                     (self->currentPageNextY + displayHeight > self->viewportHeight)) {
+                  self->paragraphIndexPerPage.push_back(self->xpathParagraphIndex);
                   self->completePageFn(std::move(self->currentPage));
                   self->completedPageCount++;
                   self->currentPage.reset(new Page());
@@ -448,6 +495,19 @@ void XMLCALL ChapterHtmlSlimParser::startElement(void* userData, const XML_Char*
       self->depth += 1;
       return;
     }
+  }
+
+  // Track body element depth for paragraph index counting
+  if (strcmp(name, "body") == 0 && self->xpathBodyDepth < 0) {
+    self->xpathBodyDepth = self->depth;
+  }
+
+  // Count <p> sibling indices at body-child level. Must happen BEFORE the display:none
+  // check so that hidden <p> elements are still counted, matching ChapterXPathIndexer's
+  // counting (pure XML, no CSS). This ensures paragraph indices in the section cache LUT
+  // align with KOReader's crengine XPath indices.
+  if (self->xpathBodyDepth >= 0 && self->depth == self->xpathBodyDepth + 1 && strcmp(name, "p") == 0) {
+    self->xpathParagraphIndex++;
   }
 
   if (matches(name, SKIP_TAGS, NUM_SKIP_TAGS)) {
@@ -758,9 +818,30 @@ void XMLCALL ChapterHtmlSlimParser::characterData(void* userData, const XML_Char
       }
     }
 
-    // If we're about to run out of space, then cut the word off and start a new one
+    // If we're about to run out of space, then cut the word off and start a new one.
+    // For CJK text (no spaces), this is the primary word-breaking mechanism.
+    // We must avoid splitting multi-byte UTF-8 sequences across word boundaries,
+    // otherwise the trailing bytes become orphaned continuation bytes that the
+    // decoder can't interpret.
     if (self->partWordBufferIndex >= MAX_WORD_SIZE) {
-      self->flushPartWordBuffer();
+      int safeLen = utf8SafeTruncateBuffer(self->partWordBuffer, self->partWordBufferIndex);
+
+      if (safeLen < self->partWordBufferIndex && safeLen > 0) {
+        // Incomplete UTF-8 sequence at the end — save it before flushing
+        int overflow = self->partWordBufferIndex - safeLen;
+        char saved[4];
+        for (int j = 0; j < overflow; j++) {
+          saved[j] = self->partWordBuffer[safeLen + j];
+        }
+        self->partWordBufferIndex = safeLen;
+        self->flushPartWordBuffer();
+        for (int j = 0; j < overflow; j++) {
+          self->partWordBuffer[j] = saved[j];
+        }
+        self->partWordBufferIndex = overflow;
+      } else {
+        self->flushPartWordBuffer();
+      }
     }
 
     self->partWordBuffer[self->partWordBufferIndex++] = s[i];
@@ -1012,6 +1093,7 @@ bool ChapterHtmlSlimParser::parseAndBuildPages() {
       anchorData.push_back({std::move(pendingAnchorId), static_cast<uint16_t>(completedPageCount)});
       pendingAnchorId.clear();
     }
+    paragraphIndexPerPage.push_back(xpathParagraphIndex);
     completePageFn(std::move(currentPage));
     completedPageCount++;
     currentPage.reset();
@@ -1030,6 +1112,7 @@ void ChapterHtmlSlimParser::addLineToPage(std::shared_ptr<TextBlock> line) {
   }
 
   if (currentPageNextY + lineHeight > viewportHeight) {
+    paragraphIndexPerPage.push_back(xpathParagraphIndex);
     completePageFn(std::move(currentPage));
     completedPageCount++;
     currentPage.reset(new Page());

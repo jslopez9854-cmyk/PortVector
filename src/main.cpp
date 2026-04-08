@@ -83,19 +83,6 @@ EpdFont bookerly18BoldItalicFont(&bookerly_18_bolditalic);
 EpdFontFamily bookerly18FontFamily(&bookerly18RegularFont, &bookerly18BoldFont, &bookerly18ItalicFont,
                                    &bookerly18BoldItalicFont);
 
-// Lexend fonts (no Italic available — uses Regular as fallback)
-EpdFont lexend12RegularFont(&lexend_12_regular);
-EpdFont lexend12BoldFont(&lexend_12_bold);
-EpdFontFamily lexend12FontFamily(&lexend12RegularFont, &lexend12BoldFont, &lexend12RegularFont, &lexend12BoldFont);
-EpdFont lexend14RegularFont(&lexend_14_regular);
-EpdFont lexend14BoldFont(&lexend_14_bold);
-EpdFontFamily lexend14FontFamily(&lexend14RegularFont, &lexend14BoldFont, &lexend14RegularFont, &lexend14BoldFont);
-EpdFont lexend16RegularFont(&lexend_16_regular);
-EpdFont lexend16BoldFont(&lexend_16_bold);
-EpdFontFamily lexend16FontFamily(&lexend16RegularFont, &lexend16BoldFont, &lexend16RegularFont, &lexend16BoldFont);
-EpdFont lexend18RegularFont(&lexend_18_regular);
-EpdFont lexend18BoldFont(&lexend_18_bold);
-EpdFontFamily lexend18FontFamily(&lexend18RegularFont, &lexend18BoldFont, &lexend18RegularFont, &lexend18BoldFont);
 
 #endif  // OMIT_FONTS
 
@@ -117,6 +104,30 @@ EpdFont bokerlam18BoldFont(&bokerlam_18_bold);
 EpdFont bokerlam18ItalicFont(&bokerlam_18_italic);
 EpdFontFamily bokerlam18FontFamily(&bokerlam18RegularFont, &bokerlam18BoldFont, &bokerlam18ItalicFont, &bokerlam18ItalicFont);
 
+// Literata reader fonts
+EpdFont literata12RegularFont(&literata_12_regular);
+EpdFont literata12BoldFont(&literata_12_bold);
+EpdFont literata12ItalicFont(&literata_12_italic);
+EpdFont literata12BoldItalicFont(&literata_12_bolditalic);
+EpdFontFamily literata12FontFamily(&literata12RegularFont, &literata12BoldFont, &literata12ItalicFont, &literata12BoldItalicFont);
+
+EpdFont literata14RegularFont(&literata_14_regular);
+EpdFont literata14BoldFont(&literata_14_bold);
+EpdFont literata14ItalicFont(&literata_14_italic);
+EpdFont literata14BoldItalicFont(&literata_14_bolditalic);
+EpdFontFamily literata14FontFamily(&literata14RegularFont, &literata14BoldFont, &literata14ItalicFont, &literata14BoldItalicFont);
+
+EpdFont literata16RegularFont(&literata_16_regular);
+EpdFont literata16BoldFont(&literata_16_bold);
+EpdFont literata16ItalicFont(&literata_16_italic);
+EpdFont literata16BoldItalicFont(&literata_16_bolditalic);
+EpdFontFamily literata16FontFamily(&literata16RegularFont, &literata16BoldFont, &literata16ItalicFont, &literata16BoldItalicFont);
+
+EpdFont literata18RegularFont(&literata_18_regular);
+EpdFont literata18BoldFont(&literata_18_bold);
+EpdFont literata18ItalicFont(&literata_18_italic);
+EpdFont literata18BoldItalicFont(&literata_18_bolditalic);
+EpdFontFamily literata18FontFamily(&literata18RegularFont, &literata18BoldFont, &literata18ItalicFont, &literata18BoldItalicFont);
 EpdFont smallFont(&notosans_8_regular);
 EpdFontFamily smallFontFamily(&smallFont);
 
@@ -303,15 +314,15 @@ void setupDisplayAndFonts() {
   renderer.insertFont(BOOKERLY_16_FONT_ID, bookerly16FontFamily);
   renderer.insertFont(BOOKERLY_18_FONT_ID, bookerly18FontFamily);
 
-  renderer.insertFont(LEXEND_12_FONT_ID, lexend12FontFamily);
-  renderer.insertFont(LEXEND_14_FONT_ID, lexend14FontFamily);
-  renderer.insertFont(LEXEND_16_FONT_ID, lexend16FontFamily);
-  renderer.insertFont(LEXEND_18_FONT_ID, lexend18FontFamily);
   renderer.insertFont(BOKERLAM_12_FONT_ID, bokerlam12FontFamily);
   renderer.insertFont(BOKERLAM_14_FONT_ID, bokerlam14FontFamily);
   renderer.insertFont(BOKERLAM_16_FONT_ID, bokerlam16FontFamily);
   renderer.insertFont(BOKERLAM_18_FONT_ID, bokerlam18FontFamily);
-#endif  // OMIT_FONTS
+  renderer.insertFont(LITERATA_12_FONT_ID, literata12FontFamily);
+  renderer.insertFont(LITERATA_14_FONT_ID, literata14FontFamily);
+  renderer.insertFont(LITERATA_16_FONT_ID, literata16FontFamily);
+  renderer.insertFont(LITERATA_18_FONT_ID, literata18FontFamily);
+  #endif  // OMIT_FONTS
   renderer.insertFont(UI_10_FONT_ID, ui12FontFamily);
   renderer.insertFont(UI_12_FONT_ID, ui12FontFamily);
   renderer.insertFont(SMALL_FONT_ID, smallFontFamily);

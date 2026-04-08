@@ -109,15 +109,11 @@ const char* const LANGUAGE_NAMES[] = {
 const char* const CHARACTER_SETS[] = {
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "",  // English
-    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
+    " !\"%&'()*+,-./012345689:<>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xA1"
     "\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC2"
     "\xBF"
     "\xC3"
@@ -137,8 +133,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Español
     " !%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x89"
     "\xC3"
@@ -165,10 +159,8 @@ const char* const CHARACTER_SETS[] = {
     "\x80"
     "\xA6"
     "",  // Français
-    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x84"
     "\xC3"
@@ -189,8 +181,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Deutsch
     " !%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x81"
     "\xC3"
@@ -248,8 +238,6 @@ const char* const CHARACTER_SETS[] = {
     "\n !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
     "\xC2"
-    "\xB0"
-    "\xC2"
     "\xBA"
     "\xC3"
     "\xA1"
@@ -271,10 +259,8 @@ const char* const CHARACTER_SETS[] = {
     "\x80"
     "\x91"
     "",  // Português (Brasil)
-    " !%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    " !%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC2"
     "\xBB"
     "\xD0"
@@ -394,8 +380,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Русский
     " !%&'()*+,-./012345689:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x84"
     "\xC3"
@@ -417,8 +401,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Svenska
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x82"
     "\xC3"
@@ -443,8 +425,6 @@ const char* const CHARACTER_SETS[] = {
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
     "\xC2"
-    "\xB0"
-    "\xC2"
     "\xB7"
     "\xC3"
     "\x92"
@@ -467,10 +447,8 @@ const char* const CHARACTER_SETS[] = {
     "\xC3"
     "\xBC"
     "",  // Català
-    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xD0"
     "\x86"
     "\xD0"
@@ -590,10 +568,8 @@ const char* const CHARACTER_SETS[] = {
     "\xD1"
     "\x97"
     "",  // Українська
-    " !%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    " !%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC2"
     "\xBB"
     "\xD0"
@@ -711,7 +687,7 @@ const char* const CHARACTER_SETS[] = {
     "\xD1"
     "\x9E"
     "",  // Беларуская
-    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
     "\xC2"
     "\xB0"
@@ -734,8 +710,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Italiano
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\xB3"
     "\xC4"
@@ -761,8 +735,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Polski
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x84"
     "\xC3"
@@ -772,8 +744,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Suomi
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x85"
     "\xC3"
@@ -789,8 +759,6 @@ const char* const CHARACTER_SETS[] = {
     "",  // Dansk
     " !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\xAB"
     "\xC3"
@@ -798,10 +766,8 @@ const char* const CHARACTER_SETS[] = {
     "\xC3"
     "\xBC"
     "",  // Nederlands
-    "\n !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    "\n !\"%&'()*+,-./012345689:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x87"
     "\xC3"
@@ -827,10 +793,8 @@ const char* const CHARACTER_SETS[] = {
     "\xC5"
     "\x9F"
     "",  // Türkçe
-    " !\"%&'()*+,-./0123456789:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghiklmnopqrstuvwxyz|~\xC2"
+    " !\"%&'()*+,-./0123456789:<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]abcdefghijklmnopqrstuvwxyz|~\xC2"
     "\xAB"
-    "\xC2"
-    "\xB0"
     "\xC3"
     "\x80"
     "\xC3"
@@ -1075,16 +1039,16 @@ const char* const STRINGS_EN[] = {
     "CrossPet",
     "BOOTING",
     "SLEEPING",
-    "Going to sleep",
-    "Browse Files",
-    "File Transfer",
+    "Entering sleep mode",
+    "Library",
+    "Transfer Books",
     "Settings",
     "Calibre Library",
     "Continue Reading",
     "No open book",
     "Start reading below",
     "Books",
-    "No files found",
+    "No books found",
     "Select Chapter",
     "No chapters",
     "End of book",
@@ -1106,33 +1070,33 @@ const char* const STRINGS_EN[] = {
     "Scanning...",
     "Connecting...",
     "Connected!",
-    "Connection Failed",
+    "Connection failed",
     "Connection timeout",
-    "Forget Network?",
-    "Save password for next time?",
+    "Forget this network?",
+    "Save password?",
     "Remove saved password?",
     "Press OK to scan again",
     "Press any button to continue",
     "LEFT/RIGHT: Select | OK: Confirm",
     "How would you like to connect?",
-    "Join a Network",
+    "Join Network",
     "Create Hotspot",
     "Connect to an existing WiFi network",
-    "Create a WiFi network others can join",
-    "Starting Hotspot...",
+    "Create a WiFi network for other devices",
+    "Starting hotspot...",
     "Hotspot Mode",
     "Connect your device to this WiFi network",
     "Open this URL in your browser",
     "or http://",
-    "or scan QR code with your phone:",
+    "or scan the QR code with your phone:",
     "Calibre Wireless",
     "Calibre Web URL",
-    "Connect as Wireless Device",
+    "Connect wirelessly",
     "* = Encrypted | + = Saved",
-    "MAC address:",
+    "MAC Address:",
     "Checking WiFi...",
-    "Enter WiFi Password",
-    "Enter Text",
+    "Enter WiFi password",
+    "Enter text",
     "to ",
     "Discovering Calibre...",
     "Connecting to ",
@@ -1141,14 +1105,14 @@ const char* const STRINGS_EN[] = {
     "(Connection failed, retrying)",
     "Calibre disconnected",
     "Waiting for transfer...",
-    "If transfer fails, enable\n'Ignore free space' in Calibre's\nSmartDevice plugin settings.",
+    "If it fails, enable\n'Ignore free space' in\nCalibre SmartDevice plugin settings.",
     "Receiving: ",
     "Received: ",
     "Waiting for more...",
     "Failed to create file",
     "Password required",
-    "Transfer interrupted",
-    "1) Install CrossPoint Reader plugin",
+    "File transfer interrupted",
+    "1) Install the CrossPoint Reader plugin",
     "2) Be on the same WiFi network",
     "3) In Calibre: \"Send to device\"",
     "\"Keep this screen open while sending\"",
@@ -1157,42 +1121,36 @@ const char* const STRINGS_EN[] = {
     "Controls",
     "System",
     "Sleep Screen",
-    "Sleep Screen Cover Mode",
+    "Sleep Cover Mode",
     "Status Bar",
     "Hide Battery %",
     "Extra Paragraph Spacing",
     "Text Anti-Aliasing",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
-    "Short Power Button Click",
+    "Short Power Button Press",
     "Reading Orientation",
     "Front Button Layout",
-    "Side Button Layout (reader)",
-    "Front Button Layout (reader)",
-    "Long-press Chapter Skip",
-    "Reader Font Family",
+    "Side Buttons (Reader)",
+    "Long Press Chapter Skip",
+    "Reading Font",
     "External Reader Font",
-    "Reader Font",
+    "Reading Font",
     "UI Font",
-    "Reader Font Size",
-    "Reader Line Spacing",
+    "UI Font Size",
+    "Line Spacing",
     "ASCII Letter Spacing",
     "ASCII Digit Spacing",
     "CJK Spacing",
     "Color Mode",
     "Reader Screen Margin",
-    "Reader Paragraph Alignment",
+    "Paragraph Alignment",
     "Hyphenation",
-    "Time to Sleep",
-    "Show Hidden Files",
+    "Sleep Timer",
     "Refresh Frequency",
     "Calibre Settings",
     "KOReader Sync",
-    "Check for updates",
+    "Check for Updates",
     "Language",
     "Select Wallpaper",
     "Clear Reading Cache",
@@ -1209,17 +1167,17 @@ const char* const STRINGS_EN[] = {
     "Set credentials first",
     "WiFi connection failed",
     "Authenticating...",
-    "Successfully authenticated!",
-    "KOReader Auth",
-    "KOReader sync is ready to use",
-    "Authentication Failed",
+    "Authentication successful!",
+    "KOReader Authentication",
+    "KOReader sync is ready",
+    "Authentication failed",
     "Done",
-    "This will clear all cached book data.",
+    "This will clear all cached data.",
     "All reading progress will be lost!",
     "Books will need to be re-indexed",
     "when opened again.",
     "Clearing cache...",
-    "Cache Cleared",
+    "Cache cleared",
     "items removed",
     "failed",
     "Failed to clear cache",
@@ -1231,7 +1189,7 @@ const char* const STRINGS_EN[] = {
     "None",
     "Fit",
     "Crop",
-    "No Progress",
+    "No progress",
     "Full",
     "Never",
     "In Reader",
@@ -1240,24 +1198,22 @@ const char* const STRINGS_EN[] = {
     "Sleep",
     "Page Turn",
     "Screen Refresh",
-    "Block Front",
     "Portrait",
     "Landscape CW",
     "Inverted",
     "Landscape CCW",
-    "Bck, Cnfrm, Lft, Rght",
-    "Lft, Rght, Bck, Cnfrm",
-    "Lft, Bck, Cnfrm, Rght",
+    "Back, OK, Left, Right",
+    "Left, Right, Back, OK",
+    "Left, Back, OK, Right",
     "Prev/Next",
     "Next/Prev",
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Small",
     "Medium",
     "Large",
-    "X Large",
+    "Extra Large",
     "Tight",
     "Normal",
     "Wide",
@@ -1265,26 +1221,26 @@ const char* const STRINGS_EN[] = {
     "Left",
     "Center",
     "Right",
-    "1 min",
-    "5 min",
-    "10 min",
-    "15 min",
-    "30 min",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "15 minutes",
+    "30 minutes",
     "1 page",
     "5 pages",
     "10 pages",
     "15 pages",
     "30 pages",
     "Update",
-    "Checking for update...",
-    "New update available!",
-    "Current Version: ",
-    "New Version: ",
+    "Checking for updates...",
+    "A new update is available!",
+    "Current version: ",
+    "New version: ",
     "Updating...",
-    "No update available",
+    "No updates available",
     "Update failed",
     "Update complete",
-    "Press and hold power button to turn back on",
+    "Press and hold the power button to turn it back on",
     "External Font",
     "Built-in (Disabled)",
     "No entries found",
@@ -1297,11 +1253,11 @@ const char* const STRINGS_EN[] = {
     "Failed to parse feed",
     "Network: ",
     "IP Address: ",
-    "or scan QR code with your phone to connect to Wifi.",
+    "or scan the QR code to connect to WiFi.",
     "Error: General failure",
     "Error: Network not found",
     "Error: Connection timeout",
-    "SD card",
+    "SD Card",
     "\xC2"
     "\xAB"
     " Back",
@@ -1315,7 +1271,6 @@ const char* const STRINGS_EN[] = {
     "\xAB"
     " Save",
     "Select",
-    "Selected",
     "Toggle",
     "Confirm",
     "Cancel",
@@ -1325,37 +1280,24 @@ const char* const STRINGS_EN[] = {
     "Retry",
     "Yes",
     "No",
-    "Show",
-    "Hide",
     "ON",
     "OFF",
+    "Set",
     "Not Set",
     "Left",
     "Right",
     "Up",
     "Down",
     "CAPS",
-    "caps",
+    "lowercase",
     "OK",
-    "Sleep Screen Cover Filter",
+    "[ON]",
+    "Sleep Cover Filter",
     "Contrast",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "UI Theme",
     "Classic",
     "Lyra",
@@ -1363,25 +1305,13 @@ const char* const STRINGS_EN[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Sunlight Fading Fix",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Remap Front Buttons",
     "OPDS Browser",
     "Cover + Custom",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
-    "Recents",
+    "Recent",
     "Recent Books",
     "No recent books",
-    "Use Calibre wireless device transfers",
+    "Wireless transfer via Calibre",
     "Forget network and remove saved password?",
     "Forget",
     "Starting Calibre...",
@@ -1389,21 +1319,19 @@ const char* const STRINGS_EN[] = {
     "Status",
     "Clear",
     "Default",
-    "Press a front button for each role",
+    "Press a front button for each action",
     "Unassigned",
     "Already assigned",
-    "Side button Up: Reset to default layout",
+    "Side button Up: Reset to default",
     "Side button Down: Cancel remapping",
-    "Back (1st button)",
-    "Confirm (2nd button)",
-    "Left (3rd button)",
-    "Right (4th button)",
+    "Back (Button 1)",
+    "Confirm (Button 2)",
+    "Left (Button 3)",
+    "Right (Button 4)",
     "Go to %",
     "Go Home",
     "Sync Progress",
     "Delete Book Cache",
-    "Delete",
-    "Show page as QR",
     "Chapter: ",
     " pages  |  ",
     "Book: ",
@@ -1415,10 +1343,10 @@ const char* const STRINGS_EN[] = {
     "Syncing time...",
     "Calculating document hash...",
     "Failed to calculate document hash",
-    "Fetching remote progress...",
+    "Fetching progress...",
     "Uploading progress...",
     "No credentials configured",
-    "Set up KOReader account in Settings",
+    "Set up your KOReader account in Settings",
     "Progress found!",
     "Remote:",
     "Local:",
@@ -1436,82 +1364,51 @@ const char* const STRINGS_EN[] = {
     "Book's Style",
     "Embedded Style",
     "OPDS Server URL",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
-    "Take screenshot",
-    "Auto Turn Enabled: ",
+    "Take Screenshot",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -1521,29 +1418,29 @@ const char* const STRINGS_EN[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -1562,17 +1459,17 @@ const char* const STRINGS_EN[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -1583,10 +1480,36 @@ const char* const STRINGS_EN[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -1594,44 +1517,74 @@ const char* const STRINGS_EN[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "No files found",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Delete",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -1650,8 +1603,8 @@ const char* const STRINGS_EN[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -1661,8 +1614,8 @@ const char* const STRINGS_EN[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -1673,14 +1626,14 @@ const char* const STRINGS_EN[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -1698,45 +1651,38 @@ const char* const STRINGS_EN[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -1747,53 +1693,68 @@ const char* const STRINGS_EN[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Block Front",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_ES[] = {
@@ -1811,7 +1772,7 @@ const char* const STRINGS_ES[] = {
     "No hay libros abiertos",
     "Comenzar a leer",
     "Libros",
-    "No se encontraron archivos",
+    "No books found",
     "Seleccionar cap\xC3"
     "\xAD"
     "tulo",
@@ -1957,10 +1918,6 @@ const char* const STRINGS_ES[] = {
     "Suavizado de texto",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Toque corto bot\xC3"
     "\xB3"
     "n encendido",
@@ -1973,7 +1930,6 @@ const char* const STRINGS_ES[] = {
     "Funci\xC3"
     "\xB3"
     "n botones laterales (lector)",
-    "Front Button Layout (reader)",
     "Saltar cap\xC3"
     "\xAD"
     "tulo (pulsaci\xC3"
@@ -2011,7 +1967,6 @@ const char* const STRINGS_ES[] = {
     "Auto suspensi\xC3"
     "\xB3"
     "n",
-    "Show Hidden Files",
     "Frecuencia de refresco",
     "Ajustes de Calibre",
     "Sincronizaci\xC3"
@@ -2105,7 +2060,6 @@ const char* const STRINGS_ES[] = {
     "\xA1"
     "gina",
     "Screen Refresh",
-    "Bloquear frente",
     "Vertical",
     "Horizontal (horario)",
     "Invertido",
@@ -2124,7 +2078,6 @@ const char* const STRINGS_ES[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Peque\xC3"
     "\xB1"
     "o",
@@ -2220,7 +2173,6 @@ const char* const STRINGS_ES[] = {
     "\xAB"
     " Guardar",
     "Selec.",
-    "Seleccionado",
     "Cambiar",
     "Confirmar",
     "Cancelar",
@@ -2232,10 +2184,9 @@ const char* const STRINGS_ES[] = {
     "\xAD"
     "",
     "No",
-    "Mostrar",
-    "Ocultar",
     "Activado",
     "Desactivado",
+    "Set",
     "No configurado",
     "Izq.",
     "Der.",
@@ -2248,41 +2199,15 @@ const char* const STRINGS_ES[] = {
     "\xBA"
     "sculas",
     "OK",
+    "[ON]",
     "Filtro de pantalla de suspensi\xC3"
     "\xB3"
     "n",
     "Contraste",
-    "Personalizar barra de estado",
-    "Contador p\xC3"
-    "\xA1"
-    "g. cap.",
-    "Porcentaje progreso libro",
-    "Barra de progreso",
-    "Grosor de barra de progreso",
-    "Fino",
-    "Medio",
-    "Ancho",
-    "Libro",
-    "Cap\xC3"
-    "\xAD"
-    "tulo",
-    "Cap\xC3"
-    "\xAD"
-    "tulo 21",
-    "T\xC3"
-    "\xAD"
-    "tulo del libro",
-    "Previsualizaci\xC3"
-    "\xB3"
-    "n",
-    "T\xC3"
-    "\xAD"
-    "tulo",
-    "Bater\xC3"
-    "\xAD"
-    "a",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Interfaz",
     "Cl\xC3"
     "\xA1"
@@ -2294,21 +2219,9 @@ const char* const STRINGS_ES[] = {
     "Correcci\xC3"
     "\xB3"
     "n de desvanecimiento",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Reconfigurar botones frontales",
     "Navegador OPDS",
     "Portada + Pers.",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Recientes",
     "Libros recientes",
     "No hay libros recientes",
@@ -2365,10 +2278,6 @@ const char* const STRINGS_ES[] = {
     "Borrar cach\xC3"
     "\xA9"
     " del libro",
-    "Borrar",
-    "Mostrar p\xC3"
-    "\xA1"
-    "gina como QR",
     "Cap.: ",
     " P\xC3"
     "\xA1"
@@ -2427,9 +2336,6 @@ const char* const STRINGS_ES[] = {
     "Estilo del libro",
     "Estilo integrado",
     "URL del servidor OPDS",
-    "Pie de p\xC3"
-    "\xA1"
-    "gina",
     "No hay notas al pie de esta p\xC3"
     "\xA1"
     "gina",
@@ -2444,75 +2350,45 @@ const char* const STRINGS_ES[] = {
     "\xA1"
     "ginas por minuto",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -2522,29 +2398,29 @@ const char* const STRINGS_ES[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -2563,17 +2439,17 @@ const char* const STRINGS_ES[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -2584,10 +2460,36 @@ const char* const STRINGS_ES[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -2595,44 +2497,92 @@ const char* const STRINGS_ES[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "No se encontraron archivos",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Seleccionado",
+    "Mostrar",
+    "Ocultar",
+    "Personalizar barra de estado",
+    "Contador p\xC3"
+    "\xA1"
+    "g. cap.",
+    "Porcentaje progreso libro",
+    "Barra de progreso",
+    "Grosor de barra de progreso",
+    "Fino",
+    "Medio",
+    "Ancho",
+    "Libro",
+    "Cap\xC3"
+    "\xAD"
+    "tulo",
+    "Cap\xC3"
+    "\xAD"
+    "tulo 21",
+    "T\xC3"
+    "\xAD"
+    "tulo del libro",
+    "Previsualizaci\xC3"
+    "\xB3"
+    "n",
+    "T\xC3"
+    "\xAD"
+    "tulo",
+    "Bater\xC3"
+    "\xAD"
+    "a",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Borrar",
+    "Mostrar p\xC3"
+    "\xA1"
+    "gina como QR",
+    "Pie de p\xC3"
+    "\xA1"
+    "gina",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -2651,8 +2601,8 @@ const char* const STRINGS_ES[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -2662,8 +2612,8 @@ const char* const STRINGS_ES[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -2674,14 +2624,14 @@ const char* const STRINGS_ES[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -2699,45 +2649,38 @@ const char* const STRINGS_ES[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -2748,53 +2691,68 @@ const char* const STRINGS_ES[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Bloquear frente",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_FR[] = {
@@ -2816,9 +2774,7 @@ const char* const STRINGS_FR[] = {
     "Aucun livre ouvert",
     "Commencer la lecture",
     "Livres",
-    "Aucun fichier trouv\xC3"
-    "\xA9"
-    "",
+    "No books found",
     "Choix du chapitre",
     "Aucun chapitre",
     "Fin du livre",
@@ -3041,10 +2997,6 @@ const char* const STRINGS_FR[] = {
     "Lissage du texte",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Appui court alim.",
     "Orientation de lecture",
     "Boutons de fa\xC3"
@@ -3053,7 +3005,6 @@ const char* const STRINGS_FR[] = {
     "Boutons lat\xC3"
     "\xA9"
     "raux",
-    "Front Button Layout (reader)",
     "Appui long saut de chapitre",
     "Police de caract\xC3"
     "\xA8"
@@ -3076,7 +3027,6 @@ const char* const STRINGS_FR[] = {
     "\xA9"
     "sure",
     "Mise en veille auto",
-    "Show Hidden Files",
     "Fr\xC3"
     "\xA9"
     "quence rafra\xC3"
@@ -3194,10 +3144,6 @@ const char* const STRINGS_FR[] = {
     "Mise en veille",
     "Page suivante",
     "Screen Refresh",
-    "Bloquer l\xE2"
-    "\x80"
-    "\x99"
-    "avant",
     "Portrait",
     "Paysage",
     "Invers\xC3"
@@ -3218,7 +3164,6 @@ const char* const STRINGS_FR[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Petit",
     "Moyen",
     "Grand",
@@ -3359,7 +3304,6 @@ const char* const STRINGS_FR[] = {
     "\xAB"
     " Enregistrer",
     "OK",
-    "Selected",
     "Modifier",
     "Confirmer",
     "Annuler",
@@ -3375,10 +3319,9 @@ const char* const STRINGS_FR[] = {
     "essayer",
     "Oui",
     "Non",
-    "Show",
-    "Hide",
     "ON",
     "OFF",
+    "Set",
     "Non d\xC3"
     "\xA9"
     "fini",
@@ -3389,27 +3332,15 @@ const char* const STRINGS_FR[] = {
     "MAJ",
     "min",
     "OK",
+    "[ON]",
     "Filtre \xC3"
     "\xA9"
     "cran de veille",
     "Contraste",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Th\xC3"
     "\xA8"
     "me interface",
@@ -3421,23 +3352,11 @@ const char* const STRINGS_FR[] = {
     "Correction lisibilit\xC3"
     "\xA9"
     " au soleil",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Configurer boutons fa\xC3"
     "\xA7"
     "ade",
     "Navigateur OPDS",
     "Couverture + Perso",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "R\xC3"
     "\xA9"
     "cents",
@@ -3495,8 +3414,6 @@ const char* const STRINGS_FR[] = {
     "Retour Accueil",
     "Synchro progression",
     "Supprimer cache livre",
-    "Supprimer",
-    "Show page as QR",
     "Chapitre : ",
     " pages  |  ",
     "Livre : ",
@@ -3567,84 +3484,53 @@ const char* const STRINGS_FR[] = {
     "\xA9"
     "",
     "URL serveur OPDS",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "Capture d'\xC3"
     "\xA9"
     "cran",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -3654,29 +3540,29 @@ const char* const STRINGS_FR[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -3695,17 +3581,17 @@ const char* const STRINGS_FR[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -3716,10 +3602,36 @@ const char* const STRINGS_FR[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -3727,44 +3639,76 @@ const char* const STRINGS_FR[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Aucun fichier trouv\xC3"
+    "\xA9"
+    "",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Supprimer",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -3783,8 +3727,8 @@ const char* const STRINGS_FR[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -3794,8 +3738,8 @@ const char* const STRINGS_FR[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -3806,14 +3750,14 @@ const char* const STRINGS_FR[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -3831,45 +3775,38 @@ const char* const STRINGS_FR[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -3880,53 +3817,71 @@ const char* const STRINGS_FR[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Bloquer l\xE2"
+    "\x80"
+    "\x99"
+    "avant",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_DE[] = {
@@ -3944,7 +3899,7 @@ const char* const STRINGS_DE[] = {
     "B\xC3"
     "\xBC"
     "cher",
-    "Keine Dateien gefunden",
+    "No books found",
     "Kapitel ausw\xC3"
     "\xA4"
     "hlen",
@@ -4075,17 +4030,12 @@ const char* const STRINGS_DE[] = {
     "ttung",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "An-Taste kurz dr\xC3"
     "\xBC"
     "cken",
     "Leseausrichtung",
     "Vorderes Tastenlayout",
     "Seitliche Tasten (Lesen)",
-    "Front Button Layout (reader)",
     "Langes Dr\xC3"
     "\xBC"
     "cken springt Kap.",
@@ -4111,7 +4061,6 @@ const char* const STRINGS_DE[] = {
     "Lese-Absatzausrichtung",
     "Silbentrennung",
     "Standby nach",
-    "Show Hidden Files",
     "Anti-Ghosting nach",
     "Calibre-Einstellungen",
     "KOReader-Synchr.",
@@ -4185,7 +4134,6 @@ const char* const STRINGS_DE[] = {
     "\xA4"
     "ttern",
     "Screen Refresh",
-    "Vorderseite blockieren",
     "Hochformat",
     "Querformat rechts",
     "Invertiert",
@@ -4208,7 +4156,6 @@ const char* const STRINGS_DE[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Klein",
     "Mittel",
     "Gro\xC3"
@@ -4299,9 +4246,6 @@ const char* const STRINGS_DE[] = {
     "\xAB"
     " Speichern",
     "Auswahl",
-    "Ausgew\xC3"
-    "\xA4"
-    "hlt",
     "\xC3"
     "\x84"
     "ndern",
@@ -4317,10 +4261,9 @@ const char* const STRINGS_DE[] = {
     "Wiederh.",
     "Ja",
     "Nein",
-    "Zeigen",
-    "Ausblenden",
     "An",
     "Aus",
+    "Set",
     "Leer",
     "Links",
     "Rechts",
@@ -4329,29 +4272,13 @@ const char* const STRINGS_DE[] = {
     "UMSCH",
     "umsch",
     "OK",
+    "[ON]",
     "Standby-Coverfilter",
     "Kontrast",
-    "Statusleiste anpassen",
-    "Kapitel-Seitenanzahl",
-    "Buchfortschritt in %",
-    "Fortschrittsbalken",
-    "Balkenst\xC3"
-    "\xA4"
-    "rke",
-    "D\xC3"
-    "\xBC"
-    "nn",
-    "Mittel",
-    "Dick",
-    "Buch",
-    "Kapitel",
-    "Kapitel 21",
-    "Buchtitel",
-    "Vorschau",
-    "Titel",
-    "Batterie",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "System-Design",
     "Klassisch",
     "Lyra",
@@ -4359,21 +4286,9 @@ const char* const STRINGS_DE[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Anti-Verblassen",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Vordere Tasten belegen",
     "OPDS-Browser",
     "Umschlag + Eigenes",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Zuletzt",
     "Zuletzt gelesen",
     "Keine B\xC3"
@@ -4413,10 +4328,6 @@ const char* const STRINGS_DE[] = {
     "Zum Anfang",
     "Fortschritt synchronisieren",
     "Buch-Cache leeren",
-    "L\xC3"
-    "\xB6"
-    "schen",
-    "Seite als QR anzeigen",
     "Kapitel:",
     " Seiten  |  ",
     "Buch: ",
@@ -4462,9 +4373,6 @@ const char* const STRINGS_DE[] = {
     "Buch-Stil",
     "Eingebetteter Stil",
     "OPDS-Server-URL",
-    "Fu\xC3"
-    "\x9F"
-    "noten",
     "Keine Fu\xC3"
     "\x9F"
     "noten auf dieser Seite",
@@ -4477,75 +4385,45 @@ const char* const STRINGS_DE[] = {
     "\xA4"
     "ttern (Seiten/Min.)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -4555,29 +4433,29 @@ const char* const STRINGS_DE[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -4596,17 +4474,17 @@ const char* const STRINGS_DE[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -4617,10 +4495,36 @@ const char* const STRINGS_DE[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -4628,44 +4532,84 @@ const char* const STRINGS_DE[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Keine Dateien gefunden",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Ausgew\xC3"
+    "\xA4"
+    "hlt",
+    "Zeigen",
+    "Ausblenden",
+    "Statusleiste anpassen",
+    "Kapitel-Seitenanzahl",
+    "Buchfortschritt in %",
+    "Fortschrittsbalken",
+    "Balkenst\xC3"
+    "\xA4"
+    "rke",
+    "D\xC3"
+    "\xBC"
+    "nn",
+    "Mittel",
+    "Dick",
+    "Buch",
+    "Kapitel",
+    "Kapitel 21",
+    "Buchtitel",
+    "Vorschau",
+    "Titel",
+    "Batterie",
+    "Estimated Reading Time",
+    "Session Timer",
+    "L\xC3"
+    "\xB6"
+    "schen",
+    "Seite als QR anzeigen",
+    "Fu\xC3"
+    "\x9F"
+    "noten",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -4684,8 +4628,8 @@ const char* const STRINGS_DE[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -4695,8 +4639,8 @@ const char* const STRINGS_DE[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -4707,14 +4651,14 @@ const char* const STRINGS_DE[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -4732,45 +4676,38 @@ const char* const STRINGS_DE[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -4781,53 +4718,68 @@ const char* const STRINGS_DE[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Vorderseite blockieren",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_CS[] = {
@@ -4891,13 +4843,7 @@ const char* const STRINGS_CS[] = {
     "\xBE"
     "e",
     "Knihy",
-    "Nebyly nalezeny \xC5"
-    "\xBE"
-    "\xC3"
-    "\xA1"
-    "dn\xC3"
-    "\xA9"
-    " soubory",
+    "No books found",
     "Vybrat kapitolu",
     "\xC5"
     "\xBD"
@@ -5350,10 +5296,6 @@ const char* const STRINGS_CS[] = {
     " textu",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Kr\xC3"
     "\xA1"
     "tk\xC3"
@@ -5404,7 +5346,6 @@ const char* const STRINGS_CS[] = {
     "te\xC4"
     "\x8D"
     "ka)",
-    "Front Button Layout (reader)",
     "Dlouh\xC3"
     "\xA9"
     " stisknut\xC3"
@@ -5500,7 +5441,6 @@ const char* const STRINGS_CS[] = {
     "n\xC3"
     "\xAD"
     "",
-    "Show Hidden Files",
     "Frekvence obnoven\xC3"
     "\xAD"
     "",
@@ -5756,11 +5696,6 @@ const char* const STRINGS_CS[] = {
     "\xA1"
     "nek",
     "Screen Refresh",
-    "Blokovat p\xC5"
-    "\x99"
-    "edn\xC3"
-    "\xAD"
-    "",
     "Na v\xC3"
     "\xBD"
     "\xC5"
@@ -5825,7 +5760,6 @@ const char* const STRINGS_CS[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Mal\xC3"
     "\xBD"
     "",
@@ -6042,7 +5976,6 @@ const char* const STRINGS_CS[] = {
     "\xBE"
     "it",
     "Vybrat",
-    "Selected",
     "P\xC5"
     "\x99"
     "epnout",
@@ -6064,10 +5997,9 @@ const char* const STRINGS_CS[] = {
     "Zkusit znovu",
     "Ano",
     "Ne",
-    "Show",
-    "Hide",
     "ZAP",
     "VYP",
+    "Set",
     "Nenastaveno",
     "Vlevo",
     "Vpravo",
@@ -6082,27 +6014,15 @@ const char* const STRINGS_CS[] = {
     "\xAD"
     "smo",
     "OK",
+    "[ON]",
     "Filtr obrazovky sp\xC3"
     "\xA1"
     "nku",
     "Kontrast",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "\xC5"
     "\xA0"
     "ablona rozhran\xC3"
@@ -6118,15 +6038,6 @@ const char* const STRINGS_CS[] = {
     "Oprava blednut\xC3"
     "\xAD"
     " na slunci",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "P\xC5"
     "\x99"
     "emapovat p\xC5"
@@ -6150,9 +6061,6 @@ const char* const STRINGS_CS[] = {
     "lka + Vlastn\xC3"
     "\xAD"
     "",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Ned\xC3"
     "\xA1"
     "vn\xC3"
@@ -6323,8 +6231,6 @@ const char* const STRINGS_CS[] = {
     "\xC5"
     "\xA5"
     " knihy",
-    "Smazat",
-    "Show page as QR",
     "Kapitola:",
     "str\xC3"
     "\xA1"
@@ -6479,7 +6385,6 @@ const char* const STRINGS_CS[] = {
     "\xBD"
     " styl",
     "URL serveru OPDS",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "Ud\xC4"
@@ -6487,78 +6392,48 @@ const char* const STRINGS_CS[] = {
     "lat sn\xC3"
     "\xAD"
     "mek obrazovky",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -6568,29 +6443,29 @@ const char* const STRINGS_CS[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -6609,17 +6484,17 @@ const char* const STRINGS_CS[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -6630,10 +6505,36 @@ const char* const STRINGS_CS[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -6641,44 +6542,80 @@ const char* const STRINGS_CS[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Nebyly nalezeny \xC5"
+    "\xBE"
+    "\xC3"
+    "\xA1"
+    "dn\xC3"
+    "\xA9"
+    " soubory",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Smazat",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -6697,8 +6634,8 @@ const char* const STRINGS_CS[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -6708,8 +6645,8 @@ const char* const STRINGS_CS[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -6720,14 +6657,14 @@ const char* const STRINGS_CS[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -6745,45 +6682,38 @@ const char* const STRINGS_CS[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -6794,53 +6724,72 @@ const char* const STRINGS_CS[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Blokovat p\xC5"
+    "\x99"
+    "edn\xC3"
+    "\xAD"
+    "",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_PO[] = {
@@ -6862,7 +6811,7 @@ const char* const STRINGS_PO[] = {
     "Nenhum livro aberto",
     "Comece a ler abaixo",
     "Livros",
-    "Nenhum arquivo encontrado",
+    "No books found",
     "Escolher cap\xC3"
     "\xAD"
     "tulo",
@@ -7009,10 +6958,6 @@ const char* const STRINGS_PO[] = {
     "o de texto",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Clique curto bot\xC3"
     "\xA3"
     "o ligar",
@@ -7035,7 +6980,6 @@ const char* const STRINGS_PO[] = {
     "o bot\xC3"
     "\xB5"
     "es laterais",
-    "Front Button Layout (reader)",
     "Pular cap\xC3"
     "\xAD"
     "tulo com press\xC3"
@@ -7071,7 +7015,6 @@ const char* const STRINGS_PO[] = {
     "\xA3"
     "o",
     "Tempo para repousar",
-    "Show Hidden Files",
     "Frequ\xC3"
     "\xAA"
     "ncia atualiza\xC3"
@@ -7178,7 +7121,6 @@ const char* const STRINGS_PO[] = {
     "\xA1"
     "gina",
     "Screen Refresh",
-    "Bloquear frente",
     "Retrato",
     "Paisagem H",
     "Invertido",
@@ -7195,7 +7137,6 @@ const char* const STRINGS_PO[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Pequeno",
     "M\xC3"
     "\xA9"
@@ -7314,7 +7255,6 @@ const char* const STRINGS_PO[] = {
     "\xAB"
     " Salvar",
     "Escolher",
-    "Selected",
     "Alternar",
     "Confirmar",
     "Cancelar",
@@ -7326,10 +7266,9 @@ const char* const STRINGS_PO[] = {
     "N\xC3"
     "\xA3"
     "o",
-    "Show",
-    "Hide",
     "LIG.",
     "DESL.",
+    "Set",
     "N\xC3"
     "\xA3"
     "o definido",
@@ -7340,25 +7279,13 @@ const char* const STRINGS_PO[] = {
     "CAPS",
     "caps",
     "OK",
+    "[ON]",
     "Filtro capa tela repouso",
     "Contraste",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Tema da interface",
     "Cl\xC3"
     "\xA1"
@@ -7368,23 +7295,11 @@ const char* const STRINGS_PO[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Ajuste desbotamento ao sol",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Remapear bot\xC3"
     "\xB5"
     "es frontais",
     "Navegador OPDS",
     "Capa + personalizado",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Recentes",
     "Livros recentes",
     "Sem livros recentes",
@@ -7459,8 +7374,6 @@ const char* const STRINGS_PO[] = {
     "cio",
     "Sincronizar progresso",
     "Excluir cache do livro",
-    "Excluir",
-    "Show page as QR",
     "Cap\xC3"
     "\xAD"
     "tulo:",
@@ -7515,82 +7428,51 @@ const char* const STRINGS_PO[] = {
     "Estilo do livro",
     "Estilo embutido",
     "URL do servidor OPDS",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "Capturar tela",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -7600,29 +7482,29 @@ const char* const STRINGS_PO[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -7641,17 +7523,17 @@ const char* const STRINGS_PO[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -7662,10 +7544,36 @@ const char* const STRINGS_PO[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -7673,44 +7581,74 @@ const char* const STRINGS_PO[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Nenhum arquivo encontrado",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Excluir",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -7729,8 +7667,8 @@ const char* const STRINGS_PO[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -7740,8 +7678,8 @@ const char* const STRINGS_PO[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -7752,14 +7690,14 @@ const char* const STRINGS_PO[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -7777,45 +7715,38 @@ const char* const STRINGS_PO[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -7826,53 +7757,68 @@ const char* const STRINGS_PO[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Bloquear frente",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_RU[] = {
@@ -8142,35 +8088,7 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\xB8"
     "",
-    "\xD0"
-    "\xA4"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x8B"
-    " \xD0"
-    "\xBD"
-    "\xD0"
-    "\xB5"
-    " \xD0"
-    "\xBD"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x8B"
-    "",
+    "No books found",
     "\xD0"
     "\x92"
     "\xD1"
@@ -10602,10 +10520,6 @@ const char* const STRINGS_RU[] = {
     "",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "\xD0"
     "\x9A"
     "\xD0"
@@ -10724,7 +10638,6 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\xB8"
     "",
-    "Front Button Layout (reader)",
     "\xD0"
     "\x94"
     "\xD0"
@@ -11150,7 +11063,6 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\xB7"
     "",
-    "Show Hidden Files",
     "\xD0"
     "\xA7"
     "\xD0"
@@ -12485,55 +12397,6 @@ const char* const STRINGS_RU[] = {
     "",
     "Screen Refresh",
     "\xD0"
-    "\x91"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    " \xD0"
-    "\xBF"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x8E"
-    "\xD1"
-    "\x8E"
-    " \xD1"
-    "\x87"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    "",
-    "\xD0"
     "\x9F"
     "\xD0"
     "\xBE"
@@ -12723,7 +12586,6 @@ const char* const STRINGS_RU[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "\xD0"
     "\x9C"
     "\xD0"
@@ -13963,19 +13825,6 @@ const char* const STRINGS_RU[] = {
     "\x8B"
     "\xD0"
     "\xB1"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "",
-    "\xD0"
-    "\x92"
-    "\xD1"
-    "\x8B"
-    "\xD0"
-    "\xB1"
     "\xD0"
     "\xBE"
     "\xD1"
@@ -14078,36 +13927,6 @@ const char* const STRINGS_RU[] = {
     "\x82"
     "",
     "\xD0"
-    "\x9F"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    "",
-    "\xD0"
-    "\xA1"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x80"
-    "\xD1"
-    "\x8B"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    "",
-    "\xD0"
     "\x92"
     "\xD0"
     "\x9A"
@@ -14123,6 +13942,7 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\x9B"
     "",
+    "Set",
     "\xD0"
     "\x9D"
     "\xD0"
@@ -14197,6 +14017,7 @@ const char* const STRINGS_RU[] = {
     "CAPS",
     "caps",
     "OK",
+    "[ON]",
     "\xD0"
     "\xA4"
     "\xD0"
@@ -14245,365 +14066,10 @@ const char* const STRINGS_RU[] = {
     "\xD1"
     "\x82"
     "",
-    "\xD0"
-    "\x9D"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    " \xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB8"
-    " \xD1"
-    "\x81"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x8F"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x8F"
-    "",
-    "\xD0"
-    "\x9A"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x87"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xBE"
-    " \xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x86"
-    " \xD0"
-    "\xB3"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB2"
-    "\xD1"
-    "\x8B"
-    "",
-    "% \xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x87"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x8F"
-    " \xD0"
-    "\xBA"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
-    "\x9F"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x81"
-    "\xD0"
-    "\xB0"
-    " \xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB3"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x81"
-    "\xD0"
-    "\xB0"
-    "",
-    "\xD0"
-    "\xA2"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x89"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB0"
-    " \xD0"
-    "\xB8"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB0"
-    " \xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB3"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x81"
-    "\xD0"
-    "\xB0"
-    "",
-    "\xD0"
-    "\xA2"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB9"
-    "",
-    "\xD0"
-    "\xA1"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB9"
-    "",
-    "\xD0"
-    "\xA2"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8B"
-    "\xD0"
-    "\xB9"
-    "",
-    "\xD0"
-    "\x9A"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xB0"
-    "",
-    "\xD0"
-    "\x93"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "",
-    "Chapter 21",
-    "\xD0"
-    "\x9D"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB5"
-    " \xD0"
-    "\xBA"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
-    "\x9F"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x81"
-    "\xD0"
-    "\xBC"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x80"
-    "",
-    "\xD0"
-    "\x97"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB5"
-    "",
-    "\xD0"
-    "\x91"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x8F"
-    "",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "\xD0"
     "\xA2"
     "\xD0"
@@ -14705,15 +14171,6 @@ const char* const STRINGS_RU[] = {
     "\xD1"
     "\x8F"
     "",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "\xD0"
     "\x9F"
     "\xD0"
@@ -14807,9 +14264,6 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\xB9"
     "",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "\xD0"
     "\x9D"
     "\xD0"
@@ -15607,72 +15061,6 @@ const char* const STRINGS_RU[] = {
     "\xB3"
     "\xD0"
     "\xB8"
-    "",
-    "\xD0"
-    "\xA3"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    "",
-    "\xD0"
-    "\x9F"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    " \xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x86"
-    "\xD1"
-    "\x83"
-    " \xD0"
-    "\xB2"
-    " \xD0"
-    "\xB2"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB5"
-    " QR-\xD0"
-    "\xBA"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB0"
     "",
     "\xD0"
     "\x93"
@@ -16604,7 +15992,6 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\xB0"
     "",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "\xD0"
@@ -16646,78 +16033,48 @@ const char* const STRINGS_RU[] = {
     "\xD0"
     "\xB0"
     "",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -16727,29 +16084,29 @@ const char* const STRINGS_RU[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -16768,17 +16125,17 @@ const char* const STRINGS_RU[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -16789,10 +16146,36 @@ const char* const STRINGS_RU[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -16800,44 +16183,548 @@ const char* const STRINGS_RU[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "\xD0"
+    "\xA4"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x8B"
+    " \xD0"
+    "\xBD"
+    "\xD0"
+    "\xB5"
+    " \xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x8B"
+    "",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "\xD0"
+    "\x92"
+    "\xD1"
+    "\x8B"
+    "\xD0"
+    "\xB1"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    "",
+    "\xD0"
+    "\xA1"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x80"
+    "\xD1"
+    "\x8B"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    "",
+    "\xD0"
+    "\x9D"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    " \xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB8"
+    " \xD1"
+    "\x81"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x8F"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x8F"
+    "",
+    "\xD0"
+    "\x9A"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x87"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xBE"
+    " \xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x86"
+    " \xD0"
+    "\xB3"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB2"
+    "\xD1"
+    "\x8B"
+    "",
+    "% \xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x87"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x8F"
+    " \xD0"
+    "\xBA"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xB8"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x81"
+    "\xD0"
+    "\xB0"
+    " \xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB3"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x81"
+    "\xD0"
+    "\xB0"
+    "",
+    "\xD0"
+    "\xA2"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x89"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    " \xD0"
+    "\xB8"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB0"
+    " \xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB3"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x81"
+    "\xD0"
+    "\xB0"
+    "",
+    "\xD0"
+    "\xA2"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB9"
+    "",
+    "\xD0"
+    "\xA1"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB9"
+    "",
+    "\xD0"
+    "\xA2"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8B"
+    "\xD0"
+    "\xB9"
+    "",
+    "\xD0"
+    "\x9A"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xB0"
+    "",
+    "\xD0"
+    "\x93"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "",
+    "Chapter 21",
+    "\xD0"
+    "\x9D"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB5"
+    " \xD0"
+    "\xBA"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xB8"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x81"
+    "\xD0"
+    "\xBC"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x80"
+    "",
+    "\xD0"
+    "\x97"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB5"
+    "",
+    "\xD0"
+    "\x91"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x8F"
+    "",
+    "Estimated Reading Time",
+    "Session Timer",
+    "\xD0"
+    "\xA3"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    " \xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x86"
+    "\xD1"
+    "\x83"
+    " \xD0"
+    "\xB2"
+    " \xD0"
+    "\xB2"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB5"
+    " QR-\xD0"
+    "\xBA"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB0"
+    "",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -16856,8 +16743,8 @@ const char* const STRINGS_RU[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -16867,8 +16754,8 @@ const char* const STRINGS_RU[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -16879,14 +16766,14 @@ const char* const STRINGS_RU[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -16904,45 +16791,38 @@ const char* const STRINGS_RU[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -16953,53 +16833,116 @@ const char* const STRINGS_RU[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "\xD0"
+    "\x91"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    " \xD0"
+    "\xBF"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x8E"
+    "\xD1"
+    "\x8E"
+    " \xD1"
+    "\x87"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    "",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_SV[] = {
@@ -17040,7 +16983,7 @@ const char* const STRINGS_SV[] = {
     "B\xC3"
     "\xB6"
     "cker",
-    "Inga filer hittades",
+    "No books found",
     "V\xC3"
     "\xA4"
     "lj kapitel",
@@ -17304,14 +17247,6 @@ const char* const STRINGS_SV[] = {
     "mning",
     "Text Darkness",
     "Extra Dark",
-    "Bilder",
-    "Visa",
-    "Platsh\xC3"
-    "\xA5"
-    "llare",
-    "D\xC3"
-    "\xB6"
-    "lj",
     "Kort str\xC3"
     "\xB6"
     "mknappsklick",
@@ -17322,7 +17257,6 @@ const char* const STRINGS_SV[] = {
     "Sidoknappslayout (L\xC3"
     "\xA4"
     "sare)",
-    "Front Button Layout (reader)",
     "L\xC3"
     "\xA5"
     "ng-tryck Kapitelskippning",
@@ -17370,7 +17304,6 @@ const char* const STRINGS_SV[] = {
     "r att g\xC3"
     "\xA5"
     " i vila",
-    "Show Hidden Files",
     "Uppdateringsfrekvens",
     "Calibreinst\xC3"
     "\xA4"
@@ -17484,7 +17417,6 @@ const char* const STRINGS_SV[] = {
     "\xA4"
     "ndning",
     "Screen Refresh",
-    "Blockera framsidan",
     "Portr\xC3"
     "\xA4"
     "tt",
@@ -17521,7 +17453,6 @@ const char* const STRINGS_SV[] = {
     "\xC3"
     "\x96"
     "ppen dyslektisk",
-    "Bokerlam",
     "Liten",
     "Medium",
     "Stor",
@@ -17634,7 +17565,6 @@ const char* const STRINGS_SV[] = {
     "V\xC3"
     "\xA4"
     "lj ",
-    "Vald",
     "V\xC3"
     "\xA4"
     "xla",
@@ -17654,14 +17584,11 @@ const char* const STRINGS_SV[] = {
     "k igen",
     "Ja",
     "Nej",
-    "Visa",
-    "D\xC3"
-    "\xB6"
-    "lj",
     "P\xC3"
     "\x85"
     "",
     "AV",
+    "Set",
     "Inte inst\xC3"
     "\xA4"
     "lld",
@@ -17676,33 +17603,15 @@ const char* const STRINGS_SV[] = {
     "VERSALER",
     "versaler",
     "Okej",
+    "[ON]",
     "Vilosk\xC3"
     "\xA4"
     "rmens omslagsfilter",
     "Kontrast",
-    "Anpassa statusf\xC3"
-    "\xA4"
-    "lt",
-    "Antal sidor i kapitel",
-    "Procentuellt bokframsteg",
-    "Framstegsindikator",
-    "Tjocklek p\xC3"
-    "\xA5"
-    " framstegsindikator",
-    "Tunn",
-    "Mellan",
-    "Tjock",
-    "Bok",
-    "Kapitel",
-    "Kapitel 21",
-    "Boktitel",
-    "F\xC3"
-    "\xB6"
-    "rhandsgranskning",
-    "Titel",
-    "Batteri",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Anv\xC3"
     "\xA4"
     "ndargr\xC3"
@@ -17716,15 +17625,6 @@ const char* const STRINGS_SV[] = {
     "Fix f\xC3"
     "\xB6"
     "r solskensmattning",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "\xC3"
     "\x84"
     "ndra frontknappar",
@@ -17732,9 +17632,6 @@ const char* const STRINGS_SV[] = {
     "\xA4"
     "sare",
     "Omslag + Valfri",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Senaste",
     "Senaste b\xC3"
     "\xB6"
@@ -17808,8 +17705,6 @@ const char* const STRINGS_SV[] = {
     " Hem",
     "Synkroniseringsframsteg",
     "Radera bokcache",
-    "Radera",
-    "Visa sida som QR-kod",
     "Kapitel:",
     " sidor  |  ",
     "Bok:",
@@ -17879,7 +17774,6 @@ const char* const STRINGS_SV[] = {
     "\xA4"
     "ddad stil",
     "OPDS-serveradress",
-    "Fotnoter",
     "Inga fotnoter p\xC3"
     "\xA5"
     " den h\xC3"
@@ -17898,75 +17792,45 @@ const char* const STRINGS_SV[] = {
     "\xA4"
     "ndning (sidor per minut)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -17976,29 +17840,29 @@ const char* const STRINGS_SV[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -18017,17 +17881,17 @@ const char* const STRINGS_SV[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -18038,10 +17902,36 @@ const char* const STRINGS_SV[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -18049,44 +17939,86 @@ const char* const STRINGS_SV[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Inga filer hittades",
+    "Bilder",
+    "Visa",
+    "Platsh\xC3"
+    "\xA5"
+    "llare",
+    "D\xC3"
+    "\xB6"
+    "lj",
+    "Bokerlam",
+    "Literata",
+    "Vald",
+    "Visa",
+    "D\xC3"
+    "\xB6"
+    "lj",
+    "Anpassa statusf\xC3"
+    "\xA4"
+    "lt",
+    "Antal sidor i kapitel",
+    "Procentuellt bokframsteg",
+    "Framstegsindikator",
+    "Tjocklek p\xC3"
+    "\xA5"
+    " framstegsindikator",
+    "Tunn",
+    "Mellan",
+    "Tjock",
+    "Bok",
+    "Kapitel",
+    "Kapitel 21",
+    "Boktitel",
+    "F\xC3"
+    "\xB6"
+    "rhandsgranskning",
+    "Titel",
+    "Batteri",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Radera",
+    "Visa sida som QR-kod",
+    "Fotnoter",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -18105,8 +18037,8 @@ const char* const STRINGS_SV[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -18116,8 +18048,8 @@ const char* const STRINGS_SV[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -18128,14 +18060,14 @@ const char* const STRINGS_SV[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -18153,45 +18085,38 @@ const char* const STRINGS_SV[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -18202,53 +18127,68 @@ const char* const STRINGS_SV[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Blockera framsidan",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_RO[] = {
@@ -18292,11 +18232,7 @@ const char* const STRINGS_RO[] = {
     "r\xC5"
     "\xA3"
     "i",
-    "Nu s-au g\xC4"
-    "\x83"
-    "sit fi\xC8"
-    "\x99"
-    "iere",
+    "No books found",
     "Selecta\xC5"
     "\xA3"
     "i capitolul",
@@ -18600,10 +18536,6 @@ const char* const STRINGS_RO[] = {
     "Anti-Aliasing text",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Ap\xC4"
     "\x83"
     "sare scurt\xC4"
@@ -18620,7 +18552,6 @@ const char* const STRINGS_RO[] = {
     "Aspect butoane laterale (lectur\xC4"
     "\x83"
     ")",
-    "Front Button Layout (reader)",
     "S\xC4"
     "\x83"
     "rire capitol la ap\xC4"
@@ -18666,7 +18597,6 @@ const char* const STRINGS_RO[] = {
     "n\xC4"
     "\x83"
     " la repaus",
-    "Show Hidden Files",
     "Frecven\xC5"
     "\xA3"
     "\xC4"
@@ -18832,11 +18762,6 @@ const char* const STRINGS_RO[] = {
     "\x83"
     "",
     "Screen Refresh",
-    "Blocheaz\xC4"
-    "\x83"
-    " partea frontal\xC4"
-    "\x83"
-    "",
     "Vertical",
     "Orizontal dreapta",
     "Invers",
@@ -18865,7 +18790,6 @@ const char* const STRINGS_RO[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Mic",
     "Mediu",
     "Mare",
@@ -19017,7 +18941,6 @@ const char* const STRINGS_RO[] = {
     "Selecteaz\xC4"
     "\x83"
     "",
-    "Selectat",
     "Schimb\xC4"
     "\x83"
     "",
@@ -19035,14 +18958,9 @@ const char* const STRINGS_RO[] = {
     "ncercare",
     "Da",
     "Nu",
-    "Afi\xC8"
-    "\x99"
-    "eaz\xC4"
-    "\x83"
-    "",
-    "Ascunde",
     "Pornit",
     "Oprit",
+    "Set",
     "Neconfigurat",
     "St\xC3"
     "\xA2"
@@ -19053,43 +18971,13 @@ const char* const STRINGS_RO[] = {
     "CAPS",
     "caps",
     "OK",
+    "[ON]",
     "Filtru ecran de repaus",
     "Contrast",
-    "Customiza\xC5"
-    "\xA3"
-    "i bara de stare",
-    "Num\xC4"
-    "\x83"
-    "r de pagini \xC3"
-    "\xAE"
-    "n capitol",
-    "Progres carte procentual",
-    "Bar\xC4"
-    "\x83"
-    " de progres",
-    "Grosime bar\xC4"
-    "\x83"
-    " de progres",
-    "Sub\xC5"
-    "\xA3"
-    "ire",
-    "Medie",
-    "Groas\xC4"
-    "\x83"
-    "",
-    "Carte",
-    "Capitol",
-    "Capitolul 21",
-    "Titlul c\xC4"
-    "\x83"
-    "r\xC5"
-    "\xA3"
-    "ii",
-    "Previzualizare",
-    "Titlu",
-    "Baterie",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Tema UI",
     "Clasic",
     "Lyra",
@@ -19101,23 +18989,11 @@ const char* const STRINGS_RO[] = {
     "ie estompare lumin\xC4"
     "\x83"
     "",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Remapare butoane frontale",
     "Browser OPDS",
     "Copert\xC4"
     "\x83"
     " + Personalizat",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Recente",
     "C\xC4"
     "\x83"
@@ -19188,16 +19064,6 @@ const char* const STRINGS_RO[] = {
     "r\xC5"
     "\xA3"
     "i",
-    "\xC5"
-    "\x9E"
-    "terge\xC8"
-    "\x9B"
-    "i",
-    "Afi\xC8"
-    "\x99"
-    "a\xC8"
-    "\x9B"
-    "i pagina ca cod QR",
     "Capitol: ",
     " pagini  |  ",
     "Carte: ",
@@ -19296,7 +19162,6 @@ const char* const STRINGS_RO[] = {
     "\xAE"
     "ncorporat",
     "URL server OPDS",
-    "Note de subsol",
     "Nicio not\xC4"
     "\x83"
     " de subsol",
@@ -19311,75 +19176,45 @@ const char* const STRINGS_RO[] = {
     ": ",
     "Pagini pe minut",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -19389,29 +19224,29 @@ const char* const STRINGS_RO[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -19430,17 +19265,17 @@ const char* const STRINGS_RO[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -19451,10 +19286,36 @@ const char* const STRINGS_RO[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -19462,44 +19323,108 @@ const char* const STRINGS_RO[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Nu s-au g\xC4"
+    "\x83"
+    "sit fi\xC8"
+    "\x99"
+    "iere",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selectat",
+    "Afi\xC8"
+    "\x99"
+    "eaz\xC4"
+    "\x83"
+    "",
+    "Ascunde",
+    "Customiza\xC5"
+    "\xA3"
+    "i bara de stare",
+    "Num\xC4"
+    "\x83"
+    "r de pagini \xC3"
+    "\xAE"
+    "n capitol",
+    "Progres carte procentual",
+    "Bar\xC4"
+    "\x83"
+    " de progres",
+    "Grosime bar\xC4"
+    "\x83"
+    " de progres",
+    "Sub\xC5"
+    "\xA3"
+    "ire",
+    "Medie",
+    "Groas\xC4"
+    "\x83"
+    "",
+    "Carte",
+    "Capitol",
+    "Capitolul 21",
+    "Titlul c\xC4"
+    "\x83"
+    "r\xC5"
+    "\xA3"
+    "ii",
+    "Previzualizare",
+    "Titlu",
+    "Baterie",
+    "Estimated Reading Time",
+    "Session Timer",
+    "\xC5"
+    "\x9E"
+    "terge\xC8"
+    "\x9B"
+    "i",
+    "Afi\xC8"
+    "\x99"
+    "a\xC8"
+    "\x9B"
+    "i pagina ca cod QR",
+    "Note de subsol",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -19518,8 +19443,8 @@ const char* const STRINGS_RO[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -19529,8 +19454,8 @@ const char* const STRINGS_RO[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -19541,14 +19466,14 @@ const char* const STRINGS_RO[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -19566,45 +19491,38 @@ const char* const STRINGS_RO[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -19615,53 +19533,72 @@ const char* const STRINGS_RO[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Blocheaz\xC4"
+    "\x83"
+    " partea frontal\xC4"
+    "\x83"
+    "",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_CA[] = {
@@ -19687,7 +19624,7 @@ const char* const STRINGS_CA[] = {
     "\xB3"
     "",
     "Llibres",
-    "No s'han trobat fitxers",
+    "No books found",
     "Selecciona el cap\xC3"
     "\xAD"
     "tol",
@@ -19849,10 +19786,6 @@ const char* const STRINGS_CA[] = {
     "sing del text",
     "Text Darkness",
     "Extra Dark",
-    "Imatges",
-    "Mostrar",
-    "Text de mostra",
-    "Suprimir",
     "Clic curt del bot\xC3"
     "\xB3"
     " d'engegada",
@@ -19865,7 +19798,6 @@ const char* const STRINGS_CA[] = {
     "Disposici\xC3"
     "\xB3"
     " botons laterals",
-    "Front Button Layout (reader)",
     "Pressi\xC3"
     "\xB3"
     " llarga omet el cap\xC3"
@@ -19895,7 +19827,6 @@ const char* const STRINGS_CA[] = {
     "Temps per entrar en rep\xC3"
     "\xB2"
     "s",
-    "Show Hidden Files",
     "Freq\xC3"
     "\xBC"
     "\xC3"
@@ -19999,7 +19930,6 @@ const char* const STRINGS_CA[] = {
     "\xA0"
     "gina",
     "Screen Refresh",
-    "Bloquejar frontal",
     "Vertical",
     "Horitzontal horari",
     "Invertit",
@@ -20016,7 +19946,6 @@ const char* const STRINGS_CA[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Petita",
     "Mitjana",
     "Gran",
@@ -20116,7 +20045,6 @@ const char* const STRINGS_CA[] = {
     "\xAB"
     " Desa",
     "Selecciona",
-    "Seleccionat",
     "Canvia",
     "Confirma",
     "Cancel\xC2"
@@ -20130,10 +20058,9 @@ const char* const STRINGS_CA[] = {
     "\xAD"
     "",
     "No",
-    "Mostrar",
-    "Amagar",
     "ON",
     "OFF",
+    "Set",
     "No establert",
     "Esquerra",
     "Dreta",
@@ -20142,47 +20069,15 @@ const char* const STRINGS_CA[] = {
     "MAJS",
     "majs",
     "OK",
+    "[ON]",
     "Filtre de pantalla de rep\xC3"
     "\xB2"
     "s",
     "Contrast",
-    "Personalitza la barra d'estat",
-    "Comptador de p\xC3"
-    "\xA0"
-    "gines del cap\xC3"
-    "\xAD"
-    "tol",
-    "Percentatge de progr\xC3"
-    "\xA9"
-    "s del llibre",
-    "Barra de progr\xC3"
-    "\xA9"
-    "s",
-    "Gruix de la barra de progr\xC3"
-    "\xA9"
-    "s",
-    "Fina",
-    "Mitjana",
-    "Gruixuda",
-    "Llibre",
-    "Cap\xC3"
-    "\xAD"
-    "tol",
-    "Cap\xC3"
-    "\xAD"
-    "tol 21",
-    "T\xC3"
-    "\xAD"
-    "tol del llibre",
-    "Vista pr\xC3"
-    "\xA8"
-    "via",
-    "T\xC3"
-    "\xAD"
-    "tol",
-    "Bateria",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Tema de la interf\xC3"
     "\xAD"
     "cie",
@@ -20198,21 +20093,9 @@ const char* const STRINGS_CA[] = {
     " de l'esva\xC3"
     "\xAF"
     "ment pel sol",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Reassigna els botons frontals",
     "Navegador OPDS",
     "Portada + Personalitzat",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Recents",
     "Llibres recents",
     "No hi ha llibres recents",
@@ -20265,10 +20148,6 @@ const char* const STRINGS_CA[] = {
     "Esborra la mem\xC3"
     "\xB2"
     "ria cau del llibre",
-    "Esborra",
-    "Mostra la p\xC3"
-    "\xA0"
-    "gina com a QR",
     "Cap\xC3"
     "\xAD"
     "tol: ",
@@ -20339,7 +20218,6 @@ const char* const STRINGS_CA[] = {
     "Estil del llibre",
     "Estil incrustat",
     "URL del servidor OPDS",
-    "Notes al peu",
     "No hi ha notes al peu en aquesta p\xC3"
     "\xA0"
     "gina",
@@ -20356,75 +20234,45 @@ const char* const STRINGS_CA[] = {
     "\xA0"
     "gines per minut)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -20434,29 +20282,29 @@ const char* const STRINGS_CA[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -20475,17 +20323,17 @@ const char* const STRINGS_CA[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -20496,10 +20344,36 @@ const char* const STRINGS_CA[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -20507,44 +20381,96 @@ const char* const STRINGS_CA[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "No s'han trobat fitxers",
+    "Imatges",
+    "Mostrar",
+    "Text de mostra",
+    "Suprimir",
+    "Bokerlam",
+    "Literata",
+    "Seleccionat",
+    "Mostrar",
+    "Amagar",
+    "Personalitza la barra d'estat",
+    "Comptador de p\xC3"
+    "\xA0"
+    "gines del cap\xC3"
+    "\xAD"
+    "tol",
+    "Percentatge de progr\xC3"
+    "\xA9"
+    "s del llibre",
+    "Barra de progr\xC3"
+    "\xA9"
+    "s",
+    "Gruix de la barra de progr\xC3"
+    "\xA9"
+    "s",
+    "Fina",
+    "Mitjana",
+    "Gruixuda",
+    "Llibre",
+    "Cap\xC3"
+    "\xAD"
+    "tol",
+    "Cap\xC3"
+    "\xAD"
+    "tol 21",
+    "T\xC3"
+    "\xAD"
+    "tol del llibre",
+    "Vista pr\xC3"
+    "\xA8"
+    "via",
+    "T\xC3"
+    "\xAD"
+    "tol",
+    "Bateria",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Esborra",
+    "Mostra la p\xC3"
+    "\xA0"
+    "gina com a QR",
+    "Notes al peu",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -20563,8 +20489,8 @@ const char* const STRINGS_CA[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -20574,8 +20500,8 @@ const char* const STRINGS_CA[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -20586,14 +20512,14 @@ const char* const STRINGS_CA[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -20611,45 +20537,38 @@ const char* const STRINGS_CA[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -20660,53 +20579,68 @@ const char* const STRINGS_CA[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Bloquejar frontal",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_UK[] = {
@@ -21008,37 +20942,7 @@ const char* const STRINGS_UK[] = {
     "\xD0"
     "\xB8"
     "",
-    "\xD0"
-    "\xA4"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB8"
-    " \xD0"
-    "\xBD"
-    "\xD0"
-    "\xB5"
-    " \xD0"
-    "\xB7"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBE"
-    "",
+    "No books found",
     "\xD0"
     "\x92"
     "\xD0"
@@ -23802,10 +23706,6 @@ const char* const STRINGS_UK[] = {
     "",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "\xD0"
     "\x9A"
     "\xD0"
@@ -24016,7 +23916,6 @@ const char* const STRINGS_UK[] = {
     "\xD1"
     "\x87"
     ")",
-    "Front Button Layout (reader)",
     "\xD0"
     "\x9F"
     "\xD1"
@@ -24494,7 +24393,6 @@ const char* const STRINGS_UK[] = {
     "\xD1"
     "\x83"
     "",
-    "Show Hidden Files",
     "\xD0"
     "\xA7"
     "\xD0"
@@ -25991,57 +25889,6 @@ const char* const STRINGS_UK[] = {
     "",
     "Screen Refresh",
     "\xD0"
-    "\x97"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB1"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x83"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    " \xD0"
-    "\xBF"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x8E"
-    " \xD1"
-    "\x87"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x83"
-    "",
-    "\xD0"
     "\x9F"
     "\xD0"
     "\xBE"
@@ -26339,7 +26186,6 @@ const char* const STRINGS_UK[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "\xD0"
     "\x9C"
     "\xD0"
@@ -27674,21 +27520,6 @@ const char* const STRINGS_UK[] = {
     "\xB8"
     "",
     "\xD0"
-    "\x92"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB1"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBE"
-    "",
-    "\xD0"
     "\x9E"
     "\xD0"
     "\xB1"
@@ -27812,38 +27643,6 @@ const char* const STRINGS_UK[] = {
     "\x96"
     "",
     "\xD0"
-    "\x9F"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
-    "\xA1"
-    "\xD1"
-    "\x85"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
     "\xA3"
     "\xD0"
     "\x92"
@@ -27863,6 +27662,7 @@ const char* const STRINGS_UK[] = {
     "\xD0"
     "\x9A"
     "",
+    "Set",
     "\xD0"
     "\x9D"
     "\xD0"
@@ -27953,6 +27753,7 @@ const char* const STRINGS_UK[] = {
     "\x96"
     "",
     "OK",
+    "[ON]",
     "\xD0"
     "\xA4"
     "\xD1"
@@ -28021,357 +27822,10 @@ const char* const STRINGS_UK[] = {
     "\xD1"
     "\x82"
     "",
-    "\xD0"
-    "\x9D"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x88"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x83"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    " \xD1"
-    "\x80"
-    "\xD1"
-    "\x8F"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    " \xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x83"
-    "",
-    "\xD0"
-    "\x9A"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x8C"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x96"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD1"
-    "\x8C"
-    " \xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x80"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    " \xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB4"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x83"
-    "",
-    "\xD0"
-    "\x92"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xB4"
-    "\xD1"
-    "\x81"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    " \xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x87"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xBE"
-    "",
-    "\xD0"
-    "\xA0"
-    "\xD1"
-    "\x8F"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    " \xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB3"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x83"
-    "",
-    "\xD0"
-    "\xA2"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB2"
-    "\xD1"
-    "\x89"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB0"
-    " \xD1"
-    "\x80"
-    "\xD1"
-    "\x8F"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x83"
-    " \xD0"
-    "\xBF"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB3"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x83"
-    "",
-    "\xD0"
-    "\xA2"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB9"
-    "",
-    "\xD0"
-    "\xA1"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xB9"
-    "",
-    "\xD0"
-    "\x96"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB9"
-    "",
-    "\xD0"
-    "\x9A"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xB0"
-    "",
-    "\xD0"
-    "\xA0"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB4"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xBB"
-    "",
-    "\xD0"
-    "\xA0"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB4"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xBB"
-    " 21",
-    "\xD0"
-    "\x9D"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    " \xD0"
-    "\xBA"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
-    "\x9F"
-    "\xD0"
-    "\xB5"
-    "\xD1"
-    "\x80"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xB3"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x8F"
-    "\xD0"
-    "\xB4"
-    "",
-    "\xD0"
-    "\x9D"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "",
-    "\xD0"
-    "\x90"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x83"
-    "\xD0"
-    "\xBC"
-    "\xD1"
-    "\x83"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x8F"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x80"
-    "",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "\xD0"
     "\xA2"
     "\xD0"
@@ -28479,15 +27933,6 @@ const char* const STRINGS_UK[] = {
     "\xD1"
     "\x96"
     "",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "\xD0"
     "\x9D"
     "\xD0"
@@ -28599,9 +28044,6 @@ const char* const STRINGS_UK[] = {
     "\xD0"
     "\xB0"
     "",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "\xD0"
     "\x9E"
     "\xD1"
@@ -29449,66 +28891,6 @@ const char* const STRINGS_UK[] = {
     "\xB3"
     "\xD0"
     "\xB8"
-    "",
-    "\xD0"
-    "\x92"
-    "\xD0"
-    "\xB8"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB8"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
-    "\x9F"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xB8"
-    " \xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x80"
-    "\xD1"
-    "\x96"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x83"
-    " \xD1"
-    "\x8F"
-    "\xD0"
-    "\xBA"
-    " QR-\xD0"
-    "\xBA"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB4"
     "",
     "\xD0"
     "\xA0"
@@ -30543,19 +29925,6 @@ const char* const STRINGS_UK[] = {
     "\xB0"
     " OPDS",
     "\xD0"
-    "\x97"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBE"
-    "\xD1"
-    "\x81"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB8"
-    "",
-    "\xD0"
     "\x9D"
     "\xD0"
     "\xB0"
@@ -30733,75 +30102,45 @@ const char* const STRINGS_UK[] = {
     "\xB2"
     ")",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -30811,29 +30150,29 @@ const char* const STRINGS_UK[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -30852,17 +30191,17 @@ const char* const STRINGS_UK[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -30873,10 +30212,36 @@ const char* const STRINGS_UK[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -30884,44 +30249,552 @@ const char* const STRINGS_UK[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "\xD0"
+    "\xA4"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB8"
+    " \xD0"
+    "\xBD"
+    "\xD0"
+    "\xB5"
+    " \xD0"
+    "\xB7"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBE"
+    "",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "\xD0"
+    "\x92"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB1"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBE"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    "",
+    "\xD0"
+    "\xA1"
+    "\xD1"
+    "\x85"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    "",
+    "\xD0"
+    "\x9D"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x88"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x83"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    " \xD1"
+    "\x80"
+    "\xD1"
+    "\x8F"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    " \xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x83"
+    "",
+    "\xD0"
+    "\x9A"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x8C"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x96"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD1"
+    "\x8C"
+    " \xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x80"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    " \xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB4"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x83"
+    "",
+    "\xD0"
+    "\x92"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xB4"
+    "\xD1"
+    "\x81"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    " \xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x87"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xBE"
+    "",
+    "\xD0"
+    "\xA0"
+    "\xD1"
+    "\x8F"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    " \xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB3"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x83"
+    "",
+    "\xD0"
+    "\xA2"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB2"
+    "\xD1"
+    "\x89"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    " \xD1"
+    "\x80"
+    "\xD1"
+    "\x8F"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x83"
+    " \xD0"
+    "\xBF"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB3"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x83"
+    "",
+    "\xD0"
+    "\xA2"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB9"
+    "",
+    "\xD0"
+    "\xA1"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xB9"
+    "",
+    "\xD0"
+    "\x96"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB9"
+    "",
+    "\xD0"
+    "\x9A"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xB0"
+    "",
+    "\xD0"
+    "\xA0"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB4"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xBB"
+    "",
+    "\xD0"
+    "\xA0"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB4"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xBB"
+    " 21",
+    "\xD0"
+    "\x9D"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    " \xD0"
+    "\xBA"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xB8"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xB3"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x8F"
+    "\xD0"
+    "\xB4"
+    "",
+    "\xD0"
+    "\x9D"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "",
+    "\xD0"
+    "\x90"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x83"
+    "\xD0"
+    "\xBC"
+    "\xD1"
+    "\x83"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x8F"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x80"
+    "",
+    "Estimated Reading Time",
+    "Session Timer",
+    "\xD0"
+    "\x92"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB8"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    " \xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x80"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x83"
+    " \xD1"
+    "\x8F"
+    "\xD0"
+    "\xBA"
+    " QR-\xD0"
+    "\xBA"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB4"
+    "",
+    "\xD0"
+    "\x97"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x81"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB8"
+    "",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -30940,8 +30813,8 @@ const char* const STRINGS_UK[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -30951,8 +30824,8 @@ const char* const STRINGS_UK[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -30963,14 +30836,14 @@ const char* const STRINGS_UK[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -30988,45 +30861,38 @@ const char* const STRINGS_UK[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -31037,53 +30903,118 @@ const char* const STRINGS_UK[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "\xD0"
+    "\x97"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB1"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x83"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    " \xD0"
+    "\xBF"
+    "\xD0"
+    "\xB5"
+    "\xD1"
+    "\x80"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x8E"
+    " \xD1"
+    "\x87"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xB8"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x83"
+    "",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_BE[] = {
@@ -31355,39 +31286,7 @@ const char* const STRINGS_BE[] = {
     "\xD1"
     "\x96"
     "",
-    "\xD0"
-    "\xA4"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xBB"
-    "\xD1"
-    "\x8B"
-    " \xD0"
-    "\xBD"
-    "\xD0"
-    "\xB5"
-    " \xD0"
-    "\xB7"
-    "\xD0"
-    "\xBD"
-    "\xD0"
-    "\xBE"
-    "\xD0"
-    "\xB9"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xB7"
-    "\xD0"
-    "\xB5"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x8B"
-    "",
+    "No books found",
     "\xD0"
     "\x90"
     "\xD0"
@@ -33849,10 +33748,6 @@ const char* const STRINGS_BE[] = {
     "",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "\xD0"
     "\x9A"
     "\xD0"
@@ -33979,7 +33874,6 @@ const char* const STRINGS_BE[] = {
     "\xD1"
     "\x96"
     "",
-    "Front Button Layout (reader)",
     "\xD0"
     "\x94"
     "\xD0"
@@ -34421,7 +34315,6 @@ const char* const STRINGS_BE[] = {
     "\xD0"
     "\xB7"
     "",
-    "Show Hidden Files",
     "\xD0"
     "\xA7"
     "\xD0"
@@ -35768,53 +35661,6 @@ const char* const STRINGS_BE[] = {
     "",
     "Screen Refresh",
     "\xD0"
-    "\x91"
-    "\xD0"
-    "\xBB"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xBA"
-    "\xD0"
-    "\xB0"
-    "\xD0"
-    "\xB2"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x86"
-    "\xD1"
-    "\x8C"
-    " \xD0"
-    "\xBF"
-    "\xD1"
-    "\x8F"
-    "\xD1"
-    "\x80"
-    "\xD1"
-    "\x8D"
-    "\xD0"
-    "\xB4"
-    "\xD0"
-    "\xBD"
-    "\xD1"
-    "\x8E"
-    "\xD1"
-    "\x8E"
-    " \xD1"
-    "\x87"
-    "\xD0"
-    "\xB0"
-    "\xD1"
-    "\x81"
-    "\xD1"
-    "\x82"
-    "\xD0"
-    "\xBA"
-    "\xD1"
-    "\x83"
-    "",
-    "\xD0"
     "\x9F"
     "\xD0"
     "\xB0"
@@ -36008,7 +35854,6 @@ const char* const STRINGS_BE[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "\xD0"
     "\x9C"
     "\xD0"
@@ -37278,7 +37123,6 @@ const char* const STRINGS_BE[] = {
     "\xD1"
     "\x8C"
     "",
-    "Selected",
     "\xD0"
     "\x92"
     "\xD1"
@@ -37390,8 +37234,6 @@ const char* const STRINGS_BE[] = {
     "\xD0"
     "\xB5"
     "",
-    "Show",
-    "Hide",
     "\xD0"
     "\xA3"
     "\xD0"
@@ -37408,6 +37250,7 @@ const char* const STRINGS_BE[] = {
     "\xD0"
     "\x9B"
     "",
+    "Set",
     "\xD0"
     "\x9D"
     "\xD0"
@@ -37482,6 +37325,7 @@ const char* const STRINGS_BE[] = {
     "CAPS",
     "caps",
     "OK",
+    "[ON]",
     "\xD0"
     "\xA4"
     "\xD1"
@@ -37530,23 +37374,124 @@ const char* const STRINGS_BE[] = {
     "\xD1"
     "\x82"
     "",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x9E"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x8F"
+    " + %",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x9E"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x8F"
+    " + \xD1"
+    "\x88"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    " \xD0"
+    "\xBA"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xB3"
+    "\xD1"
+    "\x96"
+    "",
+    "\xD0"
+    "\xA2"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x8C"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x96"
+    " \xD1"
+    "\x88"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    " \xD0"
+    "\xBA"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x96"
+    "\xD0"
+    "\xB3"
+    "\xD1"
+    "\x96"
+    "",
+    "\xD0"
+    "\x9F"
+    "\xD0"
+    "\xBE"
+    "\xD1"
+    "\x9E"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x8F"
+    " + \xD1"
+    "\x88"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    " \xD1"
+    "\x80"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    "",
     "\xD0"
     "\xA2"
     "\xD1"
@@ -37642,15 +37587,6 @@ const char* const STRINGS_BE[] = {
     "\xD1"
     "\x8F"
     "",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "\xD0"
     "\x9F"
     "\xD0"
@@ -37746,9 +37682,6 @@ const char* const STRINGS_BE[] = {
     "\xD0"
     "\xB9"
     "",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "\xD0"
     "\x9D"
     "\xD1"
@@ -38551,8 +38484,6 @@ const char* const STRINGS_BE[] = {
     "\xD1"
     "\x96"
     "",
-    "Delete",
-    "Show page as QR",
     "\xD0"
     "\xA0"
     "\xD0"
@@ -39485,7 +39416,6 @@ const char* const STRINGS_BE[] = {
     "\xD0"
     "\xB0"
     "",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "\xD0"
@@ -39527,78 +39457,48 @@ const char* const STRINGS_BE[] = {
     "\xD0"
     "\xB0"
     "",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -39608,29 +39508,29 @@ const char* const STRINGS_BE[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -39649,17 +39549,17 @@ const char* const STRINGS_BE[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -39670,10 +39570,36 @@ const char* const STRINGS_BE[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -39681,44 +39607,106 @@ const char* const STRINGS_BE[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "\xD0"
+    "\xA4"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xBB"
+    "\xD1"
+    "\x8B"
+    " \xD0"
+    "\xBD"
+    "\xD0"
+    "\xB5"
+    " \xD0"
+    "\xB7"
+    "\xD0"
+    "\xBD"
+    "\xD0"
+    "\xBE"
+    "\xD0"
+    "\xB9"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xB7"
+    "\xD0"
+    "\xB5"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x8B"
+    "",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Delete",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -39737,8 +39725,8 @@ const char* const STRINGS_BE[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -39748,8 +39736,8 @@ const char* const STRINGS_BE[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -39760,14 +39748,14 @@ const char* const STRINGS_BE[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -39785,45 +39773,38 @@ const char* const STRINGS_BE[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -39834,53 +39815,114 @@ const char* const STRINGS_BE[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "\xD0"
+    "\x91"
+    "\xD0"
+    "\xBB"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xBA"
+    "\xD0"
+    "\xB0"
+    "\xD0"
+    "\xB2"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x86"
+    "\xD1"
+    "\x8C"
+    " \xD0"
+    "\xBF"
+    "\xD1"
+    "\x8F"
+    "\xD1"
+    "\x80"
+    "\xD1"
+    "\x8D"
+    "\xD0"
+    "\xB4"
+    "\xD0"
+    "\xBD"
+    "\xD1"
+    "\x8E"
+    "\xD1"
+    "\x8E"
+    " \xD1"
+    "\x87"
+    "\xD0"
+    "\xB0"
+    "\xD1"
+    "\x81"
+    "\xD1"
+    "\x82"
+    "\xD0"
+    "\xBA"
+    "\xD1"
+    "\x83"
+    "",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_IT[] = {
@@ -39900,7 +39942,7 @@ const char* const STRINGS_IT[] = {
     "Nessun libro aperto",
     "Inizia a leggere di seguito",
     "Libri",
-    "Nessun file trovato",
+    "No books found",
     "Seleziona capitolo",
     "Nessun capitolo",
     "Fine del libro",
@@ -39985,15 +40027,10 @@ const char* const STRINGS_IT[] = {
     "Anti-Aliasing testo",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Pressione breve tasto accensione",
     "Orientamento di lettura",
     "Layout pulsanti frontali",
     "Layout pulsanti laterali (lettore)",
-    "Front Button Layout (reader)",
     "Pressione lunga salta capitolo",
     "Famiglia di font del lettore",
     "Font esterno lettore",
@@ -40011,7 +40048,6 @@ const char* const STRINGS_IT[] = {
     "Allineamento paragrafo lettore",
     "Sillabazione",
     "Tempo prima di sospensione",
-    "Show Hidden Files",
     "Frequenza di aggiornamento",
     "Impostazioni Calibre",
     "Sincronizzazione KOReader",
@@ -40065,7 +40101,6 @@ const char* const STRINGS_IT[] = {
     "Sospendi",
     "Volta pagina",
     "Screen Refresh",
-    "Blocca parte anteriore",
     "Verticale",
     "Orizzontale \xE2"
     "\x86"
@@ -40084,7 +40119,6 @@ const char* const STRINGS_IT[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Piccolo",
     "Medio",
     "Grande",
@@ -40146,7 +40180,6 @@ const char* const STRINGS_IT[] = {
     "\xAB"
     " Salva",
     "Seleziona",
-    "Selezionato",
     "Attiva/Disattiva",
     "Conferma",
     "Annulla",
@@ -40158,10 +40191,9 @@ const char* const STRINGS_IT[] = {
     "\xAC"
     "",
     "No",
-    "Show",
-    "Hide",
     "ON",
     "OFF",
+    "Set",
     "Non impostato",
     "Sinist.",
     "Dest.",
@@ -40172,27 +40204,15 @@ const char* const STRINGS_IT[] = {
     "MAIUSC",
     "maiusc",
     "OK",
+    "[ON]",
     "Filtro copertina modalit\xC3"
     "\xA0"
     " sleep",
     "Contrasto",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Completa con Percentuale",
+    "Completa con Barra Libro",
+    "Solo Barra Libro",
+    "Completa con Barra Capitolo",
     "Tema UI",
     "Classico",
     "Lyra",
@@ -40200,21 +40220,9 @@ const char* const STRINGS_IT[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Fix Sbiadimento da Luce Solare",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Rimappa Pulsanti Frontali",
     "Browser OPDS",
     "Copertina + Personalizzato",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Recenti",
     "Libri Recenti",
     "Nessun libro recente",
@@ -40251,8 +40259,6 @@ const char* const STRINGS_IT[] = {
     "Vai alla Home",
     "Sincronizza Progressi",
     "Elimina Cache Libro",
-    "Delete",
-    "Show page as QR",
     "Capitolo: ",
     " pagine  |  ",
     "Libro: ",
@@ -40287,82 +40293,51 @@ const char* const STRINGS_IT[] = {
     "Stile del Libro",
     "Stile Integrato",
     "URL del Server OPDS",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "Cattura schermata",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -40372,29 +40347,29 @@ const char* const STRINGS_IT[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -40413,17 +40388,17 @@ const char* const STRINGS_IT[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -40434,10 +40409,36 @@ const char* const STRINGS_IT[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -40445,44 +40446,74 @@ const char* const STRINGS_IT[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Nessun file trovato",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selezionato",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Delete",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -40501,8 +40532,8 @@ const char* const STRINGS_IT[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -40512,8 +40543,8 @@ const char* const STRINGS_IT[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -40524,14 +40555,14 @@ const char* const STRINGS_IT[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -40549,45 +40580,38 @@ const char* const STRINGS_IT[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -40598,53 +40622,68 @@ const char* const STRINGS_IT[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Blocca parte anteriore",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_PL[] = {
@@ -40682,9 +40721,7 @@ const char* const STRINGS_PL[] = {
     "\xC5"
     "\xBC"
     "ki",
-    "Nie znaleziono plik\xC3"
-    "\xB3"
-    "w",
+    "No books found",
     "Wybierz rozdzia\xC5"
     "\x82"
     "",
@@ -40980,10 +41017,6 @@ const char* const STRINGS_PL[] = {
     "adzanie tekstu",
     "Text Darkness",
     "Extra Dark",
-    "Obrazki",
-    "Pokazuj",
-    "Ramki",
-    "Pomijaj",
     "Kr\xC3"
     "\xB3"
     "tkie naci\xC5"
@@ -41004,7 +41037,6 @@ const char* const STRINGS_PL[] = {
     "ad przycisk\xC3"
     "\xB3"
     "w bocznych",
-    "Front Button Layout (reader)",
     "Przytrzymaj aby przeskoczy\xC4"
     "\x87"
     " rozdzia\xC5"
@@ -41042,7 +41074,6 @@ const char* const STRINGS_PL[] = {
     "Czas do u\xC5"
     "\x9B"
     "pienia",
-    "Show Hidden Files",
     "Cz\xC4"
     "\x99"
     "stotliwo\xC5"
@@ -41210,9 +41241,6 @@ const char* const STRINGS_PL[] = {
     "pienie",
     "Nast. str.",
     "Screen Refresh",
-    "Zablokuj prz\xC3"
-    "\xB3"
-    "d",
     "Pionowo",
     "Poziomo P",
     "Odwr\xC3"
@@ -41233,7 +41261,6 @@ const char* const STRINGS_PL[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Ma\xC5"
     "\x82"
     "y",
@@ -41391,7 +41418,6 @@ const char* const STRINGS_PL[] = {
     "\xAB"
     " Zapisz",
     "Wybierz",
-    "Wybrano",
     "Zmie\xC5"
     "\x84"
     "",
@@ -41413,16 +41439,13 @@ const char* const STRINGS_PL[] = {
     "w",
     "Tak",
     "Nie",
-    "Poka\xC5"
-    "\xBC"
-    "",
-    "Ukryj",
     "W\xC5"
     "\x82"
     ".",
     "Wy\xC5"
     "\x82"
     ".",
+    "Set",
     "Nie ustawiono",
     "Lewo",
     "Prawo",
@@ -41437,63 +41460,15 @@ const char* const STRINGS_PL[] = {
     "CAPS",
     "caps",
     "OK",
+    "[ON]",
     "Filtr ok\xC5"
     "\x82"
     "adek wygaszacza",
     "Kontrast",
-    "Dostosowanie paska statusu",
-    "Strona rozdzia\xC5"
-    "\x82"
-    "u",
-    "Post\xC4"
-    "\x99"
-    "p ksi\xC4"
-    "\x85"
-    "\xC5"
-    "\xBC"
-    "ki",
-    "Pasek post\xC4"
-    "\x99"
-    "pu",
-    "Grubo\xC5"
-    "\x9B"
-    "\xC4"
-    "\x87"
-    " paska post\xC4"
-    "\x99"
-    "pu",
-    "Cienki",
-    "\xC5"
-    "\x9A"
-    "redni",
-    "Gruby",
-    "Ksi\xC4"
-    "\x85"
-    "\xC5"
-    "\xBC"
-    "ka",
-    "Rozdzia\xC5"
-    "\x82"
-    "",
-    "Rozdzia\xC5"
-    "\x82"
-    " 21",
-    "Tytu\xC5"
-    "\x82"
-    " ksi\xC4"
-    "\x85"
-    "\xC5"
-    "\xBC"
-    "ki",
-    "Podgl\xC4"
-    "\x85"
-    "d",
-    "Tytu\xC5"
-    "\x82"
-    "",
-    "Bateria",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Sk\xC3"
     "\xB3"
     "rka UI",
@@ -41511,15 +41486,6 @@ const char* const STRINGS_PL[] = {
     "o\xC5"
     "\x84"
     "ca",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Skonfiguruj przednie przyciski",
     "OPDS Browser",
     "Ok\xC5"
@@ -41527,9 +41493,6 @@ const char* const STRINGS_PL[] = {
     "adka + W\xC5"
     "\x82"
     "asne",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Ostatnie",
     "Ostatnio czytane",
     "Brak ostatnio czytanych",
@@ -41616,14 +41579,6 @@ const char* const STRINGS_PL[] = {
     "\xC5"
     "\xBC"
     "ek",
-    "Usu\xC5"
-    "\x84"
-    "",
-    "Poka\xC5"
-    "\xBC"
-    " stron\xC4"
-    "\x99"
-    " jako kod QR",
     "Rozdzia\xC5"
     "\x82"
     ": ",
@@ -41718,7 +41673,6 @@ const char* const STRINGS_PL[] = {
     "ki",
     "Style wbudowane w EPUB",
     "URL serwera OPDS",
-    "Przypisy",
     "Brak przypis\xC3"
     "\xB3"
     "w na tej stronie",
@@ -41729,75 +41683,45 @@ const char* const STRINGS_PL[] = {
     "Auto-kartkowanie: ",
     "Auto-kartkowanie (str./min)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -41807,29 +41731,29 @@ const char* const STRINGS_PL[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -41848,17 +41772,17 @@ const char* const STRINGS_PL[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -41869,10 +41793,36 @@ const char* const STRINGS_PL[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -41880,44 +41830,120 @@ const char* const STRINGS_PL[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Nie znaleziono plik\xC3"
+    "\xB3"
+    "w",
+    "Obrazki",
+    "Pokazuj",
+    "Ramki",
+    "Pomijaj",
+    "Bokerlam",
+    "Literata",
+    "Wybrano",
+    "Poka\xC5"
+    "\xBC"
+    "",
+    "Ukryj",
+    "Dostosowanie paska statusu",
+    "Strona rozdzia\xC5"
+    "\x82"
+    "u",
+    "Post\xC4"
+    "\x99"
+    "p ksi\xC4"
+    "\x85"
+    "\xC5"
+    "\xBC"
+    "ki",
+    "Pasek post\xC4"
+    "\x99"
+    "pu",
+    "Grubo\xC5"
+    "\x9B"
+    "\xC4"
+    "\x87"
+    " paska post\xC4"
+    "\x99"
+    "pu",
+    "Cienki",
+    "\xC5"
+    "\x9A"
+    "redni",
+    "Gruby",
+    "Ksi\xC4"
+    "\x85"
+    "\xC5"
+    "\xBC"
+    "ka",
+    "Rozdzia\xC5"
+    "\x82"
+    "",
+    "Rozdzia\xC5"
+    "\x82"
+    " 21",
+    "Tytu\xC5"
+    "\x82"
+    " ksi\xC4"
+    "\x85"
+    "\xC5"
+    "\xBC"
+    "ki",
+    "Podgl\xC4"
+    "\x85"
+    "d",
+    "Tytu\xC5"
+    "\x82"
+    "",
+    "Bateria",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Usu\xC5"
+    "\x84"
+    "",
+    "Poka\xC5"
+    "\xBC"
+    " stron\xC4"
+    "\x99"
+    " jako kod QR",
+    "Przypisy",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -41936,8 +41962,8 @@ const char* const STRINGS_PL[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -41947,8 +41973,8 @@ const char* const STRINGS_PL[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -41959,14 +41985,14 @@ const char* const STRINGS_PL[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -41984,45 +42010,38 @@ const char* const STRINGS_PL[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -42033,53 +42052,70 @@ const char* const STRINGS_PL[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Zablokuj prz\xC3"
+    "\xB3"
+    "d",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_FI[] = {
@@ -42101,9 +42137,7 @@ const char* const STRINGS_FI[] = {
     "Kirjaa ei valittu",
     "Aloita lukeminen",
     "Kirjat",
-    "Ei tiedostoja l\xC3"
-    "\xB6"
-    "ytynyt",
+    "No books found",
     "Valitse luku",
     "Ei lukuja",
     "Kirjan loppu",
@@ -42313,15 +42347,10 @@ const char* const STRINGS_FI[] = {
     "Tekstin reunanpehmennys",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Lyhyt virtapainikkeen painallus",
     "Lukusuunta",
     "Etupainikkeiden asettelu",
     "Sivupainikkeiden asettelu (lukija)",
-    "Front Button Layout (reader)",
     "Pitk\xC3"
     "\xA4"
     " painallus: lukuhyppy",
@@ -42365,7 +42394,6 @@ const char* const STRINGS_FI[] = {
     "Lukijan kappaletasaus",
     "Tavutus",
     "Aika lepotilaan",
-    "Show Hidden Files",
     "P\xC3"
     "\xA4"
     "ivitystaajuus",
@@ -42495,9 +42523,6 @@ const char* const STRINGS_FI[] = {
     "\xB6"
     "",
     "Screen Refresh",
-    "Est\xC3"
-    "\xA4"
-    " etuosa",
     "Pysty",
     "Vaaka my\xC3"
     "\xB6"
@@ -42530,7 +42555,6 @@ const char* const STRINGS_FI[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Pieni",
     "Keskikokoinen",
     "Suuri",
@@ -42670,7 +42694,6 @@ const char* const STRINGS_FI[] = {
     "\xAB"
     " Tallenna",
     "Valitse",
-    "Selected",
     "Vaihda",
     "Vahvista",
     "Peruuta",
@@ -42686,8 +42709,6 @@ const char* const STRINGS_FI[] = {
     "\xA4"
     "",
     "Ei",
-    "Show",
-    "Hide",
     "P\xC3"
     "\x84"
     "\xC3"
@@ -42696,6 +42717,7 @@ const char* const STRINGS_FI[] = {
     "\x84"
     "",
     "POIS",
+    "Asetettu",
     "Ei asetettu",
     "Vasen",
     "Oikea",
@@ -42706,29 +42728,29 @@ const char* const STRINGS_FI[] = {
     "ISOT",
     "pienet",
     "OK",
+    "[P\xC3"
+    "\x84"
+    "\xC3"
+    "\x84"
+    "LL\xC3"
+    "\x84"
+    "]",
     "Lepotilan\xC3"
     "\xA4"
     "yt\xC3"
     "\xB6"
     "n kansisuodatin",
     "Kontrasti",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "T\xC3"
+    "\xA4"
+    "ysi + prosentti",
+    "T\xC3"
+    "\xA4"
+    "ysi + kirjapalkki",
+    "Vain kirjapalkki",
+    "T\xC3"
+    "\xA4"
+    "ysi + lukupalkki",
     "K\xC3"
     "\xA4"
     "ytt\xC3"
@@ -42742,15 +42764,6 @@ const char* const STRINGS_FI[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Auringonvalon haalistumiskorjaus",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Uudelleenm\xC3"
     "\xA4"
     "\xC3"
@@ -42760,9 +42773,6 @@ const char* const STRINGS_FI[] = {
     " etupainikkeet",
     "OPDS-selain",
     "Kansi + mukautettu",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Viimeisimm\xC3"
     "\xA4"
     "t",
@@ -42823,8 +42833,6 @@ const char* const STRINGS_FI[] = {
     "Poista kirjan v\xC3"
     "\xA4"
     "limuisti",
-    "Delete",
-    "Show page as QR",
     "Luku: ",
     " sivua  |  ",
     "Kirja: ",
@@ -42923,82 +42931,51 @@ const char* const STRINGS_FI[] = {
     "Kirjan tyyli",
     "Upotettu tyyli",
     "OPDS-palvelimen osoite",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "Ota kuvakaappaus",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -43008,29 +42985,29 @@ const char* const STRINGS_FI[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -43049,17 +43026,17 @@ const char* const STRINGS_FI[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -43070,10 +43047,36 @@ const char* const STRINGS_FI[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -43081,44 +43084,76 @@ const char* const STRINGS_FI[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Ei tiedostoja l\xC3"
+    "\xB6"
+    "ytynyt",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Delete",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -43137,8 +43172,8 @@ const char* const STRINGS_FI[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -43148,8 +43183,8 @@ const char* const STRINGS_FI[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -43160,14 +43195,14 @@ const char* const STRINGS_FI[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -43185,45 +43220,38 @@ const char* const STRINGS_FI[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -43234,53 +43262,70 @@ const char* const STRINGS_FI[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Est\xC3"
+    "\xA4"
+    " etuosa",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_DA[] = {
@@ -43312,7 +43357,7 @@ const char* const STRINGS_DA[] = {
     "B\xC3"
     "\xB8"
     "ger",
-    "Ingen filer fundet",
+    "No books found",
     "V\xC3"
     "\xA6"
     "lg kapitel",
@@ -43484,10 +43529,6 @@ const char* const STRINGS_DA[] = {
     "Tekst Anti-Aliasing",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Kort tryk p\xC3"
     "\xA5"
     " t\xC3"
@@ -43502,7 +43543,6 @@ const char* const STRINGS_DA[] = {
     " siden (l\xC3"
     "\xA6"
     "ser)",
-    "Front Button Layout (reader)",
     "Langt tryk spring kapitel over",
     "L\xC3"
     "\xA6"
@@ -43532,7 +43572,6 @@ const char* const STRINGS_DA[] = {
     "Afsnitsjustering",
     "Orddeling",
     "Tid til hvile",
-    "Show Hidden Files",
     "Opdateringsfrekvens",
     "Calibre-indstillinger",
     "KOReader Sync",
@@ -43612,7 +43651,6 @@ const char* const STRINGS_DA[] = {
     "Hvile",
     "Sideskift",
     "Screen Refresh",
-    "Bloker forside",
     "Portr\xC3"
     "\xA6"
     "t",
@@ -43631,7 +43669,6 @@ const char* const STRINGS_DA[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Lille",
     "Mellem",
     "Stor",
@@ -43717,7 +43754,6 @@ const char* const STRINGS_DA[] = {
     "V\xC3"
     "\xA6"
     "lg",
-    "Selected",
     "Skift",
     "Bekr\xC3"
     "\xA6"
@@ -43733,12 +43769,11 @@ const char* const STRINGS_DA[] = {
     "v igen",
     "Ja",
     "Nej",
-    "Show",
-    "Hide",
     "T\xC3"
     "\x86"
     "NDT",
     "SLUKKET",
+    "Indstil",
     "Ikke indstillet",
     "Venstre",
     "H\xC3"
@@ -43749,27 +43784,15 @@ const char* const STRINGS_DA[] = {
     "CAPS",
     "caps",
     "OK",
+    "[ON]",
     "Hvile-sk\xC3"
     "\xA6"
     "rm omslag-filter",
     "Kontrast",
-    "Customise Status Bar",
-    "Chapter Page Count",
-    "Book Progress Percentage",
-    "Progress Bar",
-    "Progress Bar Thickness",
-    "Thin",
-    "Medium",
-    "Thick",
-    "Book",
-    "Chapter",
-    "Chapter 21",
-    "Book Title",
-    "Preview",
-    "Title",
-    "Battery",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Fuld m/ procent",
+    "Fuld m/ boglinje",
+    "Kun boglinje",
+    "Fuld m/ kapitellinje",
     "Brugergr\xC3"
     "\xA6"
     "nseflade tema",
@@ -43779,21 +43802,9 @@ const char* const STRINGS_DA[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Sollysfading-rettelse",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Omtildel frontknapper",
     "OPDS Browser",
     "Omslag + Brugerdefineret",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Seneste",
     "Seneste b\xC3"
     "\xB8"
@@ -43842,8 +43853,6 @@ const char* const STRINGS_DA[] = {
     " til start",
     "Synkroniser fremskridt",
     "Slet bogcache",
-    "Delete",
-    "Show page as QR",
     "Kapitel: ",
     " sider  |  ",
     "Bog: ",
@@ -43884,84 +43893,53 @@ const char* const STRINGS_DA[] = {
     "Bogens stil",
     "Indlejret stil",
     "OPDS Server URL",
-    "Footnotes",
     "No footnotes on this page",
     "[link]",
     "Tag sk\xC3"
     "\xA6"
     "rmbillede",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -43971,29 +43949,29 @@ const char* const STRINGS_DA[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -44012,17 +43990,17 @@ const char* const STRINGS_DA[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -44033,10 +44011,36 @@ const char* const STRINGS_DA[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -44044,44 +44048,74 @@ const char* const STRINGS_DA[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Ingen filer fundet",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Show",
+    "Hide",
+    "Customize Status Bar",
+    "Chapter Page Count",
+    "Book Progress Percentage",
+    "Progress Bar",
+    "Progress Bar Thickness",
+    "Thin",
+    "Medium",
+    "Thick",
+    "Book",
+    "Chapter",
+    "Chapter 21",
+    "Book Title",
+    "Preview",
+    "Title",
+    "Battery",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Delete",
+    "Show page as QR",
+    "Footnotes",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -44100,8 +44134,8 @@ const char* const STRINGS_DA[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -44111,8 +44145,8 @@ const char* const STRINGS_DA[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -44123,14 +44157,14 @@ const char* const STRINGS_DA[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -44148,45 +44182,38 @@ const char* const STRINGS_DA[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -44197,53 +44224,68 @@ const char* const STRINGS_DA[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Bloker forside",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_NL[] = {
@@ -44259,7 +44301,7 @@ const char* const STRINGS_NL[] = {
     "Geen geopend boek",
     "Begin hieronder met lezen",
     "Boeken",
-    "Geen bestanden gevonden",
+    "No books found",
     "Selecteer hoofdstuk",
     "Geen hoofdstukken",
     "Einde van boek",
@@ -44339,15 +44381,10 @@ const char* const STRINGS_NL[] = {
     "Tekst Anti-Aliasing",
     "Text Darkness",
     "Extra Dark",
-    "Images",
-    "Display",
-    "Placeholder",
-    "Suppress",
     "Korte klik aan/uit-knop",
     "Leesstand",
     "Indeling knoppen voorzijde",
     "Indeling zijknoppen (lezer)",
-    "Front Button Layout (reader)",
     "Hoofdstuk overslaan (lang indrukken)",
     "Lettertype lezer",
     "Extern lettertype lezer",
@@ -44363,7 +44400,6 @@ const char* const STRINGS_NL[] = {
     "Uitlijning alinea lezer",
     "Woordafbreking",
     "Tijd tot slaapstand",
-    "Show Hidden Files",
     "Verversingsfrequentie",
     "Calibre instellingen",
     "KOReader Sync",
@@ -44419,7 +44455,6 @@ const char* const STRINGS_NL[] = {
     "Slaap",
     "Pagina omslaan",
     "Screen Refresh",
-    "Voorkant blokkeren",
     "Staand",
     "Liggend (rechtsom)",
     "Omgekeerd",
@@ -44432,7 +44467,6 @@ const char* const STRINGS_NL[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Klein",
     "Gemiddeld",
     "Groot",
@@ -44494,7 +44528,6 @@ const char* const STRINGS_NL[] = {
     "\xAB"
     " Opslaan",
     "Kies",
-    "Selected",
     "Wissel",
     "Bevestig",
     "Annuleer",
@@ -44504,10 +44537,9 @@ const char* const STRINGS_NL[] = {
     "Opnieuw",
     "Ja",
     "Nee",
-    "Toon",
-    "Verberg",
     "AAN",
     "UIT",
+    "Stel in",
     "Niet ingesteld",
     "Links",
     "Rechts",
@@ -44516,25 +44548,13 @@ const char* const STRINGS_NL[] = {
     "CAPS",
     "caps",
     "OK",
+    "[AAN]",
     "Slaapscherm omslag-filter",
     "Contrast",
-    "Statusbalk aanpassen",
-    "Paginanummering hoofdstuk",
-    "Percentage voortgang boek",
-    "Voortgangsbalk",
-    "Dikte voortgangsbalk",
-    "Dun",
-    "Gemiddeld",
-    "Dik",
-    "Boek",
-    "Hoofdstuk",
-    "Hoofdstuk 21",
-    "Boektitel",
-    "Voorbeeld",
-    "Titel",
-    "Batterij",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "UI Thema",
     "Klassiek",
     "Lyra",
@@ -44542,21 +44562,9 @@ const char* const STRINGS_NL[] = {
     "CrossPet Reader",
     "CrossPet Classic",
     "Zonlicht vervaging fix",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "Knoppen voorzijde wijzigen",
     "OPDS-browser",
     "Omslag + Aangepast",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Recent",
     "Recente boeken",
     "Geen recente boeken",
@@ -44581,8 +44589,6 @@ const char* const STRINGS_NL[] = {
     "Naar Home",
     "Voortgang synchroniseren",
     "Boekcache verwijderen",
-    "Delete",
-    "Pagina als QR tonen",
     "Hoofdstuk: ",
     " pagina's  |  ",
     "Boek: ",
@@ -44617,82 +44623,51 @@ const char* const STRINGS_NL[] = {
     "Stijl van boek",
     "Ingebedde stijl",
     "OPDS-server URL",
-    "Voetnoten",
     "Geen voetnoten op deze pagina",
     "[link]",
     "Screenshot maken",
-    "Auto Turn Enabled: ",
+    "Auto Page Turn: ",
     "Auto Turn (Pages Per Minute)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -44702,29 +44677,29 @@ const char* const STRINGS_NL[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -44743,17 +44718,17 @@ const char* const STRINGS_NL[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -44764,10 +44739,36 @@ const char* const STRINGS_NL[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -44775,44 +44776,74 @@ const char* const STRINGS_NL[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Geen bestanden gevonden",
+    "Images",
+    "Display",
+    "Placeholder",
+    "Hide",
+    "Bokerlam",
+    "Literata",
+    "Selected",
+    "Toon",
+    "Verberg",
+    "Statusbalk aanpassen",
+    "Paginanummering hoofdstuk",
+    "Percentage voortgang boek",
+    "Voortgangsbalk",
+    "Dikte voortgangsbalk",
+    "Dun",
+    "Gemiddeld",
+    "Dik",
+    "Boek",
+    "Hoofdstuk",
+    "Hoofdstuk 21",
+    "Boektitel",
+    "Voorbeeld",
+    "Titel",
+    "Batterij",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Delete",
+    "Pagina als QR tonen",
+    "Voetnoten",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -44831,8 +44862,8 @@ const char* const STRINGS_NL[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -44842,8 +44873,8 @@ const char* const STRINGS_NL[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -44854,14 +44885,14 @@ const char* const STRINGS_NL[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -44879,45 +44910,38 @@ const char* const STRINGS_NL[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -44928,53 +44952,68 @@ const char* const STRINGS_NL[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Voorkant blokkeren",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_TR[] = {
@@ -45014,9 +45053,7 @@ const char* const STRINGS_TR[] = {
     "\xB1"
     "n",
     "Kitaplar",
-    "Dosya bulunamad\xC4"
-    "\xB1"
-    "",
+    "No books found",
     "B\xC3"
     "\xB6"
     "l\xC3"
@@ -45392,16 +45429,6 @@ const char* const STRINGS_TR[] = {
     "atma (AA)",
     "Text Darkness",
     "Extra Dark",
-    "G\xC3"
-    "\xB6"
-    "rseller",
-    "G\xC3"
-    "\xB6"
-    "ster",
-    "Yer Tutucu",
-    "Bast\xC4"
-    "\xB1"
-    "r",
     "K\xC4"
     "\xB1"
     "sa G\xC3"
@@ -45428,7 +45455,6 @@ const char* const STRINGS_TR[] = {
     "Yan Tu\xC5"
     "\x9F"
     " Dizilimi (okuyucu)",
-    "Front Button Layout (reader)",
     "Uzun Bas\xC4"
     "\xB1"
     "\xC5"
@@ -45504,7 +45530,6 @@ const char* const STRINGS_TR[] = {
     "me S\xC3"
     "\xBC"
     "resi",
-    "Show Hidden Files",
     "Yenileme S\xC4"
     "\xB1"
     "kl\xC4"
@@ -45728,11 +45753,6 @@ const char* const STRINGS_TR[] = {
     "\x87"
     "evirme",
     "Screen Refresh",
-    "\xC3"
-    "\x96"
-    "n\xC3"
-    "\xBC"
-    " engelle",
     "Dikey",
     "Yatay (Saat Y\xC3"
     "\xB6"
@@ -45763,7 +45783,6 @@ const char* const STRINGS_TR[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "K\xC3"
     "\xBC"
     "\xC3"
@@ -45973,9 +45992,6 @@ const char* const STRINGS_TR[] = {
     "Se\xC3"
     "\xA7"
     "",
-    "Se\xC3"
-    "\xA7"
-    "ili",
     "De\xC4"
     "\x9F"
     "i\xC5"
@@ -45999,14 +46015,11 @@ const char* const STRINGS_TR[] = {
     "Hay\xC4"
     "\xB1"
     "r",
-    "G\xC3"
-    "\xB6"
-    "ster",
-    "Gizle",
     "A\xC3"
     "\x87"
     "IK",
     "KAPALI",
+    "Set",
     "Ayarlanmad\xC4"
     "\xB1"
     "",
@@ -46037,93 +46050,15 @@ const char* const STRINGS_TR[] = {
     "\xBC"
     "k",
     "Tamam",
+    "[ON]",
     "Uyku Ekran\xC4"
     "\xB1"
     " Kapak Filtresi",
     "Kontrast",
-    "Durum \xC3"
-    "\x87"
-    "ubu\xC4"
-    "\x9F"
-    "unu \xC3"
-    "\x96"
-    "zelle\xC5"
-    "\x9F"
-    "tir",
-    "B\xC3"
-    "\xB6"
-    "l\xC3"
-    "\xBC"
-    "m Sayfa Say\xC4"
-    "\xB1"
-    "s\xC4"
-    "\xB1"
-    "",
-    "Kitap \xC4"
-    "\xB0"
-    "lerleme Y\xC3"
-    "\xBC"
-    "zdesi",
-    "\xC4"
-    "\xB0"
-    "lerleme \xC3"
-    "\x87"
-    "ubu\xC4"
-    "\x9F"
-    "u",
-    "\xC4"
-    "\xB0"
-    "lerleme \xC3"
-    "\x87"
-    "ubu\xC4"
-    "\x9F"
-    "u Kal\xC4"
-    "\xB1"
-    "nl\xC4"
-    "\xB1"
-    "\xC4"
-    "\x9F"
-    "\xC4"
-    "\xB1"
-    "",
-    "\xC4"
-    "\xB0"
-    "nce",
-    "Orta",
-    "Kal\xC4"
-    "\xB1"
-    "n",
-    "Kitap",
-    "B\xC3"
-    "\xB6"
-    "l\xC3"
-    "\xBC"
-    "m",
-    "B\xC3"
-    "\xB6"
-    "l\xC3"
-    "\xBC"
-    "m 21",
-    "Kitap Ba\xC5"
-    "\x9F"
-    "l\xC4"
-    "\xB1"
-    "\xC4"
-    "\x9F"
-    "\xC4"
-    "\xB1"
-    "",
-    "\xC3"
-    "\x96"
-    "nizleme",
-    "Ba\xC5"
-    "\x9F"
-    "l\xC4"
-    "\xB1"
-    "k",
-    "Pil",
-    "Reading Time Estimate",
-    "Session Timer",
+    "Full + Percentage",
+    "Full + Book Bar",
+    "Book Bar Only",
+    "Full + Chapter Bar",
     "Aray\xC3"
     "\xBC"
     "z Temas\xC4"
@@ -46153,15 +46088,6 @@ const char* const STRINGS_TR[] = {
     " Solma D\xC3"
     "\xBC"
     "zeltmesi",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "\xC3"
     "\x96"
     "n Tu\xC5"
@@ -46177,9 +46103,6 @@ const char* const STRINGS_TR[] = {
     "Kapak + \xC3"
     "\x96"
     "zel",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "Son Okunanlar",
     "Son Kitaplar",
     "Son okunan kitap yok",
@@ -46272,12 +46195,6 @@ const char* const STRINGS_TR[] = {
     "nbelle\xC4"
     "\x9F"
     "ini Sil",
-    "Sil",
-    "Sayfay\xC4"
-    "\xB1"
-    " QR olarak g\xC3"
-    "\xB6"
-    "ster",
     "B\xC3"
     "\xB6"
     "l\xC3"
@@ -46390,7 +46307,6 @@ const char* const STRINGS_TR[] = {
     "\xBC"
     " Stil",
     "OPDS Sunucu Adresi",
-    "Dipnotlar",
     "Bu sayfada dipnot yok",
     "[ba\xC4"
     "\x9F"
@@ -46413,75 +46329,45 @@ const char* const STRINGS_TR[] = {
     "\x87"
     "evirme (Dakikada Sayfa)",
     "Auto Page Turn",
-    "1 page/min",
-    "3 pages/min",
-    "6 pages/min",
-    "12 pages/min",
-    "Apps",
+    "1 page/minute",
+    "3 pages/minute",
+    "6 pages/minute",
+    "12 pages/minute",
+    "Tools",
     "Clock",
     "Pomodoro",
     "Daily Quote",
     "Conference Badge",
-    "Connect WiFi to sync time",
-    "Place quotes.txt on SD card",
-    "Place badge.txt on SD card",
-    "Setup Badge",
+    "FOCUS",
+    "SHORT BREAK",
+    "LONG BREAK",
+    "READY",
+    "PAUSED",
+    "Connect to WiFi to sync time",
+    "Place quotes.txt on the SD card",
+    "Place badge.txt on the SD card",
+    "Badge Setup",
     "Name",
     "Title / Role",
     "QR Data (URL)",
     "Badge saved!",
     "Edit",
-    "(Built-in quote)",
-    "Ready",
-    "Focus",
-    "Short Break",
-    "Long Break",
-    "Paused",
+    "(Default Quote)",
     "Start",
     "Pause",
     "Resume",
     "Skip",
-    "Bluetooth Remote",
-    "Auto-connect BT",
-    "Pair Remote",
-    "Scanning...",
-    "Connecting...",
-    "Connected",
-    "Not connected",
-    "No devices found",
-    "Paired: %s",
-    "Forget Device",
-    "Forget paired remote?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "Presenter Pen",
-    "Waiting for connection...",
-    "Pair this device as a Bluetooth keyboard",
-    "Right ->",
-    "Next slide",
-    "<- Left",
-    "Prev slide",
-    "OK",
-    "Start (F5)",
-    "Back",
-    "End (Esc)",
-    "Next >",
-    "< Prev",
-    "F5",
-    "Esc",
-    "My Pet",
-    "Hunger",
-    "Pet",
+    "Virtual Pet",
+    "Fullness",
+    "Happiness",
     "Health",
     "Egg",
     "Hatchling",
     "Youngster",
     "Companion",
     "Elder",
-    "Your pet has passed...",
-    "Hatch New Egg?",
+    "Your pet has passed away...",
+    "Hatch a New Egg?",
     "No pet yet",
     "Hatch Egg?",
     "Weight",
@@ -46491,29 +46377,29 @@ const char* const STRINGS_TR[] = {
     "Sick",
     "Dirty",
     "Needs attention!",
-    "Scholarly Young",
-    "Wild Youngster",
+    "Bookish Kid",
+    "Wild Kid",
     "Scholar",
     "Wild Companion",
-    "Nom nom! +Hunger",
-    "Yummy! +Happy",
-    "Feeling better~",
-    "Great workout!",
-    "All clean!",
-    "Good discipline!",
+    "Delicious! +Fullness",
+    "Yummy! +Happiness",
+    "Feeling better now~",
+    "Workout complete!",
+    "Nice and clean!",
+    "Discipline improved!",
     "That was mean...",
-    "Good training!",
+    "Well done!",
     "Feeling neglected...",
-    "Goodnight~",
+    "Good night~",
     "Lights on!",
-    "Your pet lived a full life. Farewell~",
-    "Your pet has passed from neglect...",
+    "Your pet lived a full life. Goodbye~",
+    "Your pet died from neglect...",
     "Too sick to eat...",
     "Shh... sleeping",
     "Not ready yet...",
     "Feed Meal",
     "Feed Snack",
-    "Medicine",
+    "Give Medicine",
     "Exercise",
     "Clean",
     "Scold",
@@ -46532,17 +46418,17 @@ const char* const STRINGS_TR[] = {
     "Robot",
     "Bear",
     "Slime",
-    "Chapter Complete!",
-    "%ud",
+    "Chapter complete!",
+    "%u days",
     "Daily goal reached!",
-    "Streak up! %u days",
-    "%lu pages read!",
-    "%s: Feed me! Read more",
+    "Streak increased! %u days",
+    "Read %lu pages!",
+    "%s: Feed me! Let's read more",
     "%s: I miss you...",
     "%s: I feel sick...",
     "%s: Play with me!",
     "%s: Zzz...",
-    "%s: %ud streak!",
+    "%s: %u-day streak!",
     "%s: Let's read!",
     "%s: Read with me~",
     "No pet!",
@@ -46553,10 +46439,36 @@ const char* const STRINGS_TR[] = {
     "Hey! That's not fair...",
     "Read 20 pages",
     "Pet 3 times",
-    "Keep fed (>40%)",
+    "Well fed (>40%)",
     "%s (%s)  |  Day %lu  |  Streak %u",
     "%s %s  |  Day %lu  |  Streak %u",
     "%s  |  Day %lu  |  Streak %u",
+    "Bluetooth Remote",
+    "Auto-connect BT",
+    "Pair Device",
+    "Scanning...",
+    "Connecting...",
+    "Connected",
+    "Disconnected",
+    "No devices found",
+    "Paired with: %s",
+    "Forget Device",
+    "Forget paired remote?",
+    "Presenter",
+    "Waiting for connection...",
+    "Pair the device like a Bluetooth keyboard",
+    "Right ->",
+    "Next slide",
+    "<- Left",
+    "Previous slide",
+    "OK",
+    "Start (F5)",
+    "Back",
+    "Exit (Esc)",
+    "Next >",
+    "< Prev",
+    "F5",
+    "Esc",
     "Photo Frame",
     "Maze",
     "Game of Life",
@@ -46564,44 +46476,156 @@ const char* const STRINGS_TR[] = {
     "Snake",
     "2048",
     "New Game",
-    "Reading Stats",
+    "Reading Statistics",
     "TODAY",
-    "ALL TIME",
+    "TOTAL",
     "LAST BOOK",
-    "Sessions",
-    "Finished",
+    "Reading Sessions",
+    "Completed",
     "Streak",
-    "Best",
-    "%ud",
+    "Best Streak",
+    "%u days",
     "No books read yet",
+    "Dosya bulunamad\xC4"
+    "\xB1"
+    "",
+    "G\xC3"
+    "\xB6"
+    "rseller",
+    "G\xC3"
+    "\xB6"
+    "ster",
+    "Yer Tutucu",
+    "Bast\xC4"
+    "\xB1"
+    "r",
+    "Bokerlam",
+    "Literata",
+    "Se\xC3"
+    "\xA7"
+    "ili",
+    "G\xC3"
+    "\xB6"
+    "ster",
+    "Gizle",
+    "Durum \xC3"
+    "\x87"
+    "ubu\xC4"
+    "\x9F"
+    "unu \xC3"
+    "\x96"
+    "zelle\xC5"
+    "\x9F"
+    "tir",
+    "B\xC3"
+    "\xB6"
+    "l\xC3"
+    "\xBC"
+    "m Sayfa Say\xC4"
+    "\xB1"
+    "s\xC4"
+    "\xB1"
+    "",
+    "Kitap \xC4"
+    "\xB0"
+    "lerleme Y\xC3"
+    "\xBC"
+    "zdesi",
+    "\xC4"
+    "\xB0"
+    "lerleme \xC3"
+    "\x87"
+    "ubu\xC4"
+    "\x9F"
+    "u",
+    "\xC4"
+    "\xB0"
+    "lerleme \xC3"
+    "\x87"
+    "ubu\xC4"
+    "\x9F"
+    "u Kal\xC4"
+    "\xB1"
+    "nl\xC4"
+    "\xB1"
+    "\xC4"
+    "\x9F"
+    "\xC4"
+    "\xB1"
+    "",
+    "\xC4"
+    "\xB0"
+    "nce",
+    "Orta",
+    "Kal\xC4"
+    "\xB1"
+    "n",
+    "Kitap",
+    "B\xC3"
+    "\xB6"
+    "l\xC3"
+    "\xBC"
+    "m",
+    "B\xC3"
+    "\xB6"
+    "l\xC3"
+    "\xBC"
+    "m 21",
+    "Kitap Ba\xC5"
+    "\x9F"
+    "l\xC4"
+    "\xB1"
+    "\xC4"
+    "\x9F"
+    "\xC4"
+    "\xB1"
+    "",
+    "\xC3"
+    "\x96"
+    "nizleme",
+    "Ba\xC5"
+    "\x9F"
+    "l\xC4"
+    "\xB1"
+    "k",
+    "Pil",
+    "Estimated Reading Time",
+    "Session Timer",
+    "Sil",
+    "Sayfay\xC4"
+    "\xB1"
+    " QR olarak g\xC3"
+    "\xB6"
+    "ster",
+    "Dipnotlar",
     "Game Over!",
     "You Win!",
     "Score: %lu    Best: %lu",
-    "Score:%d Hi:%d",
+    "Score:%d Best:%d",
     "Up/Down: speed",
     "Done! %d moves",
     "Moves: %d",
-    "Gen %lu",
+    "Generation %lu",
     "Mistakes: %d",
     "No photos found",
     "Place .bmp files in /sleep/",
     "Happy",
     "Reading",
     "Feed me~",
-    "Need medicine...",
-    "It's dirty...",
-    "So bored...",
+    "I need medicine...",
+    "I'm dirty...",
+    "I'm bored...",
     "Hey!",
-    "Not feeling well...",
+    "I don't feel well...",
     "Zzz...",
     "Purr~",
     "Sweet dreams",
     "Dreaming...",
-    "Hungry...",
+    "I'm hungry...",
     "Read more!",
     "%s | %d alive",
     "Fast",
-    "Med",
+    "Medium",
     "Slow",
     "Slowest",
     "Sudoku",
@@ -46620,8 +46644,8 @@ const char* const STRINGS_TR[] = {
     "Caro",
     "Turn: X",
     "Turn: O",
-    "X Wins!",
-    "O Wins!",
+    "X wins!",
+    "O wins!",
     "Draw!",
     "Place",
     "Easy",
@@ -46631,8 +46655,8 @@ const char* const STRINGS_TR[] = {
     "Chess",
     "White's Turn",
     "Black's Turn",
-    "White Wins!",
-    "Black Wins!",
+    "White wins!",
+    "Black wins!",
     "Select",
     "Move",
     "Set Time",
@@ -46643,14 +46667,14 @@ const char* const STRINGS_TR[] = {
     "Thursday",
     "Friday",
     "Saturday",
-    "S",
-    "M",
-    "T",
-    "W",
-    "T",
-    "F",
-    "S",
-    "Lunar",
+    "Sun",
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri",
+    "Sat",
+    "Lunar Month",
     "January",
     "February",
     "March",
@@ -46668,45 +46692,38 @@ const char* const STRINGS_TR[] = {
     "Day",
     "Month",
     "Year",
-    "Sync time via WiFi",
+    "Sync time over WiFi",
     "Weather",
     "Fetching weather...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
-    "Failed to load weather",
+    "Unable to fetch weather",
     "Feels like",
     "Humidity",
     "Wind",
     "Refresh",
     "City",
-    "Clear sky",
-    "Partly cloudy",
+    "Clear",
+    "Partly Cloudy",
     "Fog",
     "Drizzle",
     "Rain",
     "Snow",
     "Showers",
     "Thunderstorm",
-    "Updated",
+    "Last Updated",
     "News",
-    "Loading news...",
-    "Failed to load news",
-    "No articles found",
+    "Fetching news...",
+    "Unable to fetch news",
+    "No articles",
     "Focus:",
     "Short break:",
     "Long break:",
-    "%s %2lu min",
+    "%s %2lu minutes",
     "Start >",
     "Location",
-    "Home clock",
-    "Home weather",
-    "Home pet status",
-    "Reading Stats",
+    "Home Clock",
+    "Home Weather",
+    "Pet Status",
+    "Reading Statistics",
     "RECENTLY READ",
     "Today",
     "Total",
@@ -46717,53 +46734,72 @@ const char* const STRINGS_TR[] = {
     "%d min",
     "%dh %dm",
     "Sync",
-    "Sync OK",
+    "Synced",
     "WiFi timeout",
     "API error %d",
-    "Sleep Image",
+    "Sleep Screen Image",
     "Image selected!",
     "No .bmp files found",
-    "Place .bmp files in /sleep/",
-    "Any (random)",
-    "Set sleep screen to 'Custom' in Settings > Display",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
-    "Reload Sleep Image",
-    "Sleep cache cleared!",
+    "Place .bmp files in the /sleep/ folder",
+    "Random",
+    "Set Sleep Screen to 'Custom' in Settings > Display",
+    "Clear sleep screen cache",
+    "Sleep screen cache cleared!",
     "Sync Weather & Time",
-    "Power Double-Click",
-    "Power Triple-Click",
-    "Show Free RAM",
-    "Device Info",
+    "Power button double click",
+    "Power button triple click",
+    "Show RAM",
+    "Device Information",
     "Focus Mode",
     "Free RAM",
     "Reboot",
     "Version",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "\xC3"
+    "\x96"
+    "n\xC3"
+    "\xBC"
+    " engelle",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 const char* const STRINGS_VI[] = {
@@ -46876,10 +46912,9 @@ const char* const STRINGS_VI[] = {
     "m th\xE1"
     "\xBA"
     "\xA5"
-    "y t\xE1"
-    "\xBB"
-    "\x87"
-    "p",
+    "y s\xC3"
+    "\xA1"
+    "ch",
     "Ch\xE1"
     "\xBB"
     "\x8D"
@@ -47737,30 +47772,6 @@ const char* const STRINGS_VI[] = {
     "\xBA"
     "\xAD"
     "m",
-    "H\xC3"
-    "\xAC"
-    "nh \xE1"
-    "\xBA"
-    "\xA3"
-    "nh",
-    "Hi\xE1"
-    "\xBB"
-    "\x83"
-    "n th\xE1"
-    "\xBB"
-    "\x8B"
-    "",
-    "Gi\xE1"
-    "\xBB"
-    "\xAF"
-    " ch\xE1"
-    "\xBB"
-    "\x97"
-    "",
-    "\xE1"
-    "\xBA"
-    "\xA8"
-    "n",
     "Nh\xE1"
     "\xBA"
     "\xA5"
@@ -47806,7 +47817,6 @@ const char* const STRINGS_VI[] = {
     "c s\xC3"
     "\xA1"
     "ch)",
-    "Front Button Layout (reader)",
     "Gi\xE1"
     "\xBB"
     "\xAF"
@@ -47945,7 +47955,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\xA7"
     "",
-    "Show Hidden Files",
     "T\xE1"
     "\xBA"
     "\xA7"
@@ -48420,7 +48429,6 @@ const char* const STRINGS_VI[] = {
     "n h\xC3"
     "\xAC"
     "nh",
-    "Block Front",
     "D\xE1"
     "\xBB"
     "\x8D"
@@ -48478,7 +48486,6 @@ const char* const STRINGS_VI[] = {
     "Bookerly",
     "Lexend",
     "Open Dyslexic",
-    "Bokerlam",
     "Nh\xE1"
     "\xBB"
     "\x8F"
@@ -48886,14 +48893,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x8D"
     "n",
-    "\xC4"
-    "\x90"
-    "\xC3"
-    "\xA3"
-    " ch\xE1"
-    "\xBB"
-    "\x8D"
-    "n",
     "B\xE1"
     "\xBA"
     "\xAD"
@@ -48942,14 +48941,6 @@ const char* const STRINGS_VI[] = {
     "Kh\xC3"
     "\xB4"
     "ng",
-    "Hi\xE1"
-    "\xBB"
-    "\x87"
-    "n",
-    "\xE1"
-    "\xBA"
-    "\xA8"
-    "n",
     "B\xE1"
     "\xBA"
     "\xAC"
@@ -48958,6 +48949,16 @@ const char* const STRINGS_VI[] = {
     "\xBA"
     "\xAE"
     "T",
+    "\xC4"
+    "\x90"
+    "\xC3"
+    "\xA3"
+    " \xC4"
+    "\x91"
+    "\xE1"
+    "\xBA"
+    "\xB7"
+    "t",
     "Ch\xC6"
     "\xB0"
     "a \xC4"
@@ -48988,6 +48989,10 @@ const char* const STRINGS_VI[] = {
     "\x9D"
     "ng",
     "OK",
+    "[B\xE1"
+    "\xBA"
+    "\xAC"
+    "T]",
     "B\xE1"
     "\xBB"
     "\x99"
@@ -49008,133 +49013,56 @@ const char* const STRINGS_VI[] = {
     "\xBA"
     "\xA3"
     "n",
-    "T\xC3"
-    "\xB9"
-    "y ch\xE1"
-    "\xBB"
-    "\x89"
-    "nh thanh tr\xE1"
+    "\xC4"
+    "\x90"
+    "\xE1"
     "\xBA"
-    "\xA1"
-    "ng th\xC3"
-    "\xA1"
-    "i",
-    "S\xE1"
-    "\xBB"
+    "\xA7"
+    "y \xC4"
     "\x91"
-    " trang ch\xC6"
-    "\xB0"
-    "\xC6"
-    "\xA1"
-    "ng",
-    "Ph\xE1"
+    "\xE1"
+    "\xBB"
+    "\xA7"
+    " + Ph\xE1"
     "\xBA"
     "\xA7"
     "n tr\xC4"
     "\x83"
-    "m ti\xE1"
-    "\xBA"
-    "\xBF"
-    "n tr\xC3"
-    "\xAC"
-    "nh s\xC3"
-    "\xA1"
-    "ch",
-    "Thanh ti\xE1"
-    "\xBA"
-    "\xBF"
-    "n tr\xC3"
-    "\xAC"
-    "nh",
-    "\xC4"
-    "\x90"
-    "\xE1"
-    "\xBB"
-    "\x99"
-    " d\xC3"
-    "\xA0"
-    "y thanh ti\xE1"
-    "\xBA"
-    "\xBF"
-    "n tr\xC3"
-    "\xAC"
-    "nh",
-    "M\xE1"
-    "\xBB"
-    "\x8F"
-    "ng",
-    "V\xE1"
-    "\xBB"
-    "\xAB"
-    "a",
-    "D\xC3"
-    "\xA0"
-    "y",
-    "S\xC3"
-    "\xA1"
-    "ch",
-    "Ch\xC6"
-    "\xB0"
-    "\xC6"
-    "\xA1"
-    "ng",
-    "Ch\xC6"
-    "\xB0"
-    "\xC6"
-    "\xA1"
-    "ng 21",
-    "T\xC3"
-    "\xAA"
-    "n s\xC3"
-    "\xA1"
-    "ch",
-    "Xem tr\xC6"
-    "\xB0"
-    "\xE1"
-    "\xBB"
-    "\x9B"
-    "c",
-    "Ti\xC3"
-    "\xAA"
-    "u \xC4"
-    "\x91"
-    "\xE1"
-    "\xBB"
-    "\x81"
-    "",
-    "Pin",
-    "\xC6"
-    "\xAF"
-    "\xE1"
-    "\xBB"
-    "\x9B"
-    "c t\xC3"
-    "\xAD"
-    "nh th\xE1"
-    "\xBB"
-    "\x9D"
-    "i gian \xC4"
-    "\x91"
-    "\xE1"
-    "\xBB"
-    "\x8D"
-    "c",
+    "m",
     "\xC4"
     "\x90"
     "\xE1"
     "\xBA"
-    "\xBF"
-    "m gi\xE1"
-    "\xBB"
-    "\x9D"
-    " phi\xC3"
-    "\xAA"
-    "n \xC4"
+    "\xA7"
+    "y \xC4"
     "\x91"
     "\xE1"
     "\xBB"
-    "\x8D"
-    "c",
+    "\xA7"
+    " + Thanh s\xC3"
+    "\xA1"
+    "ch",
+    "Ch\xE1"
+    "\xBB"
+    "\x89"
+    " thanh s\xC3"
+    "\xA1"
+    "ch",
+    "\xC4"
+    "\x90"
+    "\xE1"
+    "\xBA"
+    "\xA7"
+    "y \xC4"
+    "\x91"
+    "\xE1"
+    "\xBB"
+    "\xA7"
+    " + Thanh ch\xC6"
+    "\xB0"
+    "\xC6"
+    "\xA1"
+    "ng",
     "Giao di\xE1"
     "\xBB"
     "\x87"
@@ -49168,15 +49096,6 @@ const char* const STRINGS_VI[] = {
     "\xBA"
     "\xAF"
     "ng",
-    "Dark Mode",
-    "Keep Clock Alive",
-    "Off",
-    "Sleep Refresh",
-    "1 min",
-    "5 min",
-    "10 min",
-    "30 min",
-    "60 min",
     "G\xC3"
     "\xA1"
     "n l\xE1"
@@ -49204,9 +49123,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x89"
     "nh",
-    "Page overlay",
-    "Keep Screen",
-    "Unpin",
     "G\xE1"
     "\xBA"
     "\xA7"
@@ -49448,16 +49364,6 @@ const char* const STRINGS_VI[] = {
     "m s\xC3"
     "\xA1"
     "ch",
-    "X\xC3"
-    "\xB3"
-    "a",
-    "Hi\xE1"
-    "\xBB"
-    "\x87"
-    "n trang d\xE1"
-    "\xBA"
-    "\xA1"
-    "ng QR",
     "Ch\xC6"
     "\xB0"
     "\xC6"
@@ -49752,11 +49658,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\xA7"
     " OPDS",
-    "Ch\xC3"
-    "\xBA"
-    " th\xC3"
-    "\xAD"
-    "ch",
     "Kh\xC3"
     "\xB4"
     "ng c\xC3"
@@ -49856,6 +49757,36 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x8B"
     "",
+    "T\xE1"
+    "\xBA"
+    "\xAC"
+    "P TRUNG",
+    "NGH\xE1"
+    "\xBB"
+    "\x88"
+    " NG\xE1"
+    "\xBA"
+    "\xAE"
+    "N",
+    "NGH\xE1"
+    "\xBB"
+    "\x88"
+    " D\xC3"
+    "\x80"
+    "I",
+    "S\xE1"
+    "\xBA"
+    "\xB4"
+    "N S\xC3"
+    "\x80"
+    "NG",
+    "T\xE1"
+    "\xBA"
+    "\xA0"
+    "M D\xE1"
+    "\xBB"
+    "\xAA"
+    "NG",
     "K\xE1"
     "\xBA"
     "\xBF"
@@ -49958,36 +49889,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x8B"
     "nh)",
-    "S\xE1"
-    "\xBA"
-    "\xB4"
-    "N S\xC3"
-    "\x80"
-    "NG",
-    "T\xE1"
-    "\xBA"
-    "\xAC"
-    "P TRUNG",
-    "NGH\xE1"
-    "\xBB"
-    "\x88"
-    " NG\xE1"
-    "\xBA"
-    "\xAE"
-    "N",
-    "NGH\xE1"
-    "\xBB"
-    "\x88"
-    " D\xC3"
-    "\x80"
-    "I",
-    "T\xE1"
-    "\xBA"
-    "\xA0"
-    "M D\xE1"
-    "\xBB"
-    "\xAA"
-    "NG",
     "B\xE1"
     "\xBA"
     "\xAF"
@@ -50015,200 +49916,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x8F"
     " qua",
-    "\xC4"
-    "\x90"
-    "i\xE1"
-    "\xBB"
-    "\x81"
-    "u khi\xE1"
-    "\xBB"
-    "\x83"
-    "n Bluetooth",
-    "T\xE1"
-    "\xBB"
-    "\xB1"
-    " k\xE1"
-    "\xBA"
-    "\xBF"
-    "t n\xE1"
-    "\xBB"
-    "\x91"
-    "i BT",
-    "Gh\xC3"
-    "\xA9"
-    "p n\xE1"
-    "\xBB"
-    "\x91"
-    "i",
-    "\xC4"
-    "\x90"
-    "ang qu\xC3"
-    "\xA9"
-    "t...",
-    "\xC4"
-    "\x90"
-    "ang k\xE1"
-    "\xBA"
-    "\xBF"
-    "t n\xE1"
-    "\xBB"
-    "\x91"
-    "i...",
-    "\xC4"
-    "\x90"
-    "\xC3"
-    "\xA3"
-    " k\xE1"
-    "\xBA"
-    "\xBF"
-    "t n\xE1"
-    "\xBB"
-    "\x91"
-    "i",
-    "Ch\xC6"
-    "\xB0"
-    "a k\xE1"
-    "\xBA"
-    "\xBF"
-    "t n\xE1"
-    "\xBB"
-    "\x91"
-    "i",
-    "Kh\xC3"
-    "\xB4"
-    "ng t\xC3"
-    "\xAC"
-    "m th\xE1"
-    "\xBA"
-    "\xA5"
-    "y thi\xE1"
-    "\xBA"
-    "\xBF"
-    "t b\xE1"
-    "\xBB"
-    "\x8B"
-    "",
-    "\xC4"
-    "\x90"
-    "\xC3"
-    "\xA3"
-    " gh\xC3"
-    "\xA9"
-    "p: %s",
-    "Qu\xC3"
-    "\xAA"
-    "n thi\xE1"
-    "\xBA"
-    "\xBF"
-    "t b\xE1"
-    "\xBB"
-    "\x8B"
-    "",
-    "Qu\xC3"
-    "\xAA"
-    "n \xC4"
-    "\x91"
-    "i\xE1"
-    "\xBB"
-    "\x81"
-    "u khi\xE1"
-    "\xBB"
-    "\x83"
-    "n \xC4"
-    "\x91"
-    "\xC3"
-    "\xA3"
-    " gh\xC3"
-    "\xA9"
-    "p?",
-    "Learn Keys",
-    "Press NEXT on remote",
-    "Press PREV on remote",
-    "Keys learned!",
-    "B\xC3"
-    "\xBA"
-    "t tr\xC3"
-    "\xAC"
-    "nh chi\xE1"
-    "\xBA"
-    "\xBF"
-    "u",
-    "\xC4"
-    "\x90"
-    "ang ch\xE1"
-    "\xBB"
-    "\x9D"
-    " k\xE1"
-    "\xBA"
-    "\xBF"
-    "t n\xE1"
-    "\xBB"
-    "\x91"
-    "i...",
-    "Gh\xC3"
-    "\xA9"
-    "p thi\xE1"
-    "\xBA"
-    "\xBF"
-    "t b\xE1"
-    "\xBB"
-    "\x8B"
-    " nh\xC6"
-    "\xB0"
-    " b\xC3"
-    "\xA0"
-    "n ph\xC3"
-    "\xAD"
-    "m Bluetooth",
-    "Ph\xE1"
-    "\xBA"
-    "\xA3"
-    "i ->",
-    "Slide ti\xE1"
-    "\xBA"
-    "\xBF"
-    "p",
-    "<- Tr\xC3"
-    "\xA1"
-    "i",
-    "Slide tr\xC6"
-    "\xB0"
-    "\xE1"
-    "\xBB"
-    "\x9B"
-    "c",
-    "OK",
-    "B\xE1"
-    "\xBA"
-    "\xAF"
-    "t \xC4"
-    "\x91"
-    "\xE1"
-    "\xBA"
-    "\xA7"
-    "u (F5)",
-    "Quay l\xE1"
-    "\xBA"
-    "\xA1"
-    "i",
-    "K\xE1"
-    "\xBA"
-    "\xBF"
-    "t th\xC3"
-    "\xBA"
-    "c (Esc)",
-    "Ti\xE1"
-    "\xBA"
-    "\xBF"
-    "p >",
-    "< Tr\xC6"
-    "\xB0"
-    "\xE1"
-    "\xBB"
-    "\x9B"
-    "c",
-    "F5",
-    "Esc",
     "G\xC3"
     "\xA0"
     " \xE1"
@@ -50812,6 +50519,196 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x97"
     "i %u",
+    "\xC4"
+    "\x90"
+    "i\xE1"
+    "\xBB"
+    "\x81"
+    "u khi\xE1"
+    "\xBB"
+    "\x83"
+    "n Bluetooth",
+    "T\xE1"
+    "\xBB"
+    "\xB1"
+    " k\xE1"
+    "\xBA"
+    "\xBF"
+    "t n\xE1"
+    "\xBB"
+    "\x91"
+    "i BT",
+    "Gh\xC3"
+    "\xA9"
+    "p n\xE1"
+    "\xBB"
+    "\x91"
+    "i",
+    "\xC4"
+    "\x90"
+    "ang qu\xC3"
+    "\xA9"
+    "t...",
+    "\xC4"
+    "\x90"
+    "ang k\xE1"
+    "\xBA"
+    "\xBF"
+    "t n\xE1"
+    "\xBB"
+    "\x91"
+    "i...",
+    "\xC4"
+    "\x90"
+    "\xC3"
+    "\xA3"
+    " k\xE1"
+    "\xBA"
+    "\xBF"
+    "t n\xE1"
+    "\xBB"
+    "\x91"
+    "i",
+    "Ch\xC6"
+    "\xB0"
+    "a k\xE1"
+    "\xBA"
+    "\xBF"
+    "t n\xE1"
+    "\xBB"
+    "\x91"
+    "i",
+    "Kh\xC3"
+    "\xB4"
+    "ng t\xC3"
+    "\xAC"
+    "m th\xE1"
+    "\xBA"
+    "\xA5"
+    "y thi\xE1"
+    "\xBA"
+    "\xBF"
+    "t b\xE1"
+    "\xBB"
+    "\x8B"
+    "",
+    "\xC4"
+    "\x90"
+    "\xC3"
+    "\xA3"
+    " gh\xC3"
+    "\xA9"
+    "p: %s",
+    "Qu\xC3"
+    "\xAA"
+    "n thi\xE1"
+    "\xBA"
+    "\xBF"
+    "t b\xE1"
+    "\xBB"
+    "\x8B"
+    "",
+    "Qu\xC3"
+    "\xAA"
+    "n \xC4"
+    "\x91"
+    "i\xE1"
+    "\xBB"
+    "\x81"
+    "u khi\xE1"
+    "\xBB"
+    "\x83"
+    "n \xC4"
+    "\x91"
+    "\xC3"
+    "\xA3"
+    " gh\xC3"
+    "\xA9"
+    "p?",
+    "B\xC3"
+    "\xBA"
+    "t tr\xC3"
+    "\xAC"
+    "nh chi\xE1"
+    "\xBA"
+    "\xBF"
+    "u",
+    "\xC4"
+    "\x90"
+    "ang ch\xE1"
+    "\xBB"
+    "\x9D"
+    " k\xE1"
+    "\xBA"
+    "\xBF"
+    "t n\xE1"
+    "\xBB"
+    "\x91"
+    "i...",
+    "Gh\xC3"
+    "\xA9"
+    "p thi\xE1"
+    "\xBA"
+    "\xBF"
+    "t b\xE1"
+    "\xBB"
+    "\x8B"
+    " nh\xC6"
+    "\xB0"
+    " b\xC3"
+    "\xA0"
+    "n ph\xC3"
+    "\xAD"
+    "m Bluetooth",
+    "Ph\xE1"
+    "\xBA"
+    "\xA3"
+    "i ->",
+    "Slide ti\xE1"
+    "\xBA"
+    "\xBF"
+    "p",
+    "<- Tr\xC3"
+    "\xA1"
+    "i",
+    "Slide tr\xC6"
+    "\xB0"
+    "\xE1"
+    "\xBB"
+    "\x9B"
+    "c",
+    "OK",
+    "B\xE1"
+    "\xBA"
+    "\xAF"
+    "t \xC4"
+    "\x91"
+    "\xE1"
+    "\xBA"
+    "\xA7"
+    "u (F5)",
+    "Quay l\xE1"
+    "\xBA"
+    "\xA1"
+    "i",
+    "K\xE1"
+    "\xBA"
+    "\xBF"
+    "t th\xC3"
+    "\xBA"
+    "c (Esc)",
+    "Ti\xE1"
+    "\xBA"
+    "\xBF"
+    "p >",
+    "< Tr\xC6"
+    "\xB0"
+    "\xE1"
+    "\xBB"
+    "\x9B"
+    "c",
+    "F5",
+    "Esc",
     "Khung \xE1"
     "\xBA"
     "\xA2"
@@ -50915,6 +50812,201 @@ const char* const STRINGS_VI[] = {
     "ch n\xC3"
     "\xA0"
     "o",
+    "Kh\xC3"
+    "\xB4"
+    "ng t\xC3"
+    "\xAC"
+    "m th\xE1"
+    "\xBA"
+    "\xA5"
+    "y t\xE1"
+    "\xBB"
+    "\x87"
+    "p",
+    "H\xC3"
+    "\xAC"
+    "nh \xE1"
+    "\xBA"
+    "\xA3"
+    "nh",
+    "Hi\xE1"
+    "\xBB"
+    "\x83"
+    "n th\xE1"
+    "\xBB"
+    "\x8B"
+    "",
+    "Gi\xE1"
+    "\xBB"
+    "\xAF"
+    " ch\xE1"
+    "\xBB"
+    "\x97"
+    "",
+    "\xE1"
+    "\xBA"
+    "\xA8"
+    "n",
+    "Bokerlam",
+    "Literata",
+    "\xC4"
+    "\x90"
+    "\xC3"
+    "\xA3"
+    " ch\xE1"
+    "\xBB"
+    "\x8D"
+    "n",
+    "Hi\xE1"
+    "\xBB"
+    "\x87"
+    "n",
+    "\xE1"
+    "\xBA"
+    "\xA8"
+    "n",
+    "T\xC3"
+    "\xB9"
+    "y ch\xE1"
+    "\xBB"
+    "\x89"
+    "nh thanh tr\xE1"
+    "\xBA"
+    "\xA1"
+    "ng th\xC3"
+    "\xA1"
+    "i",
+    "S\xE1"
+    "\xBB"
+    "\x91"
+    " trang ch\xC6"
+    "\xB0"
+    "\xC6"
+    "\xA1"
+    "ng",
+    "Ph\xE1"
+    "\xBA"
+    "\xA7"
+    "n tr\xC4"
+    "\x83"
+    "m ti\xE1"
+    "\xBA"
+    "\xBF"
+    "n tr\xC3"
+    "\xAC"
+    "nh s\xC3"
+    "\xA1"
+    "ch",
+    "Thanh ti\xE1"
+    "\xBA"
+    "\xBF"
+    "n tr\xC3"
+    "\xAC"
+    "nh",
+    "\xC4"
+    "\x90"
+    "\xE1"
+    "\xBB"
+    "\x99"
+    " d\xC3"
+    "\xA0"
+    "y thanh ti\xE1"
+    "\xBA"
+    "\xBF"
+    "n tr\xC3"
+    "\xAC"
+    "nh",
+    "M\xE1"
+    "\xBB"
+    "\x8F"
+    "ng",
+    "V\xE1"
+    "\xBB"
+    "\xAB"
+    "a",
+    "D\xC3"
+    "\xA0"
+    "y",
+    "S\xC3"
+    "\xA1"
+    "ch",
+    "Ch\xC6"
+    "\xB0"
+    "\xC6"
+    "\xA1"
+    "ng",
+    "Ch\xC6"
+    "\xB0"
+    "\xC6"
+    "\xA1"
+    "ng 21",
+    "T\xC3"
+    "\xAA"
+    "n s\xC3"
+    "\xA1"
+    "ch",
+    "Xem tr\xC6"
+    "\xB0"
+    "\xE1"
+    "\xBB"
+    "\x9B"
+    "c",
+    "Ti\xC3"
+    "\xAA"
+    "u \xC4"
+    "\x91"
+    "\xE1"
+    "\xBB"
+    "\x81"
+    "",
+    "Pin",
+    "\xC6"
+    "\xAF"
+    "\xE1"
+    "\xBB"
+    "\x9B"
+    "c t\xC3"
+    "\xAD"
+    "nh th\xE1"
+    "\xBB"
+    "\x9D"
+    "i gian \xC4"
+    "\x91"
+    "\xE1"
+    "\xBB"
+    "\x8D"
+    "c",
+    "\xC4"
+    "\x90"
+    "\xE1"
+    "\xBA"
+    "\xBF"
+    "m gi\xE1"
+    "\xBB"
+    "\x9D"
+    " phi\xC3"
+    "\xAA"
+    "n \xC4"
+    "\x91"
+    "\xE1"
+    "\xBB"
+    "\x8D"
+    "c",
+    "X\xC3"
+    "\xB3"
+    "a",
+    "Hi\xE1"
+    "\xBB"
+    "\x87"
+    "n trang d\xE1"
+    "\xBA"
+    "\xA1"
+    "ng QR",
+    "Ch\xC3"
+    "\xBA"
+    " th\xC3"
+    "\xAD"
+    "ch",
     "Thua r\xE1"
     "\xBB"
     "\x93"
@@ -51364,13 +51456,6 @@ const char* const STRINGS_VI[] = {
     "\xBA"
     "\xBF"
     "t...",
-    "Temperature",
-    "\xC2"
-    "\xB0"
-    "C",
-    "\xC2"
-    "\xB0"
-    "F",
     "Kh\xC3"
     "\xB4"
     "ng th\xE1"
@@ -51740,12 +51825,6 @@ const char* const STRINGS_VI[] = {
     "\xBB"
     "\x8B"
     "",
-    "Starred Pages",
-    "Star Page",
-    "No starred pages",
-    "p",
-    "Page starred",
-    "Page unstarred",
     "X\xC3"
     "\xB3"
     "a cache m\xC3"
@@ -51860,27 +51939,48 @@ const char* const STRINGS_VI[] = {
     "\xBA"
     "\xA3"
     "n",
-    "CURRENTLY READING",
-    "%d pages left",
-    "NAVIGATION",
-    "DISPLAY",
-    "FEATURES",
+    "Page Overlay",
+    "Keep Screen",
+    "Keep Clock Alive",
+    "Sleep Refresh",
+    "Off",
+    "1 minute",
+    "5 minutes",
+    "10 minutes",
+    "30 minutes",
+    "60 minutes",
+    "Dark Mode",
+    "Temperature Unit",
+    "Celsius",
+    "Fahrenheit",
+    "Front Page Button Layout",
+    "Start Page",
+    "Block Front",
+    "Show Hidden Files",
     "Apps",
-    "Updates clock during sleep. Drains ~3-4mA battery",
-    "How often sleep screen updates. Needs Keep Clock Alive",
-    "Compensates for sunlight-induced e-ink fading",
-    "Normal: light. Dark: bolder. Extra Dark: all black",
-    "Full refresh every N pages. Less = faster but more ghosting",
-    "Smoother text edges using grayscale",
-    "Inverts display colors",
-    "What to show when device sleeps",
-    "Reader text font",
-    "Reader text size",
-    "Screen rotation for reading",
-    "Break words at line ends",
-    "Use book's own CSS styling",
-    "Hide battery % in header",
-    "Idle time before entering sleep",
+    "Page ",
+    "No starred pages",
+    "Starred Pages",
+    "Mapping remote...",
+    "Mapping local position...",
+    "Keep the clock running during sleep",
+    "Controls how often the sleep screen refreshes",
+    "Fixes fading issues on screen",
+    "Adjust text darkness",
+    "Screen refresh frequency",
+    "Enable smoother text rendering",
+    "Enable dark mode",
+    "Configure sleep screen",
+    "Choose font",
+    "Adjust font size",
+    "Screen orientation",
+    "Enable automatic word hyphenation while reading",
+    "Use the book's embedded CSS styling",
+    "Hide the battery percentage in the status bar",
+    "Set how long the device waits before sleeping",
+    "Unpin",
+    "Clock Format",
+    "Toggle between 12-hour and 24-hour clock",
 };
 
 }  // namespace i18n_strings

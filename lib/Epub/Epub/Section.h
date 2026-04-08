@@ -3,7 +3,6 @@
 #include <memory>
 #include <optional>
 #include <string>
-#include <vector>
 
 #include "Epub.h"
 
@@ -16,7 +15,6 @@ class Section {
   GfxRenderer& renderer;
   std::string filePath;
   FsFile file;
-  std::vector<uint32_t> lut;  // Cached page byte-offsets; loaded once, avoids per-page LUT seek
 
   void writeSectionFileHeader(int fontId, float lineCompression, bool extraParagraphSpacing, uint8_t paragraphAlignment,
                               uint16_t viewportWidth, uint16_t viewportHeight, bool hyphenationEnabled,
@@ -36,7 +34,7 @@ class Section {
   bool loadSectionFile(int fontId, float lineCompression, bool extraParagraphSpacing, uint8_t paragraphAlignment,
                        uint16_t viewportWidth, uint16_t viewportHeight, bool hyphenationEnabled, bool embeddedStyle,
                        uint8_t imageRendering);
-  bool clearCache();
+  bool clearCache() const;
   bool createSectionFile(int fontId, float lineCompression, bool extraParagraphSpacing, uint8_t paragraphAlignment,
                          uint16_t viewportWidth, uint16_t viewportHeight, bool hyphenationEnabled, bool embeddedStyle,
                          uint8_t imageRendering, const std::function<void()>& popupFn = nullptr);
@@ -44,4 +42,14 @@ class Section {
 
   // Look up the page number for an anchor id from the section cache file.
   std::optional<uint16_t> getPageForAnchor(const std::string& anchor) const;
+
+  // Look up the page number for a paragraph index (1-based, from XPath p[N]).
+  // Uses the per-page paragraph index LUT stored in the section cache.
+  // Returns nullopt if the paragraph LUT is not available (old cache format).
+  std::optional<uint16_t> getPageForParagraphIndex(uint16_t pIndex) const;
+
+  // Look up the paragraph index for a given page number.
+  // Returns the 1-based paragraph index of the last <p> element on or before the page.
+  // Returns nullopt if the paragraph LUT is not available (old cache format).
+  std::optional<uint16_t> getParagraphIndexForPage(uint16_t page) const;
 };
