@@ -4,7 +4,7 @@
 #include <I18n.h>
 
 #include "fontIds.h"
-#include "images/Logo120.h"
+#include "images/PortVectorLogo176.h"
 
 void BootActivity::onEnter() {
   Activity::onEnter();
@@ -13,9 +13,24 @@ void BootActivity::onEnter() {
   const auto pageHeight = renderer.getScreenHeight();
 
   renderer.clearScreen();
-  renderer.drawImage(Logo120, (pageWidth - 120) / 2, (pageHeight - 120) / 2, 120, 120);
-  renderer.drawCenteredText(UI_10_FONT_ID, pageHeight / 2 + 70, tr(STR_CROSSPOINT), true, EpdFontFamily::BOLD);
-  renderer.drawCenteredText(SMALL_FONT_ID, pageHeight / 2 + 95, tr(STR_BOOTING));
-  renderer.drawCenteredText(SMALL_FONT_ID, pageHeight - 30, CROSSPOINT_VERSION);
+
+  const int logoSize = 176;
+
+  // Slightly above center
+  const int logoY = (pageHeight - logoSize) / 2 - 10;
+
+renderer.drawImage(PortVectorLogo176,
+                   (pageWidth - logoSize) / 2,
+                   logoY,
+                   logoSize,
+                   logoSize);
+   // Title with better spacing
+  renderer.drawCenteredText(UI_10_FONT_ID, logoY + logoSize + 20,
+                            "PortVector", true, EpdFontFamily::BOLD);
+
+  // Version (minimal)
+  renderer.drawCenteredText(SMALL_FONT_ID, pageHeight - 25,
+                            "v1.0");
+
   renderer.displayBuffer();
 }

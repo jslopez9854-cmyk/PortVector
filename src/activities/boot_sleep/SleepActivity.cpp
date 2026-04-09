@@ -406,48 +406,36 @@ void SleepActivity::renderSleepPet(int scale) const {
 }
 
 void SleepActivity::renderDefaultSleepScreen() const {
-  const int pageWidth  = renderer.getScreenWidth();
+  const int pageWidth = renderer.getScreenWidth();
   const int pageHeight = renderer.getScreenHeight();
 
-  // Pre-clear: wipe previous content ghosting
   renderer.clearScreen();
   renderer.displayBuffer(HalDisplay::FAST_REFRESH);
   renderer.clearScreen();
 
-  // Centered logo — slightly above mid to leave room for branding below
-  constexpr int LOGO_SZ = 120;
-  const int logoX = (pageWidth - LOGO_SZ) / 2;
-  const int logoY = pageHeight / 2 - LOGO_SZ / 2 - 20;
-  renderer.drawImage(Logo120, logoX, logoY, LOGO_SZ, LOGO_SZ);
+  // Top subtle label
+  renderer.drawCenteredText(SMALL_FONT_ID, 40,
+                            "Inkbound Reader");
 
-  // Brand name in Lexend bold below logo
-  const int lhBrand = renderer.getLineHeight(UI_12_FONT_ID);
-  const int brandY = logoY + LOGO_SZ + 14;
-  renderer.drawCenteredText(UI_12_FONT_ID, brandY, "CrossPet Reader", true, EpdFontFamily::BOLD);
+  // Main title (center)
+  renderer.drawCenteredText(UI_12_FONT_ID, pageHeight / 2 - 10,
+                            "Inkbound", true, EpdFontFamily::BOLD);
 
-  // Thin separator line
-  constexpr int SEP_HALF = 40;
-  const int sepY = brandY + lhBrand + 6;
-  renderer.fillRect(pageWidth / 2 - SEP_HALF, sepY, SEP_HALF * 2, 1);
+  // Version
+  renderer.drawCenteredText(SMALL_FONT_ID, pageHeight / 2 + 20,
+                            "v1.0");
 
-  // Version string below separator
-  const int verY = sepY + 8;
-  renderer.drawCenteredText(SMALL_FONT_ID, verY, CROSSPOINT_VERSION);
+  // Divider line (gives structure)
+  renderer.fillRect(pageWidth / 2 - 40, pageHeight - 50, 80, 1);
 
-  // Mini pet in bottom-right corner (scale 1 = 48×48)
-  renderSleepPet(1);
+  // Footer
+  renderer.drawCenteredText(SMALL_FONT_ID, pageHeight - 30,
+                            "Sleeping");
 
-  // Dark mode unless light is selected in settings
-  if (SETTINGS.sleepScreen != CrossPointSettings::SLEEP_SCREEN_MODE::LIGHT) {
-    renderer.invertScreen();
-  }
-
-  // Power off analog drivers after refresh to prevent charge drift fading.
   renderer.setFadingFix(true);
   renderer.displayBuffer(HalDisplay::HALF_REFRESH);
   renderer.setFadingFix(SETTINGS.fadingFix);
 }
-
 void SleepActivity::renderBitmapSleepScreen(const Bitmap& bitmap, const std::string& sourcePath) const {
   int x, y;
   const auto pageWidth = renderer.getScreenWidth();
