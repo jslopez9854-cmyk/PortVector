@@ -87,9 +87,7 @@ void HomeActivity::loadRecentCovers(int coverHeight) {
             RECENT_BOOKS.updateBook(book.path, book.title, book.author, "");
             book.coverBmpPath = "";
           }
-          coverRendered = false;
-          requestUpdate();
-        } else if (FsHelpers::hasXtcExtension(book.path)) {
+                } else if (FsHelpers::hasXtcExtension(book.path)) {
           // Handle XTC file
           Xtc xtc(book.path, "/.crosspoint");
           if (xtc.load()) {
@@ -109,6 +107,7 @@ void HomeActivity::loadRecentCovers(int coverHeight) {
   recentsLoading = false;
   if (anyChanged) {
     coverRendered = false;
+    coverBufferStored = false;
     requestUpdate();
   }
 }
@@ -139,6 +138,8 @@ void HomeActivity::loop() {
     loopOriginal();
   else if (SETTINGS.uiTheme == CrossPointSettings::CROSSPET_CLASSIC)
     loopClassic();
+  else if (SETTINGS.uiTheme == CrossPointSettings::INKBOUND)
+    loopCrossPetInkbound();
   else
     loopCrossPet();
 }
@@ -148,10 +149,11 @@ void HomeActivity::render(RenderLock&&) {
     renderOriginal();
   else if (SETTINGS.uiTheme == CrossPointSettings::CROSSPET_CLASSIC)
     renderClassic();
+  else if (SETTINGS.uiTheme == CrossPointSettings::INKBOUND)
+    renderCrossPetInkbound();
   else
     renderCrossPet();
 }
-
 // ── Shared render helpers ─────────────────────────────────────────────────────
 
 void HomeActivity::renderPetStatusWidget(int headerH) {

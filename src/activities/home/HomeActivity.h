@@ -53,6 +53,19 @@ class HomeActivity final : public Activity {
   void renderSelectionHighlight();
   void renderFocusCard();           // Focus mode: large single-book card
 
+    // Inkbound render helpers
+  void renderContinueReadingCardInkbound();
+  void renderRecentCoversInkbound();
+  void renderRecentSelectionInkbound();
+  void renderReadingStatsBarInkbound();
+  void renderBottomBarIconsInkbound();
+  void renderBottomBarSelectionInkbound();
+  void renderButtonHintsInkbound();
+  void renderSelectionHighlightInkbound();
+  void renderFocusCardInkbound();
+  void renderBottomGridInkbound();
+
+
   // CrossPet Classic (v1.6.8 grid layout) render helpers
   void renderCoverPanel(int panelX, int panelY, int panelW, int panelH, int coverH);
   void renderProgressPanel(int panelX, int panelY, int panelW, int panelH);
@@ -68,8 +81,10 @@ class HomeActivity final : public Activity {
 
   // Theme-specific render/loop dispatchers
   void renderCrossPet();
+  void renderCrossPetInkbound();
   void renderClassic();
   void loopCrossPet();
+  void loopCrossPetInkbound();
   void loopClassic();
 
  public:

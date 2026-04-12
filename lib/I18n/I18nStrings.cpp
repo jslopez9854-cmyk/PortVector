@@ -1755,6 +1755,7 @@ const char* const STRINGS_EN[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_ES[] = {
@@ -2753,6 +2754,7 @@ const char* const STRINGS_ES[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_FR[] = {
@@ -3882,6 +3884,7 @@ const char* const STRINGS_FR[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_DE[] = {
@@ -4780,6 +4783,7 @@ const char* const STRINGS_DE[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_CS[] = {
@@ -6790,6 +6794,7 @@ const char* const STRINGS_CS[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_PO[] = {
@@ -7819,6 +7824,7 @@ const char* const STRINGS_PO[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_RU[] = {
@@ -16943,6 +16949,7 @@ const char* const STRINGS_RU[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_SV[] = {
@@ -18189,6 +18196,7 @@ const char* const STRINGS_SV[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_RO[] = {
@@ -19599,6 +19607,7 @@ const char* const STRINGS_RO[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_CA[] = {
@@ -20641,6 +20650,7 @@ const char* const STRINGS_CA[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_UK[] = {
@@ -31015,6 +31025,7 @@ const char* const STRINGS_UK[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_BE[] = {
@@ -39923,6 +39934,7 @@ const char* const STRINGS_BE[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_IT[] = {
@@ -40684,6 +40696,7 @@ const char* const STRINGS_IT[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_PL[] = {
@@ -42116,6 +42129,7 @@ const char* const STRINGS_PL[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_FI[] = {
@@ -43326,6 +43340,7 @@ const char* const STRINGS_FI[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_DA[] = {
@@ -44286,6 +44301,7 @@ const char* const STRINGS_DA[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_NL[] = {
@@ -45014,6 +45030,7 @@ const char* const STRINGS_NL[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_TR[] = {
@@ -46800,6 +46817,7 @@ const char* const STRINGS_TR[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 const char* const STRINGS_VI[] = {
@@ -51981,6 +51999,7 @@ const char* const STRINGS_VI[] = {
     "Unpin",
     "Clock Format",
     "Toggle between 12-hour and 24-hour clock",
+    "Inkbound",
 };
 
 }  // namespace i18n_strings

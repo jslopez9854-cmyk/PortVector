@@ -769,6 +769,7 @@ enum class StrId : uint16_t {
   STR_UNPIN,
   STR_CLOCK_FORMAT,
   STR_HELP_CLOCK_FORMAT,
+  STR_THEME_INKBOUND,
   // Sentinel - must be last
   _COUNT
 };
