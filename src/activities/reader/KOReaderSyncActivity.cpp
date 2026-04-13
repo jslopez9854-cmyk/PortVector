@@ -77,7 +77,9 @@ void KOReaderSyncActivity::onWifiSelectionComplete(const bool success) {
     statusMessage = tr(STR_CALC_HASH);
   }
   requestUpdate(true);
-
+LOG_DBG("KOSync", "Heap before performSync: free=%u maxAlloc=%u", 
+    (unsigned)ESP.getFreeHeap(), 
+    (unsigned)heap_caps_get_largest_free_block(MALLOC_CAP_8BIT));
   performSync();
 }
 

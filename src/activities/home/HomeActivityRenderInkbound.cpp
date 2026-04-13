@@ -30,7 +30,7 @@ namespace {
 constexpr int CP_HEADER_H       = 30;
 constexpr int CP_CARD_MARGIN    = CrossPetMetrics::cardMargin;
 constexpr int CP_CARD_Y         = 38;
-constexpr int CP_CARD_H         = 345;
+constexpr int CP_CARD_H         = 400;
 constexpr int CP_CARD_R         = CrossPetMetrics::cardRadius;
 constexpr int CP_COVER_H        = 260;
 constexpr int CP_PAD            = CrossPetMetrics::cardPadding;
@@ -39,7 +39,7 @@ constexpr int CP_RECENT_COVER_Y = 302;
 constexpr int CP_MAX_RECENT     = 3;
 constexpr int CP_BOTTOM_BAR_H   = 80;
 constexpr int CP_BOTTOM_ITEMS   = 4;
-constexpr int CP_BOTTOM_ICON_SZ = 32;
+constexpr int CP_BOTTOM_ICON_SZ = 28;
 constexpr int CP_BOTTOM_R       = 10;
 constexpr int CP_FOCUS_COVER_PCT = 45;  // % of availH used for focus mode cover thumbnail
 constexpr int CP_SHADOW         = CrossPetMetrics::shadowOffset;
@@ -123,7 +123,7 @@ const int coverX = cardX + (cardW - coverW) / 2;
     );
   }
   // Right side: title, author, progress, per-book stats
-int textY = coverY + CP_COVER_H + 10;
+int textY = coverY + CP_COVER_H + 16;
 
 auto title = renderer.truncatedText(UI_12_FONT_ID, book.title.c_str(), cardW - 20);
 int titleW = renderer.getTextWidth(UI_12_FONT_ID, title.c_str());
@@ -147,10 +147,10 @@ const int rightPad = 12;
 const int gap = 8;
 const int barH = 6;
 
-const int totalRowW = (cardW * 0.6) + gap + pctW;
+const int barW = cardW * 0.5;
+const int totalRowW = barW + gap + pctW;
 const int rowX = cardX + (cardW - totalRowW) / 2;
 
-const int barW = cardW * 0.6;
 const int barX = rowX;
 const int barY = textY + (smallLineH - barH) / 2;
 
@@ -189,12 +189,13 @@ void HomeActivity::renderBottomGridInkbound() {
   const int screenW = renderer.getScreenWidth();
   const int screenH = renderer.getScreenHeight();
 
-const int gridTop = CP_CARD_Y + CP_CARD_H + 32;
+  const int gridTop = CP_CARD_Y + CP_CARD_H + 12;
   const int gridBottom = screenH - BaseMetrics::values.buttonHintsHeight - 8;
 
   const int gridHeight = gridBottom - gridTop;
   const int cellW = screenW / 2;
 const int rowH = gridHeight / 2;
+  const int lineH = renderer.getLineHeight(UI_12_FONT_ID);
 
   renderGridCell(0,      gridTop,        cellW, rowH, 0, ToolsIcon,     tr(STR_APPS));
   renderGridCell(cellW,  gridTop,        cellW, rowH, 1, LibraryIcon,   tr(STR_BROWSE_FILES));
@@ -203,7 +204,6 @@ const int rowH = gridHeight / 2;
 }
 // Render bottom bar selection highlight only (dynamic, per-frame)
 void HomeActivity::renderBottomBarSelectionInkbound() {
-  // nothing needed — selection handled inside renderGridCell
 }
 void HomeActivity::renderSelectionHighlightInkbound() {
   if (selectorIndex != 0) return;
@@ -243,8 +243,50 @@ renderer.drawRoundedRect(
     );
   }
 }
+void HomeActivity::renderBottomGridSelectionInkbound() {
+  const int screenW = renderer.getScreenWidth();
+  const int screenH = renderer.getScreenHeight();
 
-// ── CrossPet loop (card layout navigation) ────────────────────────────────────
+  const int gridTop = CP_CARD_Y + CP_CARD_H + 12;
+  const int gridBottom = screenH - BaseMetrics::values.buttonHintsHeight - 8;
+
+  const int gridHeight = gridBottom - gridTop;
+  const int cellW = screenW / 2;
+  const int rowH = gridHeight / 2;
+
+  const int barStart = 1;
+  if (selectorIndex < barStart) return;
+
+  const int idx = selectorIndex - barStart;
+  if (idx < 0 || idx >= 4) return;
+
+  const int col = idx % 2;
+  const int row = idx / 2;
+
+  const int x = col * cellW;
+  const int y = gridTop + row * rowH;
+
+  // Outline only — no fill, no redraw of icon/text
+  renderer.drawRoundedRect(
+    x + 2,
+    y + 2,
+    cellW - 4,
+    rowH - 4,
+    2,
+    8,
+    true
+  );
+  // inner border
+renderer.drawRoundedRect(
+  x + 4,
+  y + 4,
+  cellW - 8,
+  rowH - 8,
+  1,
+  6,
+  true
+);
+}// ── CrossPet loop (card layout navigation) ────────────────────────────────────
 
 void HomeActivity::loopCrossPetInkbound() {
   const bool focusMode = PET_SETTINGS.homeFocusMode;
@@ -312,8 +354,8 @@ void HomeActivity::renderFocusCardInkbound() {
     renderer.drawRoundedRect(cardX, CP_CARD_Y, cardW, availH, 1, CP_CARD_R, true);
     constexpr int iconSz = 32;
     const int centerY = CP_CARD_Y + availH / 2;
-    const int lineH = renderer.getLineHeight(UI_12_FONT_ID);
     const int smallH = renderer.getLineHeight(SMALL_FONT_ID);
+    const int lineH = renderer.getLineHeight(UI_12_FONT_ID);
     const int blockH = iconSz + 8 + lineH + 4 + smallH;
     const int startY = centerY - blockH / 2;
     renderer.drawIcon(CoverIcon, cardX + (cardW - iconSz) / 2, startY, iconSz, iconSz);
@@ -445,20 +487,23 @@ void HomeActivity::renderCrossPetInkbound() {
   const int screenW = renderer.getScreenWidth();
   const bool focusMode = PET_SETTINGS.homeFocusMode;
 
-  if (!coverRendered) {
-    // First render: build full base buffer (covers + static UI elements)
-    renderer.clearScreen();
-if (focusMode) {
-  renderFocusCardInkbound();
-} else {
-  renderContinueReadingCardInkbound();
-  renderRecentCoversInkbound();
-  renderReadingStatsBarInkbound();
-}
-renderButtonHintsInkbound();
-    coverBufferStored = storeCoverBuffer();
-    coverRendered = coverBufferStored;
+if (!coverRendered) {
+  // First render: build full base buffer (covers + static UI elements)
+  renderer.clearScreen();
+
+  if (focusMode) {
+    renderFocusCardInkbound();
   } else {
+    renderContinueReadingCardInkbound();
+    renderRecentCoversInkbound();
+    renderReadingStatsBarInkbound();
+    renderBottomGridInkbound();
+  }
+
+  renderButtonHintsInkbound();
+  coverBufferStored = storeCoverBuffer();
+  coverRendered = coverBufferStored;
+}  else {
     // Fast path: restore cached buffer (covers + static elements)
     restoreCoverBuffer();
   }
@@ -471,9 +516,7 @@ renderButtonHintsInkbound();
   // Selection highlights only (not full bottom bar redraw)
 renderSelectionHighlightInkbound();
 if (!focusMode) renderRecentSelectionInkbound();
-if (!focusMode) {
-  renderBottomGridInkbound();
-}
+if (!focusMode) renderBottomGridSelectionInkbound();
   renderer.displayBuffer();
 
   // Post-render: trigger cover thumbnail loading

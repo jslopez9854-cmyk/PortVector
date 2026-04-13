@@ -64,6 +64,7 @@ class HomeActivity final : public Activity {
   void renderSelectionHighlightInkbound();
   void renderFocusCardInkbound();
   void renderBottomGridInkbound();
+  void renderBottomGridSelectionInkbound();
 
 
   // CrossPet Classic (v1.6.8 grid layout) render helpers

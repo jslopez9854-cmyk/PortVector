@@ -134,9 +134,50 @@ void EpubReaderActivity::loop() {
       return;
     }
   }
+// Long press Confirm (800ms+) triggers KOReader sync directly
+  static bool syncLongPressTriggered = false;
+  if (mappedInput.isPressed(MappedInputManager::Button::Confirm) &&
+      mappedInput.getHeldTime() >= 800 && !syncLongPressTriggered) {
+    syncLongPressTriggered = true;
+    if (KOREADER_STORE.hasCredentials()) {
+      const int currentPage = section ? section->currentPage : 0;
+      const int totalPages = section ? section->pageCount : 0;
+      uint16_t paragraphIdx = 0;
+      bool hasParagraphIdx = false;
+      if (section) {
+        if (const auto pIdx = section->getParagraphIndexForPage(currentPage)) {
+          paragraphIdx = *pIdx;
+          hasParagraphIdx = true;
+        }
+      }
+      startActivityForResult(
+          std::make_unique<KOReaderSyncActivity>(renderer, mappedInput, epub, epub->getPath(),
+                                                 currentSpineIndex, currentPage, totalPages,
+                                                 paragraphIdx, hasParagraphIdx),
+          [this](const ActivityResult& result) {
+            if (!result.isCancelled) {
+              const auto& sync = std::get<SyncResult>(result.data);
+              if (currentSpineIndex != sync.spineIndex ||
+                  (section && section->currentPage != sync.page)) {
+                RenderLock lock(*this);
+                currentSpineIndex = sync.spineIndex;
+                nextPageNumber = sync.page;
+                section.reset();
+              }
+            } else {
+              requestUpdate();
+            }
+          });
+      return;
+    }
+  }
 
   // Enter reader menu activity.
   if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
+    if (syncLongPressTriggered) {
+      syncLongPressTriggered = false;
+      return;
+    }
     const int currentPage = section ? section->currentPage + 1 : 0;
     const int totalPages = section ? section->pageCount : 0;
     float bookProgress = 0.0f;
@@ -146,28 +187,17 @@ void EpubReaderActivity::loop() {
     }
     const int bookProgressPercent = clampPercent(static_cast<int>(bookProgress + 0.5f));
     startActivityForResult(std::make_unique<EpubReaderMenuActivity>(
-    renderer,
-    mappedInput,
-    epub->getTitle(),
-    currentPage,
-    totalPages,
-    bookProgressPercent,
-    SETTINGS.orientation,
-    !currentPageFootnotes.empty(),
-    false,   // hasStarredPages (safe default for now)
-    0        // currentPageTurnOption (safe default)
-),
-                           [this](const ActivityResult& result) {
-                             // Always apply orientation change even if the menu was cancelled
-                             const auto& menu = std::get<MenuResult>(result.data);
-                             applyOrientation(menu.orientation);
-                             toggleAutoPageTurn(menu.pageTurnOption);
-                             if (!result.isCancelled) {
-                               onReaderMenuConfirm(static_cast<EpubReaderMenuActivity::MenuAction>(menu.action));
-                             }
-                           });
+        renderer, mappedInput, epub->getTitle(), currentPage, totalPages, bookProgressPercent,
+        SETTINGS.orientation, !currentPageFootnotes.empty(), false, 0),
+        [this](const ActivityResult& result) {
+          const auto& menu = std::get<MenuResult>(result.data);
+          applyOrientation(menu.orientation);
+          toggleAutoPageTurn(menu.pageTurnOption);
+          if (!result.isCancelled) {
+            onReaderMenuConfirm(static_cast<EpubReaderMenuActivity::MenuAction>(menu.action));
+          }
+        });
   }
-
   // Long press BACK (1s+) goes to file selection
   if (mappedInput.isPressed(MappedInputManager::Button::Back) && mappedInput.getHeldTime() >= ReaderUtils::GO_HOME_MS) {
     activityManager.goToFileBrowser(epub ? epub->getPath() : "");

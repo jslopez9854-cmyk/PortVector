@@ -925,7 +925,7 @@ void SleepActivity::renderClockSleepScreen() const {
     };
     constexpr int QUOTE_COUNT = 28;
     const int qIdx = timeinfo.tm_yday % QUOTE_COUNT;
-    const bool isVi = I18N.getLanguage() == Language::VIETNAMESE;
+const bool isVi = false;
     const char* const* QUOTE_TEXT = isVi ? QUOTE_VI : QUOTE_EN;
 
     const int lhQ = renderer.getLineHeight(SMALL_FONT_ID);

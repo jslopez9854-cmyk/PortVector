@@ -159,8 +159,8 @@ static void onNtpSyncComplete(struct timeval* tv) {
 static constexpr char CLOCK_BACKUP_PATH[] = "/.crosspoint/clock.bin";
 
 struct ClockBackup {
-  uint32_t unixTime;    // time(nullptr) at sleep entry
-  int64_t  rtcTimeUs;   // esp_clk_rtc_time() at sleep entry
+  uint32_t unixTime;
+  uint64_t rtcTimeUs;
 };
 
 void saveClockToSD() {
