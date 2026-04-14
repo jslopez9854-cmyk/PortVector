@@ -79,6 +79,23 @@ struct ReverseState : StackState {
         }
       }
     }
+    // Also handle /text().N format (no brackets, implicit text node 1)
+    const std::string tnSimplePat = "/text().";
+    const size_t tnSimplePos = raw.rfind(tnSimplePat);
+    if (tnSimplePos != std::string::npos && targetTextNodeIndex == 0) {
+      const size_t numStart = tnSimplePos + tnSimplePat.size();
+      size_t numEnd = numStart;
+      while (numEnd < raw.size() && std::isdigit(static_cast<unsigned char>(raw[numEnd]))) {
+        numEnd++;
+      }
+      if (numEnd > numStart) {
+        targetTextNodeIndex = 1;  // implicit text node 1
+        const long charOff = std::strtol(raw.substr(numStart, numEnd - numStart).c_str(), nullptr, 10);
+        if (charOff >= 0) {
+          targetCharOffset = static_cast<int>(charOff);
+        }
+      }
+    }
     targetNorm = normalizeXPath(xpath);
     targetNoIndex = removeIndices(targetNorm);
   }
@@ -105,9 +122,9 @@ struct ReverseState : StackState {
     const size_t visible = countVisibleBytes(text, len);
     const size_t codepoints = countUtf8Codepoints(text, len);
 
-    if (targetTextNodeIndex > 0 && !stack.empty()) {
+if (targetTextNodeIndex > 0 && !stack.empty()) {
       const std::string xpath = normalizeXPath(currentXPath(spineIndex));
-      if (xpath == targetNorm) {
+if (xpath == targetNorm) {
         stack.back().hasText = true;
         if (!inParentTextNode) {
           inParentTextNode = true;
@@ -129,13 +146,46 @@ struct ReverseState : StackState {
         codepointsInCurrentTextNode += codepoints;
         totalTextBytes += visible;
         return;
+      }      // p-index fallback: match by p[N] sibling index ignoring div wrapper
+      if (!stack.empty() && stack.back().tag == "p") {
+        const std::string pKey = "/p[";
+        const size_t pPos = targetNorm.rfind(pKey);
+        if (pPos != std::string::npos) {
+          const size_t numStart = pPos + pKey.size();
+          size_t numEnd = numStart;
+          while (numEnd < targetNorm.size() && std::isdigit(static_cast<unsigned char>(targetNorm[numEnd]))) {
+            numEnd++;
+          }
+          if (numEnd > numStart && targetNorm[numEnd] == ']') {
+            const int targetPIdx = static_cast<int>(std::strtol(
+                targetNorm.substr(numStart, numEnd - numStart).c_str(), nullptr, 10));
+            if (stack.back().index == targetPIdx) {
+              stack.back().hasText = true;
+              if (!inParentTextNode) {
+                inParentTextNode = true;
+                currentTextNodeCount++;
+                codepointsInCurrentTextNode = 0;
+              }
+              if (currentTextNodeCount == targetTextNodeIndex && bestTier < MatchTier::EXACT) {
+                const size_t charOff = static_cast<size_t>(targetCharOffset);
+                if (charOff >= codepointsInCurrentTextNode && charOff <= codepointsInCurrentTextNode + codepoints) {
+                  const size_t cpInChunk = charOff - codepointsInCurrentTextNode;
+                  const size_t pos = totalTextBytes + visibleBytesBeforeCodepoint(text, len, cpInChunk);
+                  bestTier = MatchTier::EXACT;
+                  bestDepth = pathDepth(xpath);
+                  bestOffset = pos;
+                  bestExact = true;
+                  bestTierName = "p-index-text-exact";
+                }
+              }
+              codepointsInCurrentTextNode += codepoints;
+              totalTextBytes += visible;
+              return;
+            }
+          }
+        }
       }
     }
-
-    if (isWhitespaceOnly(text, len)) {
-      return;
-    }
-
     if (!stack.empty() && !stack.back().hasText) {
       stack.back().hasText = true;
       checkMatch();
@@ -165,7 +215,27 @@ struct ReverseState : StackState {
       tryUpdate(MatchTier::ANCESTOR, depth, "ancestor", false);
       return;
     }
-
+// If target contains /p[N], try matching by p sibling index alone,
+// ignoring intermediate wrapper elements like div.
+if (!stack.empty() && stack.back().tag == "p") {
+  const std::string pKey = "/p[";
+  const size_t pPos = targetNorm.rfind(pKey);
+  if (pPos != std::string::npos) {
+    const size_t numStart = pPos + pKey.size();
+    size_t numEnd = numStart;
+    while (numEnd < targetNorm.size() && std::isdigit(static_cast<unsigned char>(targetNorm[numEnd]))) {
+      numEnd++;
+    }
+    if (numEnd > numStart && targetNorm[numEnd] == ']') {
+      const int targetPIdx = static_cast<int>(std::strtol(
+          targetNorm.substr(numStart, numEnd - numStart).c_str(), nullptr, 10));
+      if (stack.back().index == targetPIdx) {
+        tryUpdate(MatchTier::EXACT_NO_IDX, depth, "p-index-match", false);
+        return;
+      }
+    }
+  }
+}
     const std::string xpathNoIdx = removeIndices(xpath);
     if (xpathNoIdx == targetNoIndex) {
       tryUpdate(MatchTier::EXACT_NO_IDX, depth, "index-insensitive", false);
