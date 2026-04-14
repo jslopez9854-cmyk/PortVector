@@ -77,9 +77,6 @@ void KOReaderSyncActivity::onWifiSelectionComplete(const bool success) {
     statusMessage = tr(STR_CALC_HASH);
   }
   requestUpdate(true);
-LOG_DBG("KOSync", "Heap before performSync: free=%u maxAlloc=%u", 
-    (unsigned)ESP.getFreeHeap(), 
-    (unsigned)heap_caps_get_largest_free_block(MALLOC_CAP_8BIT));
   performSync();
 }
 
@@ -391,8 +388,9 @@ void KOReaderSyncActivity::loop() {
     if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
       if (selectedOption == 0) {
         // Wifi will be turned off in onExit()
-        setResult(SyncResult{remotePosition.spineIndex, remotePosition.pageNumber});
-        finish();
+setResult(SyncResult{remotePosition.spineIndex, remotePosition.pageNumber,
+                     remotePosition.paragraphIndex, remotePosition.hasParagraphIndex});
+finish();
       } else if (selectedOption == 1) {
         // Upload local progress
         performUpload();

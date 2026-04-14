@@ -506,10 +506,11 @@ void XMLCALL ChapterHtmlSlimParser::startElement(void* userData, const XML_Char*
   // check so that hidden <p> elements are still counted, matching ChapterXPathIndexer's
   // counting (pure XML, no CSS). This ensures paragraph indices in the section cache LUT
   // align with KOReader's crengine XPath indices.
-  if (self->xpathBodyDepth >= 0 && self->depth == self->xpathBodyDepth + 1 && strcmp(name, "p") == 0) {
-    self->xpathParagraphIndex++;
-  }
-
+if (self->xpathBodyDepth >= 0 && 
+    (self->depth == self->xpathBodyDepth + 1 || self->depth == self->xpathBodyDepth + 2) && 
+    strcmp(name, "p") == 0) {
+  self->xpathParagraphIndex++;
+}
   if (matches(name, SKIP_TAGS, NUM_SKIP_TAGS)) {
     // start skip
     self->skipUntilDepth = self->depth;

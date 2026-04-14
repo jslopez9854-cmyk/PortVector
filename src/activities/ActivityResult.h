@@ -37,10 +37,11 @@ struct PageResult {
 };
 
 struct SyncResult {
-  int spineIndex = 0;
-  int page = 0;
+    int spineIndex;
+    int page;
+    uint16_t paragraphIndex;
+    bool hasParagraphIndex;
 };
-
 enum class NetworkMode;
 
 struct NetworkModeResult {

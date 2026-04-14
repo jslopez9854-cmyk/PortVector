@@ -38,7 +38,6 @@ uint32_t Section::onPageComplete(std::unique_ptr<Page> page) {
     LOG_ERR("SCT", "Failed to serialize page %d", pageCount);
     return 0;
   }
-  LOG_DBG("SCT", "Page %d processed", pageCount);
 
   pageCount++;
   return position;
@@ -366,18 +365,20 @@ std::optional<uint16_t> Section::getPageForParagraphIndex(const uint16_t pIndex)
     return std::nullopt;
   }
 
-  // Find the first page whose paragraph index >= pIndex.
+// Find the first page whose paragraph index >= pIndex.
   // Each entry stores the <p> index at the time that page was completed.
   uint16_t resultPage = count - 1;  // default to last page
+  LOG_DBG("SCT", "Paragraph LUT: looking for p[%u], count=%u", pIndex, count);
   for (uint16_t i = 0; i < count; i++) {
     uint16_t pagePIdx;
     serialization::readPod(f, pagePIdx);
+    LOG_DBG("SCT", "  page %u -> pIdx %u", i, pagePIdx);
     if (pagePIdx >= pIndex) {
       resultPage = i;
       break;
     }
   }
-
+  LOG_DBG("SCT", "Paragraph LUT: resolved p[%u] to page %u", pIndex, resultPage);
   f.close();
   return resultPage;
 }
