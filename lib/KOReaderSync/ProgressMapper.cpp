@@ -54,21 +54,24 @@ KOReaderPosition ProgressMapper::toKOReader(const std::shared_ptr<Epub>& epub, c
     intraSpineProgress = static_cast<float>(pos.pageNumber) / static_cast<float>(pos.totalPages);
   }
 
-  // Calculate overall book progress (0.0-1.0)
-  result.percentage = epub->calculateProgress(pos.spineIndex, intraSpineProgress);
-
-  // Generate XPath for the current position.
-  // Prefer paragraph index from the section cache LUT (exact element mapping) over
-  // byte-offset estimation (which can drift in chapters with non-uniform content density).
-  if (pos.hasParagraphIndex && pos.paragraphIndex > 0) {
-    result.xpath = "/body/DocFragment[" + std::to_string(pos.spineIndex + 1) + "]/body/p[" +
-                   std::to_string(pos.paragraphIndex) + "]";
-  } else {
-    result.xpath = ChapterXPathIndexer::findXPathForProgress(epub, pos.spineIndex, intraSpineProgress);
-    if (result.xpath.empty()) {
-      result.xpath = generateXPath(pos.spineIndex);
-    }
+  // Generate XPath using the forward mapper which correctly reflects the actual DOM structure.
+  result.xpath = ChapterXPathIndexer::findXPathForProgress(epub, pos.spineIndex, intraSpineProgress);
+  if (result.xpath.empty()) {
+    result.xpath = generateXPath(pos.spineIndex);
   }
+
+  // Derive percentage from the XPath byte offset for cross-device accuracy.
+  // Using page/totalPages directly causes discrepancies because page counts differ between devices.
+  float xpathIntraProgress = intraSpineProgress;
+  bool exactMatch = false;
+  ChapterXPathIndexer::findProgressForXPath(epub, pos.spineIndex, result.xpath, xpathIntraProgress, exactMatch);
+  result.percentage = epub->calculateProgress(pos.spineIndex, xpathIntraProgress);
+
+  // Debug
+  const size_t prevCum = pos.spineIndex > 0 ? epub->getCumulativeSpineItemSize(pos.spineIndex - 1) : 0;
+  const size_t curCum = epub->getCumulativeSpineItemSize(pos.spineIndex);
+  LOG_DBG("ProgressMapper", "Book size: %zu, Spine %d size: %zu bytes, intra=%.3f xpathIntra=%.3f",
+          epub->getBookSize(), pos.spineIndex, curCum - prevCum, intraSpineProgress, xpathIntraProgress);
 
   // Get chapter info for logging
   const int tocIndex = epub->getTocIndexForSpineIndex(pos.spineIndex);
@@ -76,10 +79,10 @@ KOReaderPosition ProgressMapper::toKOReader(const std::shared_ptr<Epub>& epub, c
 
   LOG_DBG("ProgressMapper", "CrossPoint -> KOReader: chapter='%s', page=%d/%d -> %.2f%% at %s", chapterName.c_str(),
           pos.pageNumber, pos.totalPages, result.percentage * 100, result.xpath.c_str());
-
+LOG_DBG("ProgressMapper", "Spine %d compressed size: %zu, decompressed HTML: 23987", 
+          pos.spineIndex, curCum - prevCum);
   return result;
 }
-
 CrossPointPosition ProgressMapper::toCrossPoint(const std::shared_ptr<Epub>& epub, const KOReaderPosition& koPos,
                                                 int currentSpineIndex, int totalPagesInCurrentSpine) {
   CrossPointPosition result;

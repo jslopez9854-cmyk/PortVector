@@ -24,6 +24,7 @@
 #include "components/UITheme.h"
 #include "fontIds.h"
 #include "util/ScreenshotUtil.h"
+#include "ReadingStats.h"
 
 namespace {
 // pagesPerRefresh now comes from SETTINGS.getRefreshFrequency()
@@ -85,7 +86,7 @@ void EpubReaderActivity::onEnter() {
   APP_STATE.openEpubPath = epub->getPath();
   APP_STATE.saveToFile();
   RECENT_BOOKS.addBook(epub->getPath(), epub->getTitle(), epub->getAuthor(), epub->getThumbBmpPath());
-
+READ_STATS.startSession();
   // Trigger first update
   requestUpdate();
 }
@@ -98,6 +99,15 @@ void EpubReaderActivity::onExit() {
 
   APP_STATE.readerActivityLoadCount = 0;
   APP_STATE.saveToFile();
+  if (epub) {
+    const float chapterProgress = (section && section->pageCount > 0)
+        ? static_cast<float>(section->currentPage) / static_cast<float>(section->pageCount)
+        : 0.0f;
+    const int progressPercent = epub->getBookSize() > 0
+        ? static_cast<int>(epub->calculateProgress(currentSpineIndex, chapterProgress) * 100.0f + 0.5f)
+        : 0;
+    READ_STATS.endSession(epub->getTitle().c_str(), static_cast<uint8_t>(progressPercent), epub->getPath().c_str());
+  }
   section.reset();
   epub.reset();
 }

@@ -12,6 +12,7 @@
 #include "activities/network/WifiSelectionActivity.h"
 #include "components/UITheme.h"
 #include "fontIds.h"
+#include "ChapterXPathIndexer.h"
 
 namespace {
 void syncTimeWithNTP() {
@@ -177,6 +178,25 @@ void KOReaderSyncActivity::performUpload() {
   CrossPointPosition localPos = {currentSpineIndex, currentPage, totalPagesInSpine, localParagraphIndex,
                                  hasLocalParagraphIndex};
   KOReaderPosition koPos = ProgressMapper::toKOReader(epub, localPos);
+
+  // Calibrate percentage using remote anchor if available in same spine.
+  // KOReader uses percentage as a tiebreaker, so if our percentage is lower
+  // than the stored one it will snap back. Use the remote XPath byte offset
+  // as a reference scale point to derive a consistent percentage.
+  if (hasRemoteProgress && remotePosition.spineIndex == currentSpineIndex) {
+    float localIntra = 0.0f;
+    float remoteIntra = 0.0f;
+    bool exactMatch = false;
+    const bool gotLocal = ChapterXPathIndexer::findProgressForXPath(
+        epub, currentSpineIndex, koPos.xpath, localIntra, exactMatch);
+    const bool gotRemote = ChapterXPathIndexer::findProgressForXPath(
+        epub, currentSpineIndex, remoteProgress.progress, remoteIntra, exactMatch);
+    if (gotLocal && gotRemote && remoteIntra > 0.0f) {
+      koPos.percentage = remoteProgress.percentage * (localIntra / remoteIntra);
+      LOG_DBG("KOSync", "Calibrated percentage: remote=%.4f at intra=%.3f, local intra=%.3f -> %.4f",
+              remoteProgress.percentage, remoteIntra, localIntra, koPos.percentage);
+    }
+  }
 
   KOReaderProgress progress;
   progress.document = documentHash;
