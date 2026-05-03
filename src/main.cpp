@@ -142,56 +142,9 @@ RTC_DATA_ATTR static uint32_t g_rtcSleepMagic = 0;
 RTC_DATA_ATTR static int64_t  g_rtcUsBeforeSleep = 0;    // esp_clk_rtc_time() before sleep
 RTC_DATA_ATTR static uint32_t g_unixBeforeSleep = 0;     // time(nullptr) before sleep
 
-// True when system clock was restored from backup (may have drift from deep sleep).
-// Reset to false after a fresh NTP sync. Used by clock UI to show "~" approximate indicator.
-bool g_clockApproximate = false;
-
-// SNTP callback — clears approximate flag when NTP sync completes
+// SNTP callback — logs when NTP sync completes
 static void onNtpSyncComplete(struct timeval* tv) {
-  g_clockApproximate = false;
-  LOG_DBG("NTP", "Time synced, clock is now accurate");
-}
-
-// SD-based clock backup — reliable fallback when RTC_DATA_ATTR is lost on ESP32-C3.
-// Saves unix timestamp + RTC timer value. On wake, RTC timer is still running so we can
-// compute elapsed sleep duration even without RTC memory.
-static constexpr char CLOCK_BACKUP_PATH[] = "/.crosspoint/clock.bin";
-
-struct ClockBackup {
-  uint32_t unixTime;
-  uint64_t rtcTimeUs;
-};
-
-void saveClockToSD() {
-  uint32_t now = (uint32_t)time(nullptr);
-  if (now < 1700000000UL) return;  // don't save invalid time (before ~2023)
-  ClockBackup backup = {now, esp_clk_rtc_time()};
-  FsFile f;
-  if (Storage.openFileForWrite("CLK", CLOCK_BACKUP_PATH, f)) {
-    f.write((const uint8_t*)&backup, sizeof(backup));
-    f.close();
-  }
-}
-
-bool restoreClockFromSD() {
-  FsFile f;
-  if (!Storage.openFileForRead("CLK", CLOCK_BACKUP_PATH, f)) return false;
-  ClockBackup backup = {};
-  bool ok = (f.read((uint8_t*)&backup, sizeof(backup)) == sizeof(backup));
-  f.close();
-  if (!ok || backup.unixTime < 1700000000UL) return false;
-
-  // Compute elapsed time using RTC timer (keeps running during deep sleep)
-  int64_t rtcNow = esp_clk_rtc_time();
-  uint32_t elapsedSec = 0;
-  if (rtcNow > backup.rtcTimeUs) {
-    elapsedSec = (uint32_t)((rtcNow - backup.rtcTimeUs) / 1000000LL);
-  }
-  time_t corrected = (time_t)backup.unixTime + elapsedSec;
-  struct timeval tv = {corrected, 0};
-  settimeofday(&tv, nullptr);
-  LOG_DBG("MAIN", "Clock restored from SD: base=%lu + %us elapsed", (unsigned long)backup.unixTime, elapsedSec);
-  return true;
+  LOG_DBG("NTP", "Time synced via NTP");
 }
 
 // measurement of power button press duration calibration value
@@ -240,16 +193,13 @@ void verifyPowerButtonDuration() {
 
   if (abort) {
     // Button released too early. Returning to sleep.
-    // Refresh dynamic sleep screens (clock, reading stats) so the display isn't stale.
-    const auto mode = SETTINGS.sleepScreen;
-    if (mode == CrossPointSettings::SLEEP_SCREEN_MODE::CLOCK ||
-        mode == CrossPointSettings::SLEEP_SCREEN_MODE::READING_STATS) {
+    // Refresh reading stats sleep screen so the display isn't stale.
+    if (SETTINGS.sleepScreen == CrossPointSettings::SLEEP_SCREEN_MODE::READING_STATS) {
       setupDisplayAndFonts();
       activityManager.goToSleep();
     }
     // IMPORTANT: Re-arm the wakeup trigger before sleeping again
-    powerManager.startDeepSleep(gpio, SETTINGS.keepClockAlive != 0,
-                                CrossPointSettings::getSleepRefreshMinutes(SETTINGS.sleepRefreshInterval));
+    powerManager.startDeepSleep(gpio, false, 0);
   }
 }
 
@@ -289,11 +239,7 @@ void enterDeepSleep() {
   g_rtcUsBeforeSleep = esp_clk_rtc_time();
   g_rtcSleepMagic    = SLEEP_RTC_MAGIC;
 
-  // Also save to SD as reliable fallback (RTC_DATA_ATTR can be lost on some ESP32-C3 boards)
-  saveClockToSD();
-
-  powerManager.startDeepSleep(gpio, SETTINGS.keepClockAlive != 0,
-                                CrossPointSettings::getSleepRefreshMinutes(SETTINGS.sleepRefreshInterval));
+  powerManager.startDeepSleep(gpio, false, 0);
 }
 
 void setupDisplayAndFonts() {
@@ -377,10 +323,8 @@ void setup() {
     time_t now = time(nullptr);
     struct tm check;
     gmtime_r(&now, &check);
-    bool clockValid = (check.tm_year >= 125);  // year >= 2025
-
-    if (!clockValid && g_rtcSleepMagic == SLEEP_RTC_MAGIC && g_unixBeforeSleep > 0) {
-      // Strategy 1: RTC memory with elapsed time correction
+    if (check.tm_year < 125 && g_rtcSleepMagic == SLEEP_RTC_MAGIC && g_unixBeforeSleep > 0) {
+      // Restore clock from RTC memory with elapsed time correction
       int64_t rtcNow      = esp_clk_rtc_time();
       uint32_t elapsedSec = 0;
       if (rtcNow > g_rtcUsBeforeSleep) {
@@ -389,15 +333,7 @@ void setup() {
       time_t corrected = (time_t)g_unixBeforeSleep + elapsedSec;
       struct timeval tv = {corrected, 0};
       settimeofday(&tv, nullptr);
-      clockValid = true;
-      g_clockApproximate = true;  // RTC timer drifts during deep sleep
       LOG_DBG("MAIN", "Clock restored via RTC: base=%lu + %us elapsed", g_unixBeforeSleep, elapsedSec);
-    }
-
-    if (!clockValid) {
-      // Strategy 2: SD card backup (time will be slightly behind by sleep duration)
-      clockValid = restoreClockFromSD();
-      if (clockValid) g_clockApproximate = true;
     }
 
     g_rtcSleepMagic = 0;  // consume — next boot treats as cold boot unless we sleep again
@@ -430,24 +366,14 @@ void setup() {
       LOG_DBG("MAIN", "Verifying power button press duration");
       verifyPowerButtonDuration();
       break;
-    case HalGPIO::WakeupReason::TimerWake: {
-      // Periodic sleep screen refresh — minimal boot path, no full UI
-      LOG_DBG("MAIN", "Timer wake: refreshing sleep screen");
-      const auto mode = SETTINGS.sleepScreen;
-      if (mode == CrossPointSettings::SLEEP_SCREEN_MODE::CLOCK) {
-        setupDisplayAndFonts();
-        activityManager.goToSleep();
-      }
-      saveClockToSD();
-      powerManager.startDeepSleep(gpio, SETTINGS.keepClockAlive != 0,
-                                  CrossPointSettings::getSleepRefreshMinutes(SETTINGS.sleepRefreshInterval));
+    case HalGPIO::WakeupReason::TimerWake:
+      // Timer wakes no longer used (clock sleep screen removed)
+      powerManager.startDeepSleep(gpio, false, 0);
       break;  // unreachable — startDeepSleep never returns
-    }
     case HalGPIO::WakeupReason::AfterUSBPower:
       // If USB power caused a cold boot, go back to sleep
       LOG_DBG("MAIN", "Wakeup reason: After USB Power");
-      powerManager.startDeepSleep(gpio, SETTINGS.keepClockAlive != 0,
-                                  CrossPointSettings::getSleepRefreshMinutes(SETTINGS.sleepRefreshInterval));
+      powerManager.startDeepSleep(gpio, false, 0);
       break;
     case HalGPIO::WakeupReason::AfterFlash:
       // After flashing, just proceed to boot

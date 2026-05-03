@@ -3,7 +3,6 @@
 #include <GfxRenderer.h>
 #include <I18n.h>
 
-#include "ClockActivity.h"
 #include "PomodoroActivity.h"
 #include "TwentyFortyEightActivity.h"
 #include "MinesweeperActivity.h"
@@ -21,7 +20,7 @@
 #include "CrossPointSettings.h"
 #include "fontIds.h"
 
-static constexpr int BASE_MENU_COUNT_NO_BLE = 11;
+static constexpr int BASE_MENU_COUNT_NO_BLE = 10;
 
 int ToolsActivity::getMenuCount() const {
   int count = BASE_MENU_COUNT_NO_BLE;
@@ -65,23 +64,20 @@ void ToolsActivity::loop() {
 #endif
     switch (idx) {
       case 1:
-        activityManager.pushActivity(std::make_unique<ClockActivity>(renderer, mappedInput));
-        break;
-      case 2:
         activityManager.pushActivity(std::make_unique<PomodoroActivity>(renderer, mappedInput));
         break;
-      case 3:
+      case 2:
         activityManager.pushActivity(std::make_unique<VirtualPetActivity>(renderer, mappedInput));
         break;
-      case 4:
+      case 3:
         activityManager.pushActivity(std::make_unique<ReadingStatsActivity>(renderer, mappedInput));
         break;
-      case 5:
+      case 4:
         activityManager.pushActivity(std::make_unique<SleepImagePickerActivity>(renderer, mappedInput));
         break;
       default: {
         // Dynamic items: OPDS (if configured), then games
-        int dynamicBase = 6;
+        int dynamicBase = 5;
         if (SETTINGS.opdsServerUrl[0]) {
           if (idx == dynamicBase) {
             activityManager.pushActivity(std::make_unique<OpdsBookBrowserActivity>(renderer, mappedInput));
@@ -119,7 +115,7 @@ void ToolsActivity::render(RenderLock&&) {
   // Build menu labels — OPDS inserted at index 8 when configured
   const char* baseLabels[] = {
       tr(STR_FILE_TRANSFER),
-      tr(STR_CLOCK), tr(STR_POMODORO), tr(STR_VIRTUAL_PET),
+      tr(STR_POMODORO), tr(STR_VIRTUAL_PET),
       tr(STR_READING_STATS_APP), tr(STR_SLEEP_IMAGE_PICKER)};
   const char* gameLabels[] = {
       tr(STR_CHESS), tr(STR_CARO), tr(STR_SUDOKU), tr(STR_MINESWEEPER), tr(STR_2048)};
@@ -139,9 +135,9 @@ void ToolsActivity::render(RenderLock&&) {
                  if (i == 1) return tr(STR_BLE_REMOTE);
                  i--;  // shift for remaining items
 #endif
-                 // Indices 1-5 (or 2-6 with BLE) = base tools
-                 if (i >= 1 && i <= 5) return baseLabels[i];
-                 int dynamicIdx = i - 6;
+                 // Indices 1-4 (or 2-5 with BLE) = base tools
+                 if (i >= 1 && i <= 4) return baseLabels[i];
+                 int dynamicIdx = i - 5;
                  if (hasOpds) {
                    if (dynamicIdx == 0) return tr(STR_OPDS_BROWSER);
                    dynamicIdx--;

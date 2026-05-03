@@ -288,8 +288,6 @@ void SettingsActivity::toggleCurrentSetting() {
 
 static const char* getSettingDescription(const SettingInfo& s) {
   if (!s.key) return nullptr;
-  if (strcmp(s.key, "keepClockAlive") == 0) return tr(STR_HELP_KEEP_CLOCK_ALIVE);
-  if (strcmp(s.key, "sleepRefreshInterval") == 0) return tr(STR_HELP_SLEEP_REFRESH);
   if (strcmp(s.key, "fadingFix") == 0) return tr(STR_HELP_FADING_FIX);
   if (strcmp(s.key, "textDarkness") == 0) return tr(STR_HELP_TEXT_DARKNESS);
   if (strcmp(s.key, "refreshFrequency") == 0) return tr(STR_HELP_REFRESH_FREQ);

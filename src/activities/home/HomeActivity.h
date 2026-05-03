@@ -75,7 +75,6 @@ class HomeActivity final : public Activity {
 
   // Shared render helpers
   void renderPetStatusWidget(int headerH);
-  void renderHeaderClock();
   void doSync();
   void performSyncAfterWifi();
 
