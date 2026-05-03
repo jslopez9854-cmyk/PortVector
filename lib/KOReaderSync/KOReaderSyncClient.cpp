@@ -1,5 +1,6 @@
 #include "KOReaderSyncClient.h"
 
+#include <Arduino.h>
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 #include <Logging.h>
@@ -14,6 +15,8 @@ namespace {
 // Device identifier for CrossPoint reader
 constexpr char DEVICE_NAME[] = "CrossPoint";
 constexpr char DEVICE_ID[] = "crosspoint-reader";
+constexpr uint16_t HTTP_CONNECT_TIMEOUT_MS = 8000;
+constexpr uint16_t HTTP_IO_TIMEOUT_MS = 12000;
 
 void addAuthHeaders(HTTPClient& http) {
   http.addHeader("Accept", "application/vnd.koreader.v1+json");
@@ -74,6 +77,7 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
 
   std::string url = KOREADER_STORE.getBaseUrl() + "/syncs/progress/" + documentHash;
   LOG_DBG("KOSync", "Getting progress: %s", url.c_str());
+  LOG_DBG("KOSync", "Progress fetch start: t=%lu heap_before=%u", millis(), ESP.getFreeHeap());
 
   HTTPClient http;
   std::unique_ptr<WiFiClientSecure> secureClient;
@@ -86,20 +90,28 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
   } else {
     http.begin(plainClient, url.c_str());
   }
+  http.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
+  http.setTimeout(HTTP_IO_TIMEOUT_MS);
   addAuthHeaders(http);
 
+  const uint32_t startedAtMs = millis();
   const int httpCode = http.GET();
+  const uint32_t endedAtMs = millis();
+  LOG_DBG("KOSync", "Progress fetch end: t=%lu elapsed=%lu code=%d", endedAtMs, endedAtMs - startedAtMs, httpCode);
 
   if (httpCode == 200) {
     // Parse JSON response from response string
     String responseBody = http.getString();
+    LOG_DBG("KOSync", "Progress response length: %u", (unsigned)responseBody.length());
     http.end();
+    LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
 
     JsonDocument doc;
     const DeserializationError error = deserializeJson(doc, responseBody);
 
     if (error) {
       LOG_ERR("KOSync", "JSON parse failed: %s", error.c_str());
+      LOG_ERR("KOSync", "Progress fetch failure type: parse_error");
       return JSON_ERROR;
     }
 
@@ -115,16 +127,22 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
   }
 
   http.end();
+  LOG_DBG("KOSync", "Progress response length: 0");
+  LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
 
   LOG_DBG("KOSync", "Get progress response: %d", httpCode);
 
   if (httpCode == 401) {
+    LOG_ERR("KOSync", "Progress fetch failure type: auth_error");
     return AUTH_FAILED;
   } else if (httpCode == 404) {
+    LOG_DBG("KOSync", "Progress fetch failure type: not_found");
     return NOT_FOUND;
   } else if (httpCode < 0) {
+    LOG_ERR("KOSync", "Progress fetch failure type: timeout_or_network_error");
     return NETWORK_ERROR;
   }
+  LOG_ERR("KOSync", "Progress fetch failure type: server_error");
   return SERVER_ERROR;
 }
 
