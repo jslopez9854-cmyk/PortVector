@@ -156,6 +156,12 @@ Fully customizable — each element can be shown or hidden independently:
 git clone --recursive https://github.com/jslopez9854-cmyk/PortVector
 ```
 
+### Build verification (before flashing)
+
+```sh
+pio run
+```
+
 ### Flashing your device
 
 ```sh

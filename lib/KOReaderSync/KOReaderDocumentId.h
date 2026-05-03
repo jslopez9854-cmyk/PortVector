@@ -25,6 +25,16 @@ class KOReaderDocumentId {
   static std::string calculate(const std::string& filePath);
 
   /**
+   * Calculate KOReader-compatible content hash and fall back to filename hash
+   * only if content hashing fails.
+   *
+   * @param filePath Path to the file (typically an EPUB)
+   * @param usedFilenameFallback Output flag set to true if filename fallback is used
+   * @return 32-character lowercase hex hash, or empty string on total failure
+   */
+  static std::string calculateForSync(const std::string& filePath, bool* usedFilenameFallback);
+
+  /**
    * Calculate document hash from filename only (filename-based sync mode).
    * This is simpler and works when files have the same name across devices.
    *
@@ -51,17 +61,7 @@ class KOReaderDocumentId {
   // Returns the cached hash if the file size and fingerprint match, or empty
   // string on miss/invalidation.
   //
-  // The fingerprint is derived from the file's modification timestamp.  We
-  // call `FsFile::getModifyDateTime` to retrieve two 16‑bit packed values
-  // supplied by the filesystem: one for the date and one for the time.  These
-  // are concatenated and represented as eight hexadecimal digits in the form
-  // <date><time> (high 16 bits = packed date, low 16 bits = packed time).
-  //
-  // The resulting string serves as a lightweight change signal; any modification
-  // to the file's mtime will alter the packed date/time combo and invalidate
-  // the cache entry.  Since the full document hash is expensive to compute,
-  // using the packed timestamp gives us a quick way to detect modifications
-  // without reading file contents.
+  // The fingerprint token is currently derived from file size due HAL limits.
   static std::string loadCachedHash(const std::string& cacheFilePath, size_t fileSize,
                                     const std::string& currentFingerprint);
 
