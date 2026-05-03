@@ -82,12 +82,8 @@ void KOReaderSyncActivity::onWifiSelectionComplete(const bool success) {
 }
 
 void KOReaderSyncActivity::performSync() {
-  // Calculate document hash based on user's preferred method
-  if (KOREADER_STORE.getMatchMethod() == DocumentMatchMethod::FILENAME) {
-    documentHash = KOReaderDocumentId::calculateFromFilename(epubPath);
-  } else {
-    documentHash = KOReaderDocumentId::calculate(epubPath);
-  }
+  bool usedFilenameFallback = false;
+  documentHash = KOReaderDocumentId::calculateForSync(epubPath, &usedFilenameFallback);
   if (documentHash.empty()) {
     {
       RenderLock lock(*this);
@@ -98,6 +94,11 @@ void KOReaderSyncActivity::performSync() {
     return;
   }
 
+  if (usedFilenameFallback) {
+    LOG_ERR("KOSync", "Document hash mode: filename fallback (sync mismatch possible)");
+  } else {
+    LOG_DBG("KOSync", "Document hash mode: KOReader-compatible partial MD5");
+  }
   LOG_DBG("KOSync", "Document hash: %s", documentHash.c_str());
 
   {
@@ -427,10 +428,12 @@ finish();
     if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
       // Calculate hash if not done yet
       if (documentHash.empty()) {
-        if (KOREADER_STORE.getMatchMethod() == DocumentMatchMethod::FILENAME) {
-          documentHash = KOReaderDocumentId::calculateFromFilename(epubPath);
+        bool usedFilenameFallback = false;
+        documentHash = KOReaderDocumentId::calculateForSync(epubPath, &usedFilenameFallback);
+        if (usedFilenameFallback) {
+          LOG_ERR("KOSync", "Document hash mode: filename fallback (sync mismatch possible)");
         } else {
-          documentHash = KOReaderDocumentId::calculate(epubPath);
+          LOG_DBG("KOSync", "Document hash mode: KOReader-compatible partial MD5");
         }
       }
       performUpload();
