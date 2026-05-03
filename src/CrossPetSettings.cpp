@@ -16,7 +16,6 @@ bool CrossPetSettings::saveToFile() const {
 
   JsonDocument doc;
   doc["fileSortMode"] = fileSortMode;
-  doc["homeShowClock"] = homeShowClock;
   doc["homeShowPetStatus"] = homeShowPetStatus;
   doc["homeFocusMode"] = homeFocusMode;
 
@@ -43,7 +42,6 @@ bool CrossPetSettings::loadFromFile() {
         return false;
       }
       fileSortMode = doc["fileSortMode"] | (uint8_t)0;
-      homeShowClock = doc["homeShowClock"] | (uint8_t)1;
       homeShowPetStatus = doc["homeShowPetStatus"] | (uint8_t)1;
       homeFocusMode = doc["homeFocusMode"] | (uint8_t)0;
       LOG_DBG("CPS", "CrossPet settings loaded from file");
@@ -59,8 +57,7 @@ bool CrossPetSettings::loadFromFile() {
       JsonDocument doc;
       auto error = deserializeJson(doc, json);
       if (!error) {
-        homeShowClock = doc["homeShowClock"] | (uint8_t)1;
-        homeShowPetStatus = doc["homeShowPetStatus"] | (uint8_t)1;
+          homeShowPetStatus = doc["homeShowPetStatus"] | (uint8_t)1;
         LOG_DBG("CPS", "CrossPet settings migrated from settings.json");
         // Persist the migrated values to crosspet.json
         saveToFile();

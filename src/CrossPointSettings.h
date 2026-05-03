@@ -212,7 +212,6 @@ enum FONT_SIZE { SMALL = 0, MEDIUM = 1, LARGE = 2, EXTRA_LARGE = 3, FONT_SIZE_CO
   uint8_t fadingFix = 0;
   // Dark mode: invert display colors (white text on black background)
   uint8_t darkMode = 0;
-  uint8_t clock12Hour = 1;
   // Sleep image path — selected via SleepImagePickerActivity
   char sleepImagePath[64] = "";
   // Use book's embedded CSS styles for EPUB rendering (1 = enabled, 0 = disabled)
@@ -240,20 +239,6 @@ enum FONT_SIZE { SMALL = 0, MEDIUM = 1, LARGE = 2, EXTRA_LARGE = 3, FONT_SIZE_CO
   char bleBondedDeviceName[32] = "";         // BLE bonded device display name
   uint8_t bleBondedDeviceAddrType = 0;       // BLE address type (0=public, 1=random)
 #endif
-
-  // Keep RTC alive during deep sleep (GPIO13 HIGH) for accurate clock on wake.
-  // Trade-off: ~3-4mA battery drain vs accurate time. Only useful for clock/stats sleep screens.
-  uint8_t keepClockAlive = 0;
-
-  // Periodic sleep screen refresh interval (requires keepClockAlive=1).
-  // 0=OFF, 1=1min, 2=5min, 3=10min, 4=30min, 5=60min
-  enum SLEEP_REFRESH_INTERVAL { REFRESH_OFF = 0, REFRESH_1M = 1, REFRESH_5M = 2, REFRESH_10M = 3, REFRESH_30M = 4, REFRESH_60M = 5, SLEEP_REFRESH_INTERVAL_COUNT };
-  uint8_t sleepRefreshInterval = REFRESH_OFF;
-
-  static uint32_t getSleepRefreshMinutes(const uint8_t setting) {
-    constexpr uint32_t intervals[] = {0, 1, 5, 10, 30, 60};
-    return setting < SLEEP_REFRESH_INTERVAL_COUNT ? intervals[setting] : 0;
-  }
 
   ~CrossPointSettings() = default;
 

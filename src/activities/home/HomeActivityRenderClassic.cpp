@@ -161,7 +161,6 @@ void HomeActivity::renderClassic() {
   if (!coverRendered) {
     renderer.clearScreen();
     GUI.drawHeader(renderer, Rect{0, 0, pageWidth, CL_HEADER_H}, nullptr);
-    renderHeaderClock();
     renderPetStatusWidget(CL_HEADER_H);
     // Grid lines
     renderer.drawLine(CL_DIVIDER_X, CL_HEADER_H,  CL_DIVIDER_X, CL_DIVIDER_Y,   true);
@@ -177,7 +176,6 @@ void HomeActivity::renderClassic() {
   } else {
     restoreCoverBuffer();
     GUI.drawHeader(renderer, Rect{0, 0, pageWidth, CL_HEADER_H}, nullptr);
-    renderHeaderClock();
     renderPetStatusWidget(CL_HEADER_H);
   }
 

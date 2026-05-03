@@ -186,46 +186,6 @@ void HomeActivity::renderPetStatusWidget(int headerH) {
   renderer.drawText(SMALL_FONT_ID, x, 5, truncated.c_str(), true);
 }
 
-void HomeActivity::renderHeaderClock() {
-  int nextX = 10;
-
-  if (!PET_SETTINGS.homeShowClock) {
-    // Show heap even without clock
-    if (SETTINGS.showFreeHeap) {
-      char heapBuf[12];
-      snprintf(heapBuf, sizeof(heapBuf), "%dKB", ESP.getFreeHeap() / 1024);
-      renderer.drawText(SMALL_FONT_ID, nextX, 5, heapBuf, true);
-    }
-    return;
-  }
-
-  time_t now;
-  time(&now);
-  struct tm timeinfo;
-  localtime_r(&now, &timeinfo);
-  char buf[8];
-  if (timeinfo.tm_year >= 125)
-    snprintf(buf, sizeof(buf), "%02d:%02d", timeinfo.tm_hour, timeinfo.tm_min);
-  else
-    snprintf(buf, sizeof(buf), "--:--");
-
-  const int clockW = renderer.getTextWidth(SMALL_FONT_ID, buf);
-  renderer.drawText(SMALL_FONT_ID, nextX, 5, buf);
-  nextX += clockW + 6;
-
-  // Developer: show free heap after clock
-  if (SETTINGS.showFreeHeap) {
-    char heapBuf[12];
-    snprintf(heapBuf, sizeof(heapBuf), "%dKB", ESP.getFreeHeap() / 1024);
-    renderer.drawText(SMALL_FONT_ID, nextX, 5, heapBuf, true);
-    nextX += renderer.getTextWidth(SMALL_FONT_ID, heapBuf) + 6;
-  }
-
-  if (syncResultMsg) {
-    renderer.drawText(SMALL_FONT_ID, nextX, 5, syncResultMsg);
-  }
-}
-
 // ── Sync ──────────────────────────────────────────────────────────────────────
 
 void HomeActivity::performSyncAfterWifi() {
