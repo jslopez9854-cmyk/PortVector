@@ -13,7 +13,6 @@
 
 #include "I18n.h"
 #include "RecentBooksStore.h"
-#include "activities/tools/WeatherActivity.h"
 #include "components/UITheme.h"
 #include "fontIds.h"
 

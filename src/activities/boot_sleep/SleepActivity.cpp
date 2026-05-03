@@ -25,8 +25,6 @@
 #include "images/Logo120.h"
 #include "pet/PetManager.h"
 #include "pet/PetSpriteRenderer.h"
-#include "activities/tools/WeatherActivity.h"
-#include "util/LunarCalendar.h"
 #include "util/StringUtils.h"
 
 #include <HalPowerManager.h>
@@ -698,17 +696,6 @@ void SleepActivity::renderClockSleepScreen() const {
     snprintf(dateBuf, sizeof(dateBuf), "%s", tr(STR_SYNC_TIME));
   }
 
-  // Vietnamese lunar date
-  char lunarBuf[40] = "";
-  if (timeValid) {
-    LunarDate lunar = solarToLunar(timeinfo.tm_mday, timeinfo.tm_mon + 1, timeinfo.tm_year + 1900);
-    if (lunar.isLeapMonth) {
-      snprintf(lunarBuf, sizeof(lunarBuf), "Ngày %d tháng nhuận %d ÂL", lunar.day, lunar.month);
-    } else {
-      snprintf(lunarBuf, sizeof(lunarBuf), "Ngày %d tháng %d ÂL", lunar.day, lunar.month);
-    }
-  }
-
   // Calendar month header
   char monthBuf[32];
   if (timeValid) {
@@ -726,37 +713,13 @@ void SleepActivity::renderClockSleepScreen() const {
   const int clockW = 4 * DW + 2 * DGAP + CW;
   const int clockX = (pageWidth - clockW) / 2;
 
-  // Pre-load weather cache to include in vertical layout calculation
-  char weatherLine[80] = "";
-  int weatherLineH = 0;
-  {
-    WeatherData wData;
-    uint8_t wCity = 0;
-    char wTime[8] = "";
-    char autoCity[32] = "";
-    if (WeatherActivity::loadWeatherCache(wData, wCity, wTime, sizeof(wTime),
-                                          autoCity, sizeof(autoCity))) {
-      // Use autoCity for Auto mode (wCity=0), otherwise use manual city name
-      const char* cityName = (wCity == 0 && autoCity[0]) ? autoCity
-                             : WeatherActivity::CITIES[wCity < WeatherActivity::CITY_COUNT ? wCity : 0].name;
-      snprintf(weatherLine, sizeof(weatherLine), "%s: %.0f%s  %s  %d%%",
-               cityName,
-               WeatherActivity::convertTemp(wData.temperature),
-               WeatherActivity::tempUnitSuffix(),
-               WeatherActivity::weatherCodeToString(wData.weatherCode),
-               wData.humidity);
-      weatherLineH = renderer.getLineHeight(SMALL_FONT_ID) + 4;
-    }
-  }
-
   const int timeHeight = DH;
   const int dateHeight = renderer.getLineHeight(UI_10_FONT_ID);
-  const int lunarHeight = renderer.getLineHeight(SMALL_FONT_ID);
   const int monthHdrH = renderer.getLineHeight(SMALL_FONT_ID);
   const int cellH = renderer.getLineHeight(SMALL_FONT_ID) + 6;
   const int calH = monthHdrH + 6 + cellH * 7;  // month header + day headers + max 6 body rows
 
-  const int blockH = timeHeight + 14 + dateHeight + 6 + lunarHeight + weatherLineH + 10 + calH;
+  const int blockH = timeHeight + 14 + dateHeight + 16 + calH;
   const int startY = (pageHeight - blockH) / 2;
 
   // Draw large 7-segment time digits
@@ -780,16 +743,6 @@ void SleepActivity::renderClockSleepScreen() const {
     }
   }
   renderer.drawCenteredText(UI_10_FONT_ID, startY + timeHeight + 14, dateBuf);
-  if (lunarBuf[0]) {
-    renderer.drawCenteredText(SMALL_FONT_ID, startY + timeHeight + 14 + dateHeight + 6, lunarBuf);
-  }
-
-  // Weather line below lunar date
-  if (weatherLine[0]) {
-    renderer.drawCenteredText(SMALL_FONT_ID,
-                              startY + timeHeight + 14 + dateHeight + 6 + lunarHeight + 2,
-                              weatherLine);
-  }
 
   // Calendar — wrapped in a subtle rounded rect card
   constexpr int CAL_CARD_R = 8;
@@ -798,7 +751,7 @@ void SleepActivity::renderClockSleepScreen() const {
   const int calW = pageWidth - margin * 2;
   const int cellW = calW / 7;
   const int x0 = margin;
-  const int calCardTop = startY + timeHeight + 14 + dateHeight + 6 + lunarHeight + weatherLineH + 6;
+  const int calCardTop = startY + timeHeight + 14 + dateHeight + 16;
 
   // Month header above card
   renderer.drawCenteredText(SMALL_FONT_ID, calCardTop, monthBuf);

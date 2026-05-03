@@ -20,7 +20,6 @@
 #include "components/UITheme.h"
 #include "fontIds.h"
 #include "activities/network/WifiSelectionActivity.h"
-#include "activities/tools/WeatherActivity.h"
 #include "WifiCredentialStore.h"
 #include <WiFi.h>
 #include "pet/PetEvolution.h"
@@ -222,30 +221,8 @@ void HomeActivity::renderHeaderClock() {
     nextX += renderer.getTextWidth(SMALL_FONT_ID, heapBuf) + 6;
   }
 
-  if (!PET_SETTINGS.homeShowWeather) return;
-
-  // Weather temp or sync status next to clock
-  const int weatherX = nextX;
-  if (weatherRefreshing) {
-    renderer.drawText(SMALL_FONT_ID, weatherX, 5, "...");
-  } else if (syncResultMsg) {
-    renderer.drawText(SMALL_FONT_ID, weatherX, 5, syncResultMsg);
-  } else {
-    // Cache weather string in memory — avoid SD read on every frame
-    static char cachedWeather[16] = "";
-    static unsigned long lastWeatherLoad = 0;
-    if (millis() - lastWeatherLoad > 60000 || cachedWeather[0] == '\0') {
-      WeatherData wData;
-      uint8_t wCity = 0;
-      char wTime[8] = "";
-      if (WeatherActivity::loadWeatherCache(wData, wCity, wTime, sizeof(wTime))) {
-        snprintf(cachedWeather, sizeof(cachedWeather), "%.0f%s", WeatherActivity::convertTemp(wData.temperature), WeatherActivity::tempUnitSuffix());
-      }
-      lastWeatherLoad = millis();
-    }
-    if (cachedWeather[0]) {
-      renderer.drawText(SMALL_FONT_ID, weatherX, 5, cachedWeather);
-    }
+  if (syncResultMsg) {
+    renderer.drawText(SMALL_FONT_ID, nextX, 5, syncResultMsg);
   }
 }
 
@@ -253,8 +230,6 @@ void HomeActivity::renderHeaderClock() {
 
 void HomeActivity::performSyncAfterWifi() {
   static char syncBuf[24];
-  weatherRefreshing = true;
-  requestUpdateAndWait();
 
   if (WiFi.status() != WL_CONNECTED) {
     const auto& ssid = WIFI_STORE.getLastConnectedSsid();
@@ -269,7 +244,6 @@ void HomeActivity::performSyncAfterWifi() {
       if (WiFi.status() != WL_CONNECTED) {
         WiFi.disconnect(false);
         WiFi.mode(WIFI_OFF);
-        weatherRefreshing = false;
         snprintf(syncBuf, sizeof(syncBuf), "%s", tr(STR_WIFI_CONN_FAILED));
         syncResultMsg = syncBuf;
         syncResultExpiry = millis() + 3000;
@@ -279,11 +253,8 @@ void HomeActivity::performSyncAfterWifi() {
     }
   }
 
-  int rc = WeatherActivity::silentRefresh();
-  weatherRefreshing = false;
-  if (rc == 0)      snprintf(syncBuf, sizeof(syncBuf), "%s", tr(STR_SYNC_OK));
-  else if (rc == 2) snprintf(syncBuf, sizeof(syncBuf), "%s", tr(STR_WIFI_TIMEOUT));
-  else              snprintf(syncBuf, sizeof(syncBuf), tr(STR_API_ERROR), rc);
+  configTime(0, 0, "pool.ntp.org", "time.cloudflare.com");
+  snprintf(syncBuf, sizeof(syncBuf), "%s", tr(STR_SYNC_OK));
   syncResultMsg = syncBuf;
   syncResultExpiry = millis() + 3000;
   coverRendered = false;
