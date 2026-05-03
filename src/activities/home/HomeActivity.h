@@ -14,8 +14,7 @@ class HomeActivity final : public Activity {
   bool recentsLoading = false;
   bool recentsLoaded = false;
   bool firstRenderDone = false;
-  bool weatherRefreshing = false;  // Show "refreshing" status on screen
-  const char* syncResultMsg = nullptr;  // "OK" or "Failed" after sync
+  const char* syncResultMsg = nullptr;  // "OK" or error message after sync
   unsigned long syncResultExpiry = 0;   // millis() when to clear message
   bool syncTriggered = false;      // Guard against re-triggering sync while held
   bool coverRendered = false;      // Track if cover has been rendered once

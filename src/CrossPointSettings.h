@@ -228,11 +228,6 @@ enum FONT_SIZE { SMALL = 0, MEDIUM = 1, LARGE = 2, EXTRA_LARGE = 3, FONT_SIZE_CO
   // Developer: show free heap in header (0=off, 1=on)
   uint8_t showFreeHeap = 0;
 
-  // Weather city selection (0=Hanoi, 1=TPHCM, 2=DaNang)
-  uint8_t weatherCity = 0;
-  // Temperature display unit: 0=Celsius, 1=Fahrenheit
-  uint8_t temperatureUnit = 0;
-
   // Auto page turn speed: 1-20=pages per minute (requires autoPageTurnEnabled=1)
   uint8_t autoPageTurnSpeed = 0;
   // Auto page turn master switch: 0=off, 1=on (speed controlled by autoPageTurnSpeed)

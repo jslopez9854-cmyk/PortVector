@@ -8,7 +8,6 @@
 
 #include "components/UITheme.h"
 #include "fontIds.h"
-#include "util/LunarCalendar.h"
 
 namespace {
 // Day/month/field names use I18n — build arrays at call site via tr()
@@ -261,8 +260,8 @@ if (SETTINGS.clock12Hour) {
     const int timeHeight = renderer.getLineHeight(UI_12_FONT_ID);
     const int dateHeight = renderer.getLineHeight(UI_10_FONT_ID);
     const int gregH  = renderer.getLineHeight(SMALL_FONT_ID);
-    const int cellH  = gregH * 2 + 10;  // two rows (gregorian + lunar) per calendar cell
-    const int calH   = cellH * 7;       // header row + up to 6 body rows
+    const int cellH  = gregH + 8;  // single row per calendar cell
+    const int calH   = cellH * 7;  // header row + up to 6 body rows
 
     // Center the whole block in content area
     const int contentTop = metrics.topPadding + metrics.headerHeight + metrics.verticalSpacing;
@@ -301,24 +300,14 @@ void ClockActivity::renderCalendar(int startY, const struct tm& t, bool isCurren
   const int calW = pageWidth - margin * 2;
   const int cellW = calW / 7;
   const int gregH = renderer.getLineHeight(SMALL_FONT_ID);
-  const int cellH = gregH * 2 + 10;
+  const int cellH = gregH + 8;
   const int x0 = margin;
 
-  // Month/year label + lunar month info
   int maxDay = daysInMonth(t.tm_mon, t.tm_year);
-  LunarDate lunarFirst = solarToLunar(1, t.tm_mon + 1, t.tm_year + 1900);
-  LunarDate lunarLast  = solarToLunar(maxDay, t.tm_mon + 1, t.tm_year + 1900);
 
-  char monthLabel[80];
-  if (lunarFirst.month == lunarLast.month) {
-    snprintf(monthLabel, sizeof(monthLabel), "< %s %d — %s %d >",
-             monthNames[t.tm_mon], t.tm_year + 1900,
-             tr(STR_LUNAR_MONTH), lunarFirst.month);
-  } else {
-    snprintf(monthLabel, sizeof(monthLabel), "< %s %d — %s %d-%d >",
-             monthNames[t.tm_mon], t.tm_year + 1900,
-             tr(STR_LUNAR_MONTH), lunarFirst.month, lunarLast.month);
-  }
+  char monthLabel[64];
+  snprintf(monthLabel, sizeof(monthLabel), "< %s %d >",
+           monthNames[t.tm_mon], t.tm_year + 1900);
   renderer.drawCenteredText(SMALL_FONT_ID, startY, monthLabel);
 
   int hdrY = startY + gregH + 6;
@@ -337,46 +326,18 @@ void ClockActivity::renderCalendar(int startY, const struct tm& t, bool isCurren
   int col = fm.tm_wday;
   int rowY = hdrY + cellH;
 
-  // Precompute lunar dates
-  struct { int day; int month; } lunarData[32] = {};
-  for (int d = 1; d <= maxDay; d++) {
-    LunarDate ld = solarToLunar(d, t.tm_mon + 1, t.tm_year + 1900);
-    lunarData[d] = {ld.day, ld.month};
-  }
-
   for (int day = 1; day <= maxDay; day++) {
-    char gregBuf[4];
-    snprintf(gregBuf, sizeof(gregBuf), "%d", day);
-
-    // Show lunar day, or "M/D" on first day of lunar month for clarity
-    char lunBuf[8];
-    if (lunarData[day].day == 1) {
-      snprintf(lunBuf, sizeof(lunBuf), "%d/%d", lunarData[day].day, lunarData[day].month);
-    } else {
-      snprintf(lunBuf, sizeof(lunBuf), "%d", lunarData[day].day);
-    }
-
-    const int cx    = x0 + col * cellW;
-    const int gregX = cx + (cellW - renderer.getTextWidth(SMALL_FONT_ID, gregBuf)) / 2;
-    const int lunX  = cx + (cellW - renderer.getTextWidth(SMALL_FONT_ID, lunBuf))  / 2;
-    const int lunY  = rowY + gregH + 2;
-
-    const bool isToday    = isCurrentMonth && (day == t.tm_mday);
-    const bool isNewLunar = (lunarData[day].day == 1);
+    char buf[4];
+    snprintf(buf, sizeof(buf), "%d", day);
+    const int cx = x0 + col * cellW;
+    const int tx = cx + (cellW - renderer.getTextWidth(SMALL_FONT_ID, buf)) / 2;
+    const bool isToday = isCurrentMonth && (day == t.tm_mday);
 
     if (isToday) {
       renderer.fillRoundedRect(cx + 1, rowY - 2, cellW - 2, cellH - 1, 6, Color::Black);
-      renderer.drawText(SMALL_FONT_ID, gregX, rowY, gregBuf, false);
-      renderer.drawText(SMALL_FONT_ID, lunX, lunY, lunBuf, false);
+      renderer.drawText(SMALL_FONT_ID, tx, rowY, buf, false);
     } else {
-      renderer.drawText(SMALL_FONT_ID, gregX, rowY, gregBuf);
-      if (isNewLunar) {
-        const int lw = renderer.getTextWidth(SMALL_FONT_ID, lunBuf);
-        renderer.fillRect(lunX - 2, lunY - 1, lw + 4, gregH - 1);
-        renderer.drawText(SMALL_FONT_ID, lunX, lunY, lunBuf, false);
-      } else {
-        renderer.drawText(SMALL_FONT_ID, lunX, lunY, lunBuf);
-      }
+      renderer.drawText(SMALL_FONT_ID, tx, rowY, buf);
     }
 
     if (++col == 7) { col = 0; rowY += cellH; }

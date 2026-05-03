@@ -50,19 +50,12 @@ inline const std::vector<SettingInfo>& getSettingsList() {
     "clock12Hour",
     StrId::STR_CAT_DISPLAY),
     
-    SettingInfo::Enum(StrId::STR_TEMP_UNIT, &CrossPointSettings::temperatureUnit,
-                        {StrId::STR_CELSIUS, StrId::STR_FAHRENHEIT}, "temperatureUnit", StrId::STR_CAT_DISPLAY),
       // CrossPet home screen widgets — stored in crosspet.json
       SettingInfo::DynamicToggle(
           StrId::STR_HOME_CLOCK,
           [] { return PET_SETTINGS.homeShowClock; },
           [](uint8_t v) { PET_SETTINGS.homeShowClock = v; PET_SETTINGS.saveToFile(); },
           "homeShowClock", StrId::STR_CAT_DISPLAY),
-      SettingInfo::DynamicToggle(
-          StrId::STR_HOME_WEATHER,
-          [] { return PET_SETTINGS.homeShowWeather; },
-          [](uint8_t v) { PET_SETTINGS.homeShowWeather = v; PET_SETTINGS.saveToFile(); },
-          "homeShowWeather", StrId::STR_CAT_DISPLAY),
       SettingInfo::DynamicToggle(
           StrId::STR_HOME_PET_STATUS,
           [] { return PET_SETTINGS.homeShowPetStatus; },

@@ -34,7 +34,6 @@
 #include "util/ButtonNavigator.h"
 #include "util/ScreenshotUtil.h"
 #include "activities/tools/ReadingStatsActivity.h"
-#include "activities/tools/WeatherActivity.h"
 #include "util/PowerButtonClickDetector.h"
 #include <ArduinoJson.h>
 #ifdef ENABLE_BLE
@@ -404,21 +403,9 @@ void setup() {
     g_rtcSleepMagic = 0;  // consume — next boot treats as cold boot unless we sleep again
   }
 
-  // Load cached timezone from weather data, fallback to ICT-7 (Indochina Time).
-  // This must happen after settimeofday() and before any localtime_r() calls.
-  {
-    char cachedTz[16] = "ICT-7";
-    String content = Storage.readFile("/.crosspoint/weather_cache.json");
-    if (!content.isEmpty()) {
-      JsonDocument tzDoc;
-      if (!deserializeJson(tzDoc, content)) {
-        const char* tz = tzDoc["tz"] | "";
-        if (tz[0]) strncpy(cachedTz, tz, sizeof(cachedTz) - 1);
-      }
-    }
-    setenv("TZ", cachedTz, 1);
-    tzset();
-  }
+  // Set timezone — defaults to UTC. Can be updated via NTP sync.
+  setenv("TZ", "UTC0", 1);
+  tzset();
 
   // Load virtual pet state and apply time-based decay
   PET_MANAGER.load();
@@ -605,15 +592,9 @@ void loop() {
     case CrossPointSettings::SHORT_PWRBTN::READING_STATS_VIEW:
       activityManager.pushActivity(std::make_unique<ReadingStatsActivity>(renderer, mappedInputManager));
       break;
-    case CrossPointSettings::SHORT_PWRBTN::SYNC_WEATHER_TIME: {
-      LOG_INF("PWR", "Sync weather/time triggered");
-      int syncResult = WeatherActivity::silentRefresh();
-      LOG_INF("PWR", "Sync result: %d (0=ok, 1=no creds, 2=timeout, 4=api, 5=parse)", syncResult);
-      // Refresh screen after time/weather sync to show updated clock
-      renderer.requestNextHalfRefresh();
-      activityManager.requestUpdate();
+    case CrossPointSettings::SHORT_PWRBTN::SYNC_WEATHER_TIME:
+      // No-op: weather removed. Time syncs via WiFi settings.
       break;
-    }
     default:
       break;  // PAGE_TURN, BLOCK_FRONT, STAR_PAGE handled by reader activities
   }

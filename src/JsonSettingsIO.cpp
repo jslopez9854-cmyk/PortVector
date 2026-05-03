@@ -143,7 +143,6 @@ bool JsonSettingsIO::saveSettings(const CrossPointSettings& s, const char* path)
   doc["statusBarBattery"] = s.statusBarBattery;
   doc["statusBarClock"] = s.statusBarClock;
   doc["statusBarProgressBarThickness"] = s.statusBarProgressBarThickness;
-  doc["weatherCity"] = s.weatherCity;
   doc["sleepImagePath"] = s.sleepImagePath;
   doc["autoPageTurnSpeed"] = s.autoPageTurnSpeed;
   doc["autoPageTurnEnabled"] = s.autoPageTurnEnabled;
@@ -249,9 +248,6 @@ bool JsonSettingsIO::loadSettings(CrossPointSettings& s, const char* json, bool*
   s.uiTheme = doc["uiTheme"] | (uint8_t)S::CROSSPET;
   s.fadingFix = doc["fadingFix"] | (uint8_t)0;
   s.embeddedStyle = doc["embeddedStyle"] | (uint8_t)1;
-  s.weatherCity = doc["weatherCity"] | (uint8_t)0;
-  if (s.weatherCity > 63) s.weatherCity = 0;  // 0=Auto, 1-63=manual cities
-
   const char* sip = doc["sleepImagePath"] | "";
   strncpy(s.sleepImagePath, sip, sizeof(s.sleepImagePath) - 1);
   s.sleepImagePath[sizeof(s.sleepImagePath) - 1] = '\0';

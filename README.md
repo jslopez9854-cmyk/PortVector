@@ -1,10 +1,8 @@
-# CrossPet Reader
+# PortVector
 
-**Your pocket e-reader — with a virtual chicken.**
+**An e-reader firmware for the Xteink X4, built on top of CrossPoint Reader.**
 
-CrossPet is a Vietnamese fork of [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader) — open-source firmware for the **Xteink X4** e-paper reader, built with **PlatformIO** on **ESP32-C3**.
-
-![](./docs/images/crosspet.png)
+PortVector is a personal fork of [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader) — open-source firmware for the **Xteink X4** e-paper reader, built with **PlatformIO** on **ESP32-C3**.
 
 ## Hardware
 
@@ -15,40 +13,7 @@ CrossPet is a Vietnamese fork of [CrossPoint Reader](https://github.com/crosspoi
 | Flash | 16MB |
 | Display | 800x480 E-Ink (SSD1677) |
 | Storage | SD Card |
-| Wireless | WiFi 802.11 b/g/n, BLE 5.0 (hardware present, not used by firmware) |
-
----
-
-## CrossPet vs CrossPoint
-
-CrossPet builds on top of [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader) and adds significant features. Here's what's different:
-
-| Feature | CrossPoint | CrossPet |
-|---------|-----------|----------|
-| **EPUB reading** | EPUB 2 & 3 with images | Same |
-| **Font families** | Bookerly (1 reader font) | Bookerly, **Lexend**, **Bokerlam** (3 reader fonts) |
-| **File formats** | EPUB, XTC | EPUB, XTC **(>2GB support)**, **TXT/Markdown** |
-| **Sleep screens** | Dark, Custom, Cover (3 modes) | **9 modes** including Clock, Reading Stats, **Page Overlay** |
-| **Sleep image config** | Manual file placement | **All-in-one app** with mode selector + image picker + overlay slideshow |
-| **Virtual pet** | — | **Tamagotchi-style chicken** that grows with reading (5 stages, 3 variants) |
-| **Mini games** | — | **Chess, Caro, Sudoku, Minesweeper, 2048** |
-| **Auto page turn** | — | **On/off toggle + 1-20 PPM**, configurable as power button action |
-| **Reading stats** | — | **Daily/lifetime tracking** with streaks that reduce pet feeding cost |
-| **Weather** | — | **Open-Meteo API** (Hanoi/TPHCM/Da Nang) |
-| **Lunar calendar** | — | **Vietnamese lunar dates** in clock app |
-| **Pomodoro timer** | — | **Work/break timer** with pet happiness bonus |
-| **Home screen** | File browser list | **Cover art cards**, recent books grid, clock/weather/pet widgets |
-| **Recent books** | Text list | **3-column cover grid** with progress bars |
-| **UI themes** | Default | **5 themes**: Classic, Lyra, Lyra Extended, CrossPet, CrossPet Classic |
-| **Dark mode** | — | Invertible display |
-| **Power button** | Basic (sleep/ignore) | **9 configurable actions** per single/double/triple click |
-| **Status bar** | Basic | **Fully customizable** (6 independent elements) |
-| **OPDS browser** | Built-in | Same |
-| **KOReader Sync** | Built-in | Same |
-| **WiFi upload/OTA** | Built-in | Same |
-| **Language** | English + community translations | Same + **Vietnamese UI** |
-
-> CrossPet inherits all core reading features from CrossPoint and adds pet gameplay, tools, games, and UI enhancements on top. Both firmwares run on the same Xteink X4 hardware.
+| Wireless | WiFi 802.11 b/g/n, BLE 5.0 |
 
 ---
 
@@ -59,26 +24,22 @@ CrossPet builds on top of [CrossPoint Reader](https://github.com/crosspoint-read
 - **EPUB 2 & 3** with image support and CSS styling
 - **XTC** native pre-rendered format (supports files >2GB)
 - **TXT / Markdown** with auto-wrapping and chapter detection
-- **3 font families** — Bookerly, Lexend (new), Bokerlam (Vietnamese serif)
+- **3 font families** — Bookerly, Lexend, Bokerlam
 - **4 font sizes** — Small, Medium, Large, Extra Large
 - **Anti-aliased grayscale** text rendering with 3 darkness levels
 - **Multi-language hyphenation** support
 - **4 screen orientations** with remappable buttons
-- **Auto page turn** — on/off toggle + speed 1-20 pages/min (global setting)
+- **Auto page turn** — on/off toggle + speed 1–20 pages/min
 - **Reading statistics & streaks** — per-session, daily, all-time tracking
 - **KOReader Sync** for cross-device reading progress
-- **Bookmarks** (starred pages) via long-press Confirm
-
-> **Note:** Bokerlam font may not have all Unicode glyphs. Missing characters are silently hidden rather than showing placeholder symbols. Test with your books before long reading sessions.
-
-> **Note:** Auto page turn speed is a global setting shared across all books. Adjust manually when switching between books with different reading speeds.
+- **Bookmarks** via long-press Confirm
 
 ### Home Screen
 
 - **Continue Reading card** — cover art + title + author + progress bar
 - **Recent books grid** — 3-column cover thumbnails with progress bars
 - **Bottom navigation** — Apps | Recents | Library | Settings
-- **Header widgets** — clock + cached weather temperature + pet status
+- **Header widgets** — clock + pet status
 - **Focus mode** — hides recent books for a cleaner look
 
 ### Sleep Screens
@@ -93,56 +54,38 @@ CrossPet builds on top of [CrossPoint Reader](https://github.com/crosspoint-read
 | **Cover** | Current book's cover art |
 | **None** | Keep last screen content |
 | **Cover + Custom** | Book cover with image overlay |
-| **Clock** | 7-segment digital clock + lunar calendar + literary quotes |
+| **Clock** | 7-segment digital clock with calendar |
 | **Reading Stats** | Today's reading time, all-time total, current book progress |
 | **Page Overlay** | PNG/BMP image composited on top of current book page |
 
-**Page Overlay slideshow:** Put PNG images (with transparency) in `/sleep/` on your SD card. The Sleep Image app lets you preview each overlay on your current book page and cycle through them.
-
-> **Battery warning:** Clock and Reading Stats modes require **Keep Clock Alive** enabled to update during sleep. This drains ~3-4mA continuously (~40 days on a full charge instead of months). Only enable if you actively use these sleep screen modes.
-
-> **Note:** Sleep Refresh Interval (periodic screen updates during sleep) requires Keep Clock Alive to be ON. Both settings must be enabled together.
+> **Battery warning:** Clock and Reading Stats modes require **Keep Clock Alive** to update during sleep. This drains ~3–4mA continuously. Only enable if you use these sleep screen modes.
 
 ### Virtual Chicken Companion
 
 Your chicken grows with every page you read.
 
-**Evolution:** Egg > Hatchling > Youngster > Companion > Elder
-
-| Stage | Requirements |
-|-------|-------------|
-| Hatchling | 1 day old + 20 pages read |
-| Youngster | 3 days + 100 pages + avg hunger >= 40 |
-| Companion | 7 days + 500 pages + avg hunger >= 50 + 1 book finished |
-| Elder | 14 days + 1500 pages + avg hunger >= 60 |
-
-**3 evolution variants** based on reading consistency: Scholar, Balanced, Wild.
+**Evolution:** Egg → Hatchling → Youngster → Companion → Elder
 
 **Reading feeds your pet:** Every 20 pages read earns a meal (+25 hunger). Reading streaks reduce the cost:
 
 | Streak | Pages per meal |
 |--------|---------------|
-| 0-6 days | 20 pages |
-| 7-13 days | 16 pages |
-| 14-29 days | 13 pages |
+| 0–6 days | 20 pages |
+| 7–13 days | 16 pages |
+| 14–29 days | 13 pages |
 | 30+ days | 10 pages |
-
-> **Tip:** Read at least 1 page every day to maintain your streak. A single day with 0 pages resets the streak to 0.
-
-**Care mechanics:** Hunger, happiness, and health decay over time (~1/hour). Attention calls appear every ~4 hours — 30% are fake calls that test discipline. Ignoring fake calls improves discipline; falling for them lowers it.
 
 ### Tools & Apps
 
 | App | Description |
 |-----|-------------|
 | **File Transfer** | WiFi book upload from computer |
-| **Clock** | Digital clock with lunar calendar and month navigation |
-| **Weather** | Current weather via Open-Meteo (Hanoi / TPHCM / Da Nang) |
+| **Clock** | Digital clock with calendar |
 | **Pomodoro** | Work/break timer with pet happiness bonus |
 | **Virtual Pet** | Pet care, feeding, evolution tracking |
 | **Reading Stats** | Today/total/sessions summary with streak info |
-| **Sleep Image** | All-in-one sleep mode selector + image picker + overlay slideshow |
-| **OPDS Browser** | Browse and download from OPDS catalog servers (requires setup) |
+| **Sleep Image** | Sleep mode selector + image picker + overlay slideshow |
+| **OPDS Browser** | Browse and download from OPDS catalog servers |
 | **Chess** | Full chess game with AI (Easy/Medium/Hard) |
 | **Caro** | Gomoku (5-in-a-row) with AI |
 | **Sudoku** | 9x9 puzzle generator |
@@ -155,25 +98,12 @@ Your chicken grows with every page you read.
 - **Calibre / OPDS** — browse and download from your Calibre library or any OPDS server
 - **KOReader Sync** — sync reading progress across devices
 - **WiFi OTA updates** — update firmware over-the-air
-- **Weather sync** — Open-Meteo API (no account required)
 
-> **Note:** WiFi uses 80-200mA. Charge your device before OTA updates or long sync sessions.
+> **Note:** WiFi uses 80–200mA. Charge your device before OTA updates or long sync sessions.
 
 ### Button Configuration
 
-**Power button** supports single/double/triple click, each independently configurable:
-
-| Action | Description |
-|--------|-------------|
-| Ignore | Do nothing |
-| Sleep | Enter sleep mode |
-| Page Turn | Turn page forward (reader only) |
-| Screen Refresh | Force full e-ink refresh (clears ghosting) |
-| Reading Stats | Show reading statistics |
-| Star Page | Bookmark current page |
-| Block Front | Lock/unlock front buttons |
-| Sync Weather/Time | Connect WiFi and update weather + clock |
-| Auto Page Turn | Toggle auto page turn on/off |
+**Power button** supports single/double/triple click, each independently configurable.
 
 **Side buttons** and **front pad** layouts are remappable. Long-press side button skips chapters.
 
@@ -181,23 +111,12 @@ Your chicken grows with every page you read.
 
 Fully customizable — each element can be shown or hidden independently:
 
-- Chapter page count (e.g., "5/42")
+- Chapter page count
 - Book progress percentage
 - Progress bar (book-level, chapter-level, or hidden)
 - Title (book title, chapter title, or hidden)
 - Battery percentage
 - Clock
-
-### Display Settings
-
-| Setting | Options | Notes |
-|---------|---------|-------|
-| **Refresh Frequency** | Every 1/5/10/15/30 pages | More frequent = less ghosting but slower |
-| **Fading Fix** | On/Off | Compensates for sunlight-induced fading |
-| **Dark Mode** | On/Off | Inverts display colors |
-| **UI Theme** | Classic, Lyra, Lyra Extended, CrossPet, CrossPet Classic | Visual theme for UI |
-| **Text Darkness** | Normal, Dark, Extra Dark | Adjusts rendered text intensity |
-| **Text Anti-Aliasing** | On/Off | 4-level grayscale smoothing |
 
 ---
 
@@ -205,62 +124,39 @@ Fully customizable — each element can be shown or hidden independently:
 
 ### Battery Life
 
-- **Keep Clock Alive** drains ~3-4mA continuously. Only enable for Clock or Reading Stats sleep screens. Disable otherwise.
-- **Sleep Refresh Interval** requires Keep Clock Alive to be ON. Both settings work together.
-- **WiFi** uses significant power (80-200mA). Charge before OTA updates.
+- **Keep Clock Alive** drains ~3–4mA continuously. Only enable for Clock or Reading Stats sleep screens.
+- **Sleep Refresh Interval** requires Keep Clock Alive to be ON.
+- **WiFi** uses significant power (80–200mA). Charge before OTA updates.
 
 ### Reading & Files
 
-- **Auto page turn speed** is global, not per-book. Adjust when switching books.
+- **Auto page turn speed** is global, not per-book.
 - **Deleting `.crosspoint/` folder** on SD card clears ALL reading progress and cached data.
 - **Moving or renaming a book file** resets its reading progress (cache is tied to file path).
-- **XTC files >2GB** are now supported but may have slower page seeks on the ESP32.
 
 ### Fonts
 
-- **Bokerlam** is optimized for Vietnamese but may lack some Unicode characters. Missing glyphs are silently hidden.
-- **Lexend** is a new sans-serif option designed for readability.
-
-### Pet
-
-- **Reading streak** resets if you go a full day without reading at least 1 page.
-- **Meals require reading**, not just opening the app. Pages read automatically feed your pet.
-- **Attention calls:** 30% are fake — ignoring fakes trains discipline, but ignoring real calls makes your pet unhappy.
+- **Bokerlam** is a Vietnamese-optimized serif font and may lack some Unicode characters. Missing glyphs are silently hidden.
+- **Lexend** is a sans-serif font designed for readability.
 
 ---
-
-## Installing
-
-### Web (latest firmware)
-
-1. Connect your Xteink X4 to your computer via USB-C and wake/unlock the device
-2. Go to https://xteink.dve.al/ and click "Flash CrossPoint firmware"
-
-To revert back to the official firmware, you can flash the latest official firmware from https://xteink.dve.al/, or swap
-back to the other partition using the "Swap boot partition" button here https://xteink.dve.al/debug.
-
-### Manual
-
-See [Development](#development) below.
 
 ## Development
 
 ### Prerequisites
 
-* **PlatformIO Core** (`pio`) or **VS Code + PlatformIO IDE**
-* Python 3.8+
-* USB-C cable for flashing the ESP32-C3
-* Xteink X4
+- **PlatformIO Core** (`pio`) or **VS Code + PlatformIO IDE**
+- Python 3.8+
+- USB-C cable
+- Xteink X4
 
 ### Checking out the code
 
-```
-git clone --recursive https://github.com/trilwu/crosspet
+```sh
+git clone --recursive https://github.com/jslopez9854-cmyk/PortVector
 ```
 
 ### Flashing your device
-
-Connect your Xteink X4 to your computer via USB-C and run:
 
 ```sh
 pio run --target upload
@@ -268,68 +164,36 @@ pio run --target upload
 
 ### Debugging
 
-Capture detailed logs from the serial port:
-
 ```python
 python3 -m pip install pyserial colorama matplotlib
 ```
 
 ```sh
-# Linux
 python3 scripts/debugging_monitor.py
-
-# macOS
-python3 scripts/debugging_monitor.py /dev/cu.usbmodem2101
 ```
+
+---
 
 ## Internals
 
-The ESP32-C3 only has ~380KB of usable RAM. CrossPoint aggressively caches data to the SD card to minimize RAM usage.
+The ESP32-C3 only has ~380KB of usable RAM. Caching to SD card is used aggressively to minimize RAM usage.
 
 ### Data caching
 
-The first time chapters of a book are loaded, they are cached to the SD card at `.crosspoint/`:
-
 ```
 .crosspoint/
-├── epub_12471232/       # Each EPUB cached to epub_<hash>
-│   ├── progress.bin     # Reading progress
-│   ├── cover.bmp        # Book cover image
-│   ├── book.bin         # Book metadata
-│   └── sections/        # Chapter data
-│       ├── 0.bin
-│       ├── 1.bin
-│       └── ...
-├── reading_stats.bin    # Reading statistics (v2)
-└── weather_cache.json   # Weather data cache
+├── epub_12471232/
+│   ├── progress.bin
+│   ├── cover.bmp
+│   ├── book.bin
+│   └── sections/
+├── reading_stats.bin
+└── ...
 ```
 
 Deleting `.crosspoint/` clears the entire cache. Moving a book file resets its reading progress.
 
-For more details, see [file formats](./docs/file-formats.md).
-
-### SD card setup for sleep images
-
-Place PNG or BMP images in `/sleep/` (or `/.sleep/`) on your SD card:
-
-```
-/sleep/
-├── pikachu.png        # PNG with alpha transparency (for Page Overlay mode)
-├── landscape.bmp      # BMP image (for Custom sleep screen)
-└── art.png            # More images = more slideshow options
-```
-
-## Contributing
-
-Contributions welcome! See [contributing docs](./docs/contributing/README.md).
-
-1. Fork the repo
-2. Create a branch (`feature/your-feature`)
-3. Make changes
-4. Submit a PR
-
 ---
 
-CrossPet Reader is **not affiliated with Xteink or any manufacturer of the X4 hardware**.
-
-Based on [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader). Inspired by [diy-esp32-epub-reader](https://github.com/atomic14/diy-esp32-epub-reader) by atomic14.
+Based on [CrossPoint Reader](https://github.com/crosspoint-reader/crosspoint-reader).
+Inspired by [diy-esp32-epub-reader](https://github.com/atomic14/diy-esp32-epub-reader) by atomic14.
