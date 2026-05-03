@@ -5,6 +5,9 @@
 #include <Logging.h>
 #include <WiFi.h>
 
+#include <algorithm>
+#include <cstring>
+
 #include "ButtonRemapActivity.h"
 #include "CalibreSettingsActivity.h"
 #include "ClearCacheActivity.h"
@@ -69,35 +72,43 @@ void SettingsActivity::onEnter() {
   readerSettings.push_back(SettingInfo::Action(StrId::STR_CUSTOMISE_STATUS_BAR, SettingAction::CustomiseStatusBar));
 
   // Insert section headers into each category (device UI only, after ACTION items are appended).
-  // Display: SCREEN (sleep/refresh settings), APPEARANCE (theme/UI), HOME (home screen widgets)
-  // Items order: Sleep Screen(0), Sleep Cover Mode(1), Sleep Cover Filter(2), Keep Clock Alive(3),
-  //              Sleep Refresh(4), Hide Battery(5), Refresh Freq(6), UI Theme(7), Sunlight Fix(8),
-  //              Dark Mode(9), Temp Unit(10), Home Clock(11), Home Weather(12), Home Pet Status(13), Home Focus Mode(14)
-  displaySettings.insert(displaySettings.begin() + 11, SettingInfo::Section("HOME"));
-  displaySettings.insert(displaySettings.begin() + 5, SettingInfo::Section("APPEARANCE"));
+  // Important: resolve insertion points by key/action so removing settings won't corrupt vector indices.
+  auto insertSectionBeforeKey = [](std::vector<SettingInfo>& items, const char* key, const char* label) {
+    const auto it = std::find_if(items.begin(), items.end(), [key](const SettingInfo& s) {
+      return s.key && strcmp(s.key, key) == 0;
+    });
+    if (it != items.end()) {
+      items.insert(it, SettingInfo::Section(label));
+    } else {
+      items.push_back(SettingInfo::Section(label));
+    }
+  };
+
+  auto insertSectionBeforeAction = [](std::vector<SettingInfo>& items, SettingAction action, const char* label) {
+    const auto it = std::find_if(items.begin(), items.end(), [action](const SettingInfo& s) {
+      return s.type == SettingType::ACTION && s.action == action;
+    });
+    if (it != items.end()) {
+      items.insert(it, SettingInfo::Section(label));
+    } else {
+      items.push_back(SettingInfo::Section(label));
+    }
+  };
+
   displaySettings.insert(displaySettings.begin(), SettingInfo::Section("SCREEN"));
+  insertSectionBeforeKey(displaySettings, "hideBatteryPercentage", "APPEARANCE");
+  insertSectionBeforeKey(displaySettings, "homeShowPetStatus", "HOME");
 
-  // Reader: TEXT (font/layout), NAVIGATION (orientation/turn), ACTIONS (status bar)
-  // Items order: Font Family(0), Font Size(1), Line Spacing(2), Screen Margin(3), Para Alignment(4),
-  //              Embedded Style(5), Hyphenation(6), Orientation(7), Extra Spacing(8), Text AA(9),
-  //              Text Darkness(10), Images(11), Auto Page Turn(12), Customise Status Bar(13)
-  readerSettings.insert(readerSettings.begin() + 13, SettingInfo::Section("ACTIONS"));
-  readerSettings.insert(readerSettings.begin() + 7, SettingInfo::Section("READING"));
   readerSettings.insert(readerSettings.begin(), SettingInfo::Section("TEXT"));
+  insertSectionBeforeKey(readerSettings, "orientation", "READING");
+  insertSectionBeforeAction(readerSettings, SettingAction::CustomiseStatusBar, "ACTIONS");
 
-  // Controls: BUTTONS (remapping action + layout toggles), POWER BUTTON (short pwr btn actions)
-  // Items order after insert: Remap Front Buttons(0), Side Btn Layout(1), Front Page Btn Layout(2),
-  //                           Long Press Skip(3), Short Pwr Btn(4), 2Click(5), 3Click(6)
-  controlsSettings.insert(controlsSettings.begin() + 4, SettingInfo::Section("POWER BUTTON"));
   controlsSettings.insert(controlsSettings.begin(), SettingInfo::Section("BUTTONS"));
+  insertSectionBeforeKey(controlsSettings, "shortPwrBtn", "POWER BUTTON");
 
-  // System: GENERAL (sleep timeout, files), CONNECTIVITY (WiFi, KOReader, OPDS), MAINTENANCE (clear, updates, reboot)
-  // Items order: Sleep Timeout(0), Show Hidden Files(1), Show Free Heap(2),
-  //              WiFi(3), KOReader Sync(4), OPDS Browser(5),
-  //              Clear Cache(6), Check Updates(7), Language(8), Device Info(9), Reboot(10)
-  systemSettings.insert(systemSettings.begin() + 9, SettingInfo::Section("DEVICE"));
-  systemSettings.insert(systemSettings.begin() + 3, SettingInfo::Section("CONNECTIVITY"));
   systemSettings.insert(systemSettings.begin(), SettingInfo::Section("GENERAL"));
+  insertSectionBeforeAction(systemSettings, SettingAction::Network, "CONNECTIVITY");
+  insertSectionBeforeAction(systemSettings, SettingAction::DeviceInfo, "DEVICE");
 
   // Reset selection to first category
   selectedCategoryIndex = 0;
