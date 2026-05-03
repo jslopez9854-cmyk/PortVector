@@ -15,8 +15,13 @@ namespace {
 // Device identifier for CrossPoint reader
 constexpr char DEVICE_NAME[] = "CrossPoint";
 constexpr char DEVICE_ID[] = "crosspoint-reader";
+<<<<<<< HEAD
 constexpr uint16_t HTTP_CONNECT_TIMEOUT_MS = 5000;
 constexpr uint16_t HTTP_IO_TIMEOUT_MS = 7000;
+=======
+constexpr uint16_t HTTP_CONNECT_TIMEOUT_MS = 8000;
+constexpr uint16_t HTTP_IO_TIMEOUT_MS = 12000;
+>>>>>>> origin/main
 
 void addAuthHeaders(HTTPClient& http) {
   http.addHeader("Accept", "application/vnd.koreader.v1+json");
@@ -95,6 +100,7 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
     LOG_DBG("KOSync", "Progress fetch plain client timeout set to %u sec", (HTTP_IO_TIMEOUT_MS + 999) / 1000);
     http.begin(plainClient, url.c_str());
   }
+<<<<<<< HEAD
   LOG_DBG("KOSync", "Progress fetch heap after http.begin: %u", ESP.getFreeHeap());
   http.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
   http.setTimeout(HTTP_IO_TIMEOUT_MS);
@@ -112,6 +118,24 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
   if (httpCode == 200) {
     const int responseLength = http.getSize();
     LOG_DBG("KOSync", "Progress response declared length: %d", responseLength);
+=======
+  http.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
+  http.setTimeout(HTTP_IO_TIMEOUT_MS);
+  addAuthHeaders(http);
+
+  const uint32_t startedAtMs = millis();
+  const int httpCode = http.GET();
+  const uint32_t endedAtMs = millis();
+  LOG_DBG("KOSync", "Progress fetch end: t=%lu elapsed=%lu code=%d", endedAtMs, endedAtMs - startedAtMs, httpCode);
+
+  if (httpCode == 200) {
+    // Parse JSON response from response string
+    String responseBody = http.getString();
+    LOG_DBG("KOSync", "Progress response length: %u", (unsigned)responseBody.length());
+    http.end();
+    LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
+
+>>>>>>> origin/main
     JsonDocument doc;
     WiFiClient* stream = http.getStreamPtr();
     const DeserializationError error = deserializeJson(doc, *stream);
@@ -139,7 +163,11 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
 
   const int responseLength = http.getSize();
   http.end();
+<<<<<<< HEAD
   LOG_DBG("KOSync", "Progress response declared length: %d", responseLength);
+=======
+  LOG_DBG("KOSync", "Progress response length: 0");
+>>>>>>> origin/main
   LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
 
   LOG_DBG("KOSync", "Get progress response: %d", httpCode);
