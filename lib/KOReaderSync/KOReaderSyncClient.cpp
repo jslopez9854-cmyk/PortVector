@@ -15,8 +15,13 @@ namespace {
 // Device identifier for CrossPoint reader
 constexpr char DEVICE_NAME[] = "CrossPoint";
 constexpr char DEVICE_ID[] = "crosspoint-reader";
+<<<<<<< HEAD
+constexpr uint16_t HTTP_CONNECT_TIMEOUT_MS = 5000;
+constexpr uint16_t HTTP_IO_TIMEOUT_MS = 7000;
+=======
 constexpr uint16_t HTTP_CONNECT_TIMEOUT_MS = 8000;
 constexpr uint16_t HTTP_IO_TIMEOUT_MS = 12000;
+>>>>>>> origin/main
 
 void addAuthHeaders(HTTPClient& http) {
   http.addHeader("Accept", "application/vnd.koreader.v1+json");
@@ -86,10 +91,34 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
   if (isHttpsUrl(url)) {
     secureClient.reset(new WiFiClientSecure);
     secureClient->setInsecure();
+    secureClient->setTimeout((HTTP_IO_TIMEOUT_MS + 999) / 1000);
+    LOG_DBG("KOSync", "Progress fetch heap after secure client init: %u", ESP.getFreeHeap());
+    LOG_DBG("KOSync", "Progress fetch secure client timeout set to %u sec", (HTTP_IO_TIMEOUT_MS + 999) / 1000);
     http.begin(*secureClient, url.c_str());
   } else {
+    plainClient.setTimeout((HTTP_IO_TIMEOUT_MS + 999) / 1000);
+    LOG_DBG("KOSync", "Progress fetch plain client timeout set to %u sec", (HTTP_IO_TIMEOUT_MS + 999) / 1000);
     http.begin(plainClient, url.c_str());
   }
+<<<<<<< HEAD
+  LOG_DBG("KOSync", "Progress fetch heap after http.begin: %u", ESP.getFreeHeap());
+  http.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
+  http.setTimeout(HTTP_IO_TIMEOUT_MS);
+  LOG_DBG("KOSync", "Progress fetch HTTP timeouts set: connect=%u ms io=%u ms", HTTP_CONNECT_TIMEOUT_MS,
+          HTTP_IO_TIMEOUT_MS);
+  addAuthHeaders(http);
+
+  const uint32_t startedAtMs = millis();
+  LOG_DBG("KOSync", "Progress fetch heap before GET: %u", ESP.getFreeHeap());
+  const int httpCode = http.GET();
+  const uint32_t endedAtMs = millis();
+  LOG_DBG("KOSync", "Progress fetch end: t=%lu elapsed=%lu code=%d", endedAtMs, endedAtMs - startedAtMs, httpCode);
+  LOG_DBG("KOSync", "Progress fetch heap after GET: %u", ESP.getFreeHeap());
+
+  if (httpCode == 200) {
+    const int responseLength = http.getSize();
+    LOG_DBG("KOSync", "Progress response declared length: %d", responseLength);
+=======
   http.setConnectTimeout(HTTP_CONNECT_TIMEOUT_MS);
   http.setTimeout(HTTP_IO_TIMEOUT_MS);
   addAuthHeaders(http);
@@ -106,8 +135,14 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
     http.end();
     LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
 
+>>>>>>> origin/main
     JsonDocument doc;
-    const DeserializationError error = deserializeJson(doc, responseBody);
+    WiFiClient* stream = http.getStreamPtr();
+    const DeserializationError error = deserializeJson(doc, *stream);
+    LOG_DBG("KOSync", "Progress response parse complete (streaming), heap_now=%u", ESP.getFreeHeap());
+
+    http.end();
+    LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
 
     if (error) {
       LOG_ERR("KOSync", "JSON parse failed: %s", error.c_str());
@@ -126,8 +161,13 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
     return OK;
   }
 
+  const int responseLength = http.getSize();
   http.end();
+<<<<<<< HEAD
+  LOG_DBG("KOSync", "Progress response declared length: %d", responseLength);
+=======
   LOG_DBG("KOSync", "Progress response length: 0");
+>>>>>>> origin/main
   LOG_DBG("KOSync", "Progress fetch resources closed: yes heap_after=%u", ESP.getFreeHeap());
 
   LOG_DBG("KOSync", "Get progress response: %d", httpCode);
