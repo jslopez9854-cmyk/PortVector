@@ -157,6 +157,26 @@ std::string KOReaderDocumentId::calculateFromFilename(const std::string& filePat
   return result;
 }
 
+std::string KOReaderDocumentId::calculateForSync(const std::string& filePath, bool* usedFilenameFallback) {
+  if (usedFilenameFallback != nullptr) {
+    *usedFilenameFallback = false;
+  }
+
+  LOG_DBG("KODoc", "Hash mode: KOReader-compatible partial MD5 (content-based)");
+  std::string contentHash = calculate(filePath);
+  if (!contentHash.empty()) {
+    return contentHash;
+  }
+
+  LOG_ERR("KODoc", "Partial MD5 failed for '%s'; falling back to filename hash (not cross-device compatible)",
+          filePath.c_str());
+  std::string fallbackHash = calculateFromFilename(filePath);
+  if (!fallbackHash.empty() && usedFilenameFallback != nullptr) {
+    *usedFilenameFallback = true;
+  }
+  return fallbackHash;
+}
+
 size_t KOReaderDocumentId::getOffset(int i) {
   // Offset = 1024 << (2*i)
   // For i = -1: KOReader uses a value of 0
@@ -170,7 +190,7 @@ size_t KOReaderDocumentId::getOffset(int i) {
 std::string KOReaderDocumentId::calculate(const std::string& filePath) {
   FsFile file;
   if (!Storage.openFileForRead("KODoc", filePath, file)) {
-    LOG_DBG("KODoc", "Failed to open file: %s", filePath.c_str());
+    LOG_ERR("KODoc", "Failed to open file for content hash: %s", filePath.c_str());
     return "";
   }
 
@@ -192,7 +212,7 @@ std::string KOReaderDocumentId::calculate(const std::string& filePath) {
     return cached;
   }
 
-  LOG_DBG("KODoc", "Calculating hash for file: %s (size: %zu)", filePath.c_str(), fileSize);
+  LOG_DBG("KODoc", "Calculating partial MD5 for file: %s (size: %zu)", filePath.c_str(), fileSize);
 
   // Initialize MD5 builder
   MD5Builder md5;
@@ -201,6 +221,8 @@ std::string KOReaderDocumentId::calculate(const std::string& filePath) {
   // Buffer for reading chunks
   uint8_t buffer[CHUNK_SIZE];
   size_t totalBytesRead = 0;
+
+  size_t totalBytesRequested = 0;
 
   // Read from each offset (i = -1 to 10)
   for (int i = -1; i < OFFSET_COUNT - 1; i++) {
@@ -219,12 +241,14 @@ std::string KOReaderDocumentId::calculate(const std::string& filePath) {
 
     // Read up to CHUNK_SIZE bytes
     const size_t bytesToRead = std::min(CHUNK_SIZE, fileSize - offset);
+    totalBytesRequested += bytesToRead;
     const size_t bytesRead = file.read(buffer, bytesToRead);
 
     if (bytesRead > 0) {
       md5.add(buffer, bytesRead);
       totalBytesRead += bytesRead;
     }
+    LOG_DBG("KODoc", "Partial MD5 chunk i=%d offset=%zu requested=%zu read=%zu", i, offset, bytesToRead, bytesRead);
   }
 
   file.close();
@@ -233,7 +257,8 @@ std::string KOReaderDocumentId::calculate(const std::string& filePath) {
   md5.calculate();
   std::string result = md5.toString().c_str();
 
-  LOG_DBG("KODoc", "Hash calculated: %s (from %zu bytes)", result.c_str(), totalBytesRead);
+  LOG_DBG("KODoc", "Partial MD5 hash: %s (file='%s' requested=%zu read=%zu)", result.c_str(), filePath.c_str(),
+          totalBytesRequested, totalBytesRead);
 
   saveCachedHash(cacheFilePath, fileSize, fingerprintTok, result);
 
