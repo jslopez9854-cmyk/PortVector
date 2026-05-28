@@ -225,7 +225,10 @@ class CrossPointSettings {
   uint8_t tiltPageTurn = TILT_OFF;
   // Language setting (Language enum index, default 0 = EN)
   uint8_t language = 0;
-
+#ifdef BLE_ENABLED
+  // Bluetooth HID page turner (0 = disabled, 1 = enabled)
+  uint8_t bleEnabled = 0;
+#endif
   ~CrossPointSettings() = default;
 
   // Get singleton instance

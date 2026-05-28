@@ -54,10 +54,34 @@ bool MappedInputManager::mapButton(const Button button, bool (HalGPIO::*fn)(uint
   return false;
 }
 
-bool MappedInputManager::wasPressed(const Button button) const { return mapButton(button, &HalGPIO::wasPressed); }
+#ifdef BLE_ENABLED
+bool MappedInputManager::mapButtonBLE(const Button button) const {
+  switch (button) {
+    case Button::PageBack:
+    case Button::Left:
+      return BLE_HID.wasPageBackPressed();
+    case Button::PageForward:
+    case Button::Right:
+      return BLE_HID.wasPageForwardPressed();
+    default:
+      return false;
+  }
+}
+#endif
 
-bool MappedInputManager::wasReleased(const Button button) const { return mapButton(button, &HalGPIO::wasReleased); }
+bool MappedInputManager::wasPressed(const Button button) const {
+#ifdef BLE_ENABLED
+  if (mapButtonBLE(button)) return true;
+#endif
+  return mapButton(button, &HalGPIO::wasPressed);
+}
 
+bool MappedInputManager::wasReleased(const Button button) const {
+#ifdef BLE_ENABLED
+  if (mapButtonBLE(button)) return true;
+#endif
+  return mapButton(button, &HalGPIO::wasReleased);
+}
 bool MappedInputManager::isPressed(const Button button) const { return mapButton(button, &HalGPIO::isPressed); }
 
 bool MappedInputManager::wasAnyPressed() const { return gpio.wasAnyPressed(); }

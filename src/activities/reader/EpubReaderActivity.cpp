@@ -127,7 +127,6 @@ void EpubReaderActivity::loop() {
       requestUpdate();
       return;
     }
-
     if (!section) {
       requestUpdate();
       return;
@@ -145,9 +144,60 @@ void EpubReaderActivity::loop() {
     }
   }
 
-  // Enter reader menu activity.
-  if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
-    const int currentPage = section ? section->currentPage + 1 : 0;
+    // Long press Confirm (800ms+) triggers KOReader sync directly
+  static bool syncLongPressTriggered = false;
+  if (mappedInput.isPressed(MappedInputManager::Button::Confirm) &&
+      mappedInput.getHeldTime() >= 800 && !syncLongPressTriggered) {
+    syncLongPressTriggered = true;
+    if (KOREADER_STORE.hasCredentials()) {
+      const int currentPage = section ? section->currentPage : nextPageNumber;
+      const int totalPages = section ? section->pageCount : cachedChapterTotalPageCount;
+      std::optional<uint16_t> paragraphIndex;
+      if (section && currentPage >= 0 && currentPage < section->pageCount) {
+        const uint16_t paragraphPage =
+            currentPage > 0 ? static_cast<uint16_t>(currentPage - 1) : static_cast<uint16_t>(currentPage);
+        if (const auto pIdx = section->getParagraphIndexForPage(paragraphPage)) {
+          paragraphIndex = *pIdx;
+        }
+      }
+      CrossPointPosition localPos = {currentSpineIndex, currentPage, totalPages};
+      if (paragraphIndex.has_value()) {
+        localPos.paragraphIndex = *paragraphIndex;
+        localPos.hasParagraphIndex = true;
+      }
+      KOReaderPosition localKoPos = ProgressMapper::toKOReader(epub, localPos);
+      const int tocIdx = epub->getTocIndexForSpineIndex(currentSpineIndex);
+      std::string localChapterName = (tocIdx >= 0) ? epub->getTocItem(tocIdx).title : "";
+      const std::string savedEpubPath = epub->getPath();
+      if (!saveProgress(currentSpineIndex, currentPage, totalPages)) {
+        LOG_ERR("KOSync", "Aborting sync because current progress could not be saved");
+        pendingSyncSaveError = true;
+        requestUpdate();
+        return;
+      }
+      LOG_DBG("KOSync", "Releasing epub for sync (heap before: %u)", (unsigned)ESP.getFreeHeap());
+      {
+        RenderLock lock(*this);
+        if (section) {
+          nextPageNumber = section->currentPage;
+        }
+        section.reset();
+        epub.reset();
+      }
+      LOG_DBG("KOSync", "Epub released (heap after: %u)", (unsigned)ESP.getFreeHeap());
+      activityManager.replaceActivity(std::make_unique<KOReaderSyncActivity>(
+          renderer, mappedInput, savedEpubPath, currentSpineIndex, currentPage, totalPages,
+          std::move(localKoPos), std::move(localChapterName), paragraphIndex));
+      return;
+    }
+  }
+  if (!mappedInput.isPressed(MappedInputManager::Button::Confirm)) {
+    syncLongPressTriggered = false;
+  }
+
+
+// Enter reader menu activity.
+  if (mappedInput.wasReleased(MappedInputManager::Button::Confirm) && !syncLongPressTriggered) {    const int currentPage = section ? section->currentPage + 1 : 0;
     const int totalPages = section ? section->pageCount : 0;
     float bookProgress = 0.0f;
     if (epub->getBookSize() > 0 && section && section->pageCount > 0) {

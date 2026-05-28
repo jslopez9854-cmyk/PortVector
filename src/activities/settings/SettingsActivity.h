@@ -22,9 +22,11 @@ enum class SettingAction {
   CheckForUpdates,
   SdFirmwareUpdate,
   Language,
-  DownloadFonts,
+DownloadFonts,
+#ifdef BLE_ENABLED
+  BluetoothSettings,
+#endif
 };
-
 struct SettingInfo {
   StrId nameId;
   SettingType type;
