@@ -21,3 +21,6 @@ lib/EpdFont/scripts/instanced_fonts/
 lib/EpdFont/scripts/output/
 
 .github/workflows/
+
+crosspoint-1.3.0/
+crosspoint-ble/
