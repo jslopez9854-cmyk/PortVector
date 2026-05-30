@@ -17,13 +17,11 @@ class BluetoothSettingsActivity : public Activity {
   void render(RenderLock&& lock) override;
 
  private:
-  enum class Screen {
-    Main,       // Enable/disable, connect button, learn mode button
-    Scanning,   // Device list while scanning
-    Connected,  // Connected device info, disconnect, learn mode
-    Learning,   // Learn Mode — waiting for button presses
+enum class Screen {
+    Main,
+    Learning,
   };
-
+  
   Screen _screen = Screen::Main;
 
   // Index of selected device in scan results

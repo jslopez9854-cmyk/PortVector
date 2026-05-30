@@ -7,207 +7,167 @@
 #include <NimBLEDevice.h>
 #include <WiFi.h>
 
-// Standard HID keycodes for page turning
-// These cover most generic BLE keyboards and media remotes
-static constexpr uint16_t HID_KEY_RIGHT       = 0x004F;
-static constexpr uint16_t HID_KEY_LEFT        = 0x0050;
-static constexpr uint16_t HID_KEY_PAGE_UP     = 0x004B;
-static constexpr uint16_t HID_KEY_PAGE_DOWN   = 0x004E;
-static constexpr uint16_t HID_CONSUMER_NEXT   = 0x00B5;
-static constexpr uint16_t HID_CONSUMER_PREV   = 0x00B6;
-static constexpr uint16_t HID_CONSUMER_FASTF  = 0x00B3;
-static constexpr uint16_t HID_CONSUMER_REWIND = 0x00B4;
+#if defined(ARDUINO) && __has_include(<esp32-hal-bt-mem.h>)
+#include <esp32-hal-bt-mem.h>
+#endif
 
-// Settings keys for persisting learned keycodes
-static constexpr const char* SETTINGS_KEY_LEARNED_BACK    = "ble_key_back";
-static constexpr const char* SETTINGS_KEY_LEARNED_FORWARD = "ble_key_fwd";
+// HID Report Descriptor — simple 2-button consumer control device
+// Reports page up/down as consumer page keycodes
+static const uint8_t hidReportDescriptor[] = {
+    0x05, 0x0C,        // Usage Page (Consumer)
+    0x09, 0x01,        // Usage (Consumer Control)
+    0xA1, 0x01,        // Collection (Application)
+    0x85, 0x01,        //   Report ID (1)
+    0x15, 0x00,        //   Logical Minimum (0)
+    0x25, 0x01,        //   Logical Maximum (1)
+    0x75, 0x01,        //   Report Size (1)
+    0x95, 0x02,        //   Report Count (2)
+    0x0A, 0x37, 0x02,  //   Usage (AC Scroll Down / Page Down)
+    0x0A, 0x36, 0x02,  //   Usage (AC Scroll Up / Page Up)
+    0x81, 0x02,        //   Input (Data, Variable, Absolute)
+    0x95, 0x06,        //   Report Count (6) — padding
+    0x81, 0x03,        //   Input (Constant)
+    0xC0               // End Collection
+};
 
-// Cooldown between page turns in ms — prevents double-fire
 static constexpr unsigned long PAGE_TURN_COOLDOWN_MS = 300;
 
 // ---------------------------------------------------------------------------
-// NimBLE callback implementations
+// Server callback
 // ---------------------------------------------------------------------------
 
-class BLEScanCallback : public NimBLEScanCallbacks {
+class BLEServerCallback : public NimBLEServerCallbacks {
  public:
-  void onResult(const NimBLEAdvertisedDevice* device) override {
-    std::string name = device->getName();
-    std::string addr = device->getAddress().toString();
-    if (name.empty()) name = addr;
-    LOG_INF("BLE", "Found device: %s [%s]", name.c_str(), addr.c_str());
-    BLE_HID.onDeviceFound(addr, name);
-  }
-};
-
-class BLEClientCallback : public NimBLEClientCallbacks {
- public:
-  void onConnect(NimBLEClient* client) override {
-    LOG_INF("BLE", "Connected to %s", client->getPeerAddress().toString().c_str());
+  void onConnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo) override {
+    LOG_INF("BLE", "Phone connected");
     BLE_HID.onConnect();
   }
 
-  void onDisconnect(NimBLEClient* client, int reason) override {
-    LOG_INF("BLE", "Disconnected (reason: %d)", reason);
+  void onDisconnect(NimBLEServer* pServer, NimBLEConnInfo& connInfo, int reason) override {
+    LOG_INF("BLE", "Phone disconnected (reason: %d)", reason);
     BLE_HID.onDisconnect();
+    // Restart advertising so phone can reconnect
+    NimBLEDevice::startAdvertising();
   }
 };
-
-class BLEHIDReportCallback : public NimBLECharacteristicCallbacks {
- public:
-  void onRead(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo) override {}
-
-  void onWrite(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo) override {}
-
-  void onSubscribe(NimBLECharacteristic* pCharacteristic, NimBLEConnInfo& connInfo,
-                   uint16_t subValue) override {}
-};
-
-// NimBLE 2.x uses a notification callback on the characteristic directly
-static void hidNotifyCallback(NimBLERemoteCharacteristic* pChar, uint8_t* pData,
-                              size_t length, bool isNotify) {
-  BLE_HID.onHIDReport(pData, length);
-}
 
 // ---------------------------------------------------------------------------
 // BluetoothHIDManager implementation
 // ---------------------------------------------------------------------------
 
 void BluetoothHIDManager::begin() {
-  LOG_INF("BLE", "Initializing BLE HID manager");
+  if (_initialized) {
+    LOG_INF("BLE", "BLE already initialized, skipping");
+    return;
+  }
+  _initialized = true;
+  LOG_INF("BLE", "Initializing BLE HID server");
 
   // CRITICAL: WiFi and BLE share one radio on ESP32-C3
   if (WiFi.getMode() != WIFI_OFF) {
     LOG_INF("BLE", "Disabling WiFi for BLE (mutual exclusion)");
     WiFi.disconnect(true);
     WiFi.mode(WIFI_OFF);
-    delay(100);
+    delay(500);
   }
 
   NimBLEDevice::init("CrossPoint");
-  NimBLEDevice::setPower(ESP_PWR_LVL_P9);  // Max power for range
+  NimBLEDevice::setSecurityAuth(BLE_SM_PAIR_AUTHREQ_BOND);
+  NimBLEDevice::setSecurityIOCap(BLE_SM_IO_CAP_NO_IO);
+  NimBLEDevice::setSecurityInitKey(BLE_SM_PAIR_KEY_DIST_ENC | BLE_SM_PAIR_KEY_DIST_ID);
+  NimBLEDevice::setSecurityRespKey(BLE_SM_PAIR_KEY_DIST_ENC | BLE_SM_PAIR_KEY_DIST_ID);;
+  NimBLEDevice::setPower(3);  // Medium power
 
-  loadLearnedKeys();
-  LOG_INF("BLE", "BLE ready. Learned keys: back=0x%04X fwd=0x%04X",
-          _learnedBack, _learnedForward);
+  // Create server
+  NimBLEServer* pServer = NimBLEDevice::createServer();
+  pServer->setCallbacks(new BLEServerCallback());
+
+  // Create HID device
+  _hid = new NimBLEHIDDevice(pServer);
+  _hid->setManufacturer("CrossPoint");
+  _hid->setPnp(0x02, 0x05AC, 0x820A, 0x0210);
+  _hid->setHidInfo(0x00, 0x01);
+  _hid->setReportMap((uint8_t*)hidReportDescriptor, sizeof(hidReportDescriptor));
+
+  // Get input report characteristic for report ID 1
+  _inputReport = _hid->getInputReport(1);
+
+  _hid->setBatteryLevel(100);
+  _hid->startServices();
+
+  // Start advertising
+  NimBLEAdvertising* pAdvertising = NimBLEDevice::getAdvertising();
+  pAdvertising->setAppearance(HID_KEYBOARD);
+  pAdvertising->addServiceUUID(_hid->getHidService()->getUUID());
+  pAdvertising->enableScanResponse(true);
+loadLearnedKeys();
+  LOG_INF("BLE", "BLE HID server ready");
+
+  startAdvertising();
 }
 
+void BluetoothHIDManager::startAdvertising() {  if (!_initialized || !_hid) {
+    LOG_ERR("BLE", "Cannot advertise - not initialized");
+    return;
+  }
+  NimBLEAdvertising* pAdvertising = NimBLEDevice::getAdvertising();
+  if (!pAdvertising) {
+    LOG_ERR("BLE", "Cannot advertise - no advertising object");
+    return;
+  }
+  pAdvertising->reset();
+  pAdvertising->setAppearance(HID_KEYBOARD);
+  pAdvertising->addServiceUUID(_hid->getHidService()->getUUID());
+  pAdvertising->addServiceUUID(_hid->getBatteryService()->getUUID());
+  pAdvertising->addServiceUUID(_hid->getDeviceInfoService()->getUUID());
+  pAdvertising->enableScanResponse(true);
+  pAdvertising->setName("CrossPoint");
+  pAdvertising->start();
+  LOG_INF("BLE", "Advertising as CrossPoint (HID keyboard)");
+}
 void BluetoothHIDManager::update() {
-  // Clear single-frame flags every loop tick
   _pageBackFlag = false;
   _pageForwardFlag = false;
 }
 
-void BluetoothHIDManager::startScan() {
-  if (_scanning) return;
-
-  _scanResults.clear();
-  _scanning = true;
-
-  NimBLEScan* pScan = NimBLEDevice::getScan();
-  pScan->setScanCallbacks(new BLEScanCallback(), false);
-  pScan->setActiveScan(true);
-  pScan->setInterval(100);
-  pScan->setWindow(99);
-
-  // Scan for 10 seconds
-  pScan->start(10, false);
-  LOG_INF("BLE", "Scan started");
+void BluetoothHIDManager::onConnect() {
+  _connected = true;
 }
 
-void BluetoothHIDManager::stopScan() {
-  if (!_scanning) return;
-  NimBLEDevice::getScan()->stop();
-  _scanning = false;
-  LOG_INF("BLE", "Scan stopped");
-}
-
-void BluetoothHIDManager::connectToDevice(const std::string& address) {
-  if (_connected) disconnect();
-
-  LOG_INF("BLE", "Connecting to %s", address.c_str());
-
-  _client = NimBLEDevice::createClient();
-  _client->setClientCallbacks(new BLEClientCallback(), false);
-  _client->setConnectionParams(12, 12, 0, 51);
-
-if (!_client->connect(NimBLEAddress(address, BLE_ADDR_PUBLIC))) {
-      LOG_ERR("BLE", "Connection failed");
-    NimBLEDevice::deleteClient(_client);
-    _client = nullptr;
-    return;
-  }
-
-  // Find the HID service
-  NimBLERemoteService* pHIDService =
-      _client->getService(NimBLEUUID("1812"));  // HID Service UUID
-  if (!pHIDService) {
-    LOG_ERR("BLE", "HID service not found");
-    _client->disconnect();
-    return;
-  }
-
-  // Subscribe to all Report characteristics
-  auto characteristics = pHIDService->getCharacteristics(true);
-  bool subscribed = false;
-  for (auto& pChar : characteristics) {
-    // Report characteristic UUID
-    if (pChar->getUUID() == NimBLEUUID("2A4D")) {
-      if (pChar->canNotify()) {
-        pChar->subscribe(true, hidNotifyCallback);
-        subscribed = true;
-        LOG_INF("BLE", "Subscribed to HID report characteristic");
-      }
-    }
-  }
-
-  if (!subscribed) {
-    LOG_ERR("BLE", "No notifiable HID report characteristics found");
-    _client->disconnect();
-    return;
-  }
-
-  // Store device name from scan results
-  for (const auto& r : _scanResults) {
-    if (r.address == address) {
-      _connectedName = r.name;
-      break;
-    }
-  }
-  _connectedAddress = address;
-}
-
-void BluetoothHIDManager::disconnect() {
-  if (_client) {
-    _client->disconnect();
-    NimBLEDevice::deleteClient(_client);
-    _client = nullptr;
-  }
+void BluetoothHIDManager::onDisconnect() {
   _connected = false;
-  _connectedAddress.clear();
-  _connectedName.clear();
-  LOG_INF("BLE", "Disconnected");
 }
 
+void BluetoothHIDManager::sendKey(uint8_t keycode) {
+  if (!_inputReport || !_connected) return;
+  uint8_t report[1] = {keycode};
+  _inputReport->setValue(report, sizeof(report));
+  _inputReport->notify();
+  delay(10);
+  uint8_t release[1] = {0};
+  _inputReport->setValue(release, sizeof(release));
+  _inputReport->notify();
+}
+void BluetoothHIDManager::stopAdvertising() {
+  if (!_initialized) return;
+  NimBLEDevice::stopAdvertising();
+  LOG_INF("BLE", "Advertising stopped for WiFi");
+}
 void BluetoothHIDManager::startLearnMode() {
   _learnMode = true;
   _learnFirst = 0;
-  _learnSecond = 0;
   _learnStep = 0;
-  LOG_INF("BLE", "Learn Mode started — press PageBack button on remote");
+  LOG_INF("BLE", "Learn Mode started");
 }
 
 void BluetoothHIDManager::cancelLearnMode() {
   _learnMode = false;
   _learnStep = 0;
   _learnFirst = 0;
-  _learnSecond = 0;
   LOG_INF("BLE", "Learn Mode cancelled");
 }
 
 void BluetoothHIDManager::saveLearnedKeys() {
-  // Persist to a simple file on SD
-  // Format: two uint16_t values
   FsFile f;
   if (Storage.openFileForWrite("BLE", "/ble_keys.bin", f)) {
     uint8_t buf[4];
@@ -217,8 +177,6 @@ void BluetoothHIDManager::saveLearnedKeys() {
     buf[3] = (_learnedForward >> 8) & 0xFF;
     f.write(buf, 4);
     f.close();
-    LOG_INF("BLE", "Saved learned keys: back=0x%04X fwd=0x%04X",
-            _learnedBack, _learnedForward);
   }
 }
 
@@ -229,8 +187,6 @@ void BluetoothHIDManager::loadLearnedKeys() {
     if (f.read(buf, 4) == 4) {
       _learnedBack    = buf[0] | (buf[1] << 8);
       _learnedForward = buf[2] | (buf[3] << 8);
-      LOG_INF("BLE", "Loaded learned keys: back=0x%04X fwd=0x%04X",
-              _learnedBack, _learnedForward);
     }
     f.close();
   }
@@ -240,116 +196,11 @@ void BluetoothHIDManager::clearLearnedKeys() {
   _learnedBack = 0;
   _learnedForward = 0;
   Storage.remove("/ble_keys.bin");
-  LOG_INF("BLE", "Cleared learned keys");
-}
-
-// ---------------------------------------------------------------------------
-// Internal callbacks
-// ---------------------------------------------------------------------------
-
-void BluetoothHIDManager::onDeviceFound(const std::string& address,
-                                         const std::string& name) {
-  // Deduplicate
-  for (const auto& r : _scanResults) {
-    if (r.address == address) return;
-  }
-  _scanResults.push_back({address, name});
-}
-
-void BluetoothHIDManager::onConnect() {
-  _connected = true;
-  _scanning = false;
-}
-
-void BluetoothHIDManager::onDisconnect() {
-  _connected = false;
-  _client = nullptr;
-  _connectedAddress.clear();
-  _connectedName.clear();
 }
 
 void BluetoothHIDManager::onHIDReport(const uint8_t* data, size_t length) {
-  if (length == 0) return;
-
-  // Extract a keycode from the report — try common report layouts
-  // Most BLE HID keyboards send: [modifier, reserved, key1, key2, ...]
-  // Consumer reports send a 2-byte little-endian usage code
-  uint16_t keycode = 0;
-
-  if (length >= 3) {
-    // Standard keyboard report: byte 2 is the first keycode
-    keycode = data[2];
-  } else if (length == 2) {
-    // Consumer report: 2-byte little-endian
-    keycode = data[0] | (data[1] << 8);
-  } else if (length == 1) {
-    keycode = data[0];
-  }
-
-  if (keycode == 0) return;
-
-  static unsigned long lastPageTurn = 0;
-  const unsigned long now = millis();
-
-  // Learn Mode — capture two distinct keycodes
-  if (_learnMode) {
-    if (_learnStep == 0) {
-      _learnFirst = keycode;
-      _learnStep = 1;
-      LOG_INF("BLE", "Learn: captured PageBack keycode 0x%04X — now press PageForward", keycode);
-    } else if (_learnStep == 1 && keycode != _learnFirst) {
-      _learnSecond = keycode;
-      _learnStep = 2;
-      _learnedBack = _learnFirst;
-      _learnedForward = _learnSecond;
-      _learnMode = false;
-      saveLearnedKeys();
-      LOG_INF("BLE", "Learn: captured PageForward keycode 0x%04X — done", keycode);
-    }
-    return;
-  }
-
-  // Cooldown check
-  if ((now - lastPageTurn) < PAGE_TURN_COOLDOWN_MS) return;
-
-  // Check learned keycodes first
-  if (_learnedBack != 0 && keycode == _learnedBack) {
-    _pageBackFlag = true;
-    lastPageTurn = now;
-    LOG_DBG("BLE", "PageBack (learned)");
-    return;
-  }
-  if (_learnedForward != 0 && keycode == _learnedForward) {
-    _pageForwardFlag = true;
-    lastPageTurn = now;
-    LOG_DBG("BLE", "PageForward (learned)");
-    return;
-  }
-
-  // Fall back to standard keycodes
-  switch (keycode) {
-    case HID_KEY_PAGE_DOWN:
-    case HID_KEY_RIGHT:
-    case HID_CONSUMER_NEXT:
-    case HID_CONSUMER_FASTF:
-      _pageForwardFlag = true;
-      lastPageTurn = now;
-      LOG_DBG("BLE", "PageForward (standard 0x%04X)", keycode);
-      break;
-
-    case HID_KEY_PAGE_UP:
-    case HID_KEY_LEFT:
-    case HID_CONSUMER_PREV:
-    case HID_CONSUMER_REWIND:
-      _pageBackFlag = true;
-      lastPageTurn = now;
-      LOG_DBG("BLE", "PageBack (standard 0x%04X)", keycode);
-      break;
-
-    default:
-      LOG_DBG("BLE", "Unrecognized keycode 0x%04X", keycode);
-      break;
-  }
+  // Not used in server mode — phone sends keypresses via OS
+  // This is kept for future use
 }
 
 #endif  // BLE_ENABLED

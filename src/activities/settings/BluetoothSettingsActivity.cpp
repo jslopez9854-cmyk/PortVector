@@ -9,24 +9,21 @@
 #include "CrossPointSettings.h"
 #include "components/UITheme.h"
 #include "fontIds.h"
+#include <NimBLEDevice.h>
 
 void BluetoothSettingsActivity::onEnter() {
   Activity::onEnter();
   _bleEnabled = SETTINGS.bleEnabled;
   _screen = Screen::Main;
-
-  if (_bleEnabled && !BLE_HID.isConnected()) {
+  if (_bleEnabled) {
     BLE_HID.begin();
+    BLE_HID.startAdvertising();
   }
-
   requestUpdate();
 }
 
 void BluetoothSettingsActivity::onExit() {
   Activity::onExit();
-  if (BLE_HID.isScanning()) {
-    BLE_HID.stopScan();
-  }
   if (BLE_HID.isLearning()) {
     BLE_HID.cancelLearnMode();
   }
@@ -37,32 +34,21 @@ void BluetoothSettingsActivity::loop() {
     case Screen::Main:
       handleMainInput();
       break;
-    case Screen::Scanning:
-      handleScanningInput();
-      break;
-    case Screen::Connected:
-      handleConnectedInput();
-      break;
     case Screen::Learning:
       handleLearningInput();
       break;
   }
 
-  // Refresh screen while scanning so device list updates
-  if (_screen == Screen::Scanning && BLE_HID.isScanning()) {
-    requestUpdate();
-  }
-
-  // Auto-advance to Connected screen when connection established
-  if (_screen == Screen::Scanning && BLE_HID.isConnected()) {
-    BLE_HID.stopScan();
-    _screen = Screen::Connected;
-    requestUpdate();
-  }
-
   // Auto-advance when Learn Mode finishes
   if (_screen == Screen::Learning && !BLE_HID.isLearning()) {
-    _screen = Screen::Connected;
+    _screen = Screen::Main;
+    requestUpdate();
+  }
+
+  // Refresh periodically to update connection status
+  static unsigned long lastRefresh = 0;
+  if (millis() - lastRefresh > 1000) {
+    lastRefresh = millis();
     requestUpdate();
   }
 }
@@ -72,12 +58,6 @@ void BluetoothSettingsActivity::render(RenderLock&& lock) {
   switch (_screen) {
     case Screen::Main:
       drawMain();
-      break;
-    case Screen::Scanning:
-      drawScanning();
-      break;
-    case Screen::Connected:
-      drawConnected();
       break;
     case Screen::Learning:
       drawLearning();
@@ -95,70 +75,39 @@ void BluetoothSettingsActivity::drawMain() {
   renderer.drawText(UI_12_FONT_ID, 10, y, "Bluetooth", true);
   y += 40;
 
-  // Status line
-  const char* status = _bleEnabled ? "Enabled" : "Disabled";
-  renderer.drawText(UI_10_FONT_ID, 10, y, status, true);
-  y += 30;
+  if (!_bleEnabled) {
+    renderer.drawText(UI_10_FONT_ID, 10, y, "Disabled", true);
+    y += 30;
+    const auto labels = mappedInput.mapLabels("Back", "Enable", "", "");
+    GUI.drawButtonHints(renderer, labels.btn1, labels.btn2, labels.btn3, labels.btn4);
+    return;
+  }
 
-  if (_bleEnabled) {
-    if (BLE_HID.isConnected()) {
-      std::string line = "Connected: " + BLE_HID.getConnectedDeviceName();
-      renderer.drawText(UI_10_FONT_ID, 10, y, line.c_str(), true);
+  renderer.drawText(UI_10_FONT_ID, 10, y, "Enabled — advertising as CrossPoint", true);
+  y += 30;
+  std::string mac = "MAC: " + std::string(NimBLEDevice::getAddress().toString().c_str());
+  renderer.drawText(UI_10_FONT_ID, 10, y, mac.c_str(), true);
+  y += 25;
+
+  if (BLE_HID.isConnected()) {
+    renderer.drawText(UI_10_FONT_ID, 10, y, "Phone connected", true);
+    y += 30;
+    if (BLE_HID.hasLearnedKeys()) {
+      renderer.drawText(UI_10_FONT_ID, 10, y, "Keys: Learned", true);
     } else {
-      renderer.drawText(UI_10_FONT_ID, 10, y, "Not connected", true);
+      renderer.drawText(UI_10_FONT_ID, 10, y, "Keys: Default", true);
     }
     y += 30;
-  }
-
-  // Button hints
-  if (_bleEnabled) {
-    GUI.drawButtonHints(renderer,
-      BLE_HID.isConnected() ? "Disconnect" : "Scan",
-      "Learn Keys",
-      "Disable",
-      "Back");
+    const auto labels = mappedInput.mapLabels("Back", "Learn Keys", "", "Clear Keys");
+    GUI.drawButtonHints(renderer, labels.btn1, labels.btn2, labels.btn3, labels.btn4);
   } else {
-    GUI.drawButtonHints(renderer, "Enable", "", "", "Back");
+    renderer.drawText(UI_10_FONT_ID, 10, y, "Waiting for phone to connect...", true);
+    y += 25;
+    renderer.drawText(UI_10_FONT_ID, 10, y, "Pair CrossPoint in phone Bluetooth settings", true);
+    y += 30;
+    const auto labels = mappedInput.mapLabels("Back", "", "", "Disable");
+    GUI.drawButtonHints(renderer, labels.btn1, labels.btn2, labels.btn3, labels.btn4);
   }
-}
-
-void BluetoothSettingsActivity::drawScanning() {
-  int y = 20;
-  renderer.drawText(UI_12_FONT_ID, 10, y, "Scanning...", true);
-  y += 40;
-
-  const auto& results = BLE_HID.getScanResults();
-  if (results.empty()) {
-    renderer.drawText(UI_10_FONT_ID, 10, y, "No devices found yet", true);
-  } else {
-    for (int i = 0; i < static_cast<int>(results.size()) && i < 8; i++) {
-      const bool selected = (i == _selectedDevice);
-      std::string line = (selected ? "> " : "  ") + results[i].name;
-      renderer.drawText(UI_10_FONT_ID, 10, y, line.c_str(), true);
-      y += 25;
-    }
-  }
-
-  GUI.drawButtonHints(renderer, "Connect", "", "Stop", "Back");
-}
-
-void BluetoothSettingsActivity::drawConnected() {
-  int y = 20;
-  renderer.drawText(UI_12_FONT_ID, 10, y, "Bluetooth", true);
-  y += 40;
-
-  std::string line = "Connected: " + BLE_HID.getConnectedDeviceName();
-  renderer.drawText(UI_10_FONT_ID, 10, y, line.c_str(), true);
-  y += 30;
-
-  if (BLE_HID.hasLearnedKeys()) {
-    renderer.drawText(UI_10_FONT_ID, 10, y, "Keys: Learned", true);
-  } else {
-    renderer.drawText(UI_10_FONT_ID, 10, y, "Keys: Default", true);
-  }
-  y += 30;
-
-  GUI.drawButtonHints(renderer, "Disconnect", "Learn Keys", "Clear Keys", "Back");
 }
 
 void BluetoothSettingsActivity::drawLearning() {
@@ -167,16 +116,13 @@ void BluetoothSettingsActivity::drawLearning() {
   y += 50;
 
   if (_learnStep == 0) {
-    renderer.drawText(UI_10_FONT_ID, 10, y, "Press your PageBack button", true);
-    y += 30;
-    renderer.drawText(UI_10_FONT_ID, 10, y, "on your phone/remote", true);
+    renderer.drawText(UI_10_FONT_ID, 10, y, "Press PageBack on your phone app", true);
   } else if (_learnStep == 1) {
     renderer.drawText(UI_10_FONT_ID, 10, y, "Good! Now press PageForward", true);
-    y += 30;
-    renderer.drawText(UI_10_FONT_ID, 10, y, "on your phone/remote", true);
   }
 
-  GUI.drawButtonHints(renderer, "", "", "Cancel", "");
+  const auto labels = mappedInput.mapLabels("", "", "", "Cancel");
+  GUI.drawButtonHints(renderer, labels.btn1, labels.btn2, labels.btn3, labels.btn4);
 }
 
 // ---------------------------------------------------------------------------
@@ -190,9 +136,7 @@ void BluetoothSettingsActivity::handleMainInput() {
   }
 
   if (!_bleEnabled) {
-    // Only action is Enable
-    if (mappedInput.wasReleased(MappedInputManager::Button::Left) ||
-        mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
+    if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
       _bleEnabled = true;
       SETTINGS.bleEnabled = true;
       SETTINGS.saveToFile();
@@ -202,22 +146,7 @@ void BluetoothSettingsActivity::handleMainInput() {
     return;
   }
 
-  // Left = Scan or Disconnect
-  if (mappedInput.wasReleased(MappedInputManager::Button::Left)) {
-    if (BLE_HID.isConnected()) {
-      BLE_HID.disconnect();
-      requestUpdate();
-    } else {
-      BLE_HID.clearScanResults();
-      _selectedDevice = 0;
-      _screen = Screen::Scanning;
-      BLE_HID.startScan();
-      requestUpdate();
-    }
-    return;
-  }
-
-  // Confirm = Learn Keys
+  // Confirm = Learn Keys (only when connected)
   if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
     if (BLE_HID.isConnected()) {
       _learnStep = 0;
@@ -228,115 +157,35 @@ void BluetoothSettingsActivity::handleMainInput() {
     return;
   }
 
-  // Right = Disable
+  // Right = Disable or Clear Keys
   if (mappedInput.wasReleased(MappedInputManager::Button::Right)) {
-    _bleEnabled = false;
-    SETTINGS.bleEnabled = false;
-    SETTINGS.saveToFile();
-    if (BLE_HID.isConnected()) BLE_HID.disconnect();
-    requestUpdate();
-    return;
-  }
-}
-
-void BluetoothSettingsActivity::handleScanningInput() {
-  if (mappedInput.wasReleased(MappedInputManager::Button::Back)) {
-    BLE_HID.stopScan();
-    _screen = Screen::Main;
-    requestUpdate();
-    return;
-  }
-
-  // Navigate device list
-  if (mappedInput.wasReleased(MappedInputManager::Button::Up)) {
-    if (_selectedDevice > 0) {
-      _selectedDevice--;
+    if (BLE_HID.isConnected()) {
+      BLE_HID.clearLearnedKeys();
+      requestUpdate();
+    } else {
+      _bleEnabled = false;
+      SETTINGS.bleEnabled = false;
+      SETTINGS.saveToFile();
       requestUpdate();
     }
-    return;
-  }
-
-  if (mappedInput.wasReleased(MappedInputManager::Button::Down)) {
-    if (_selectedDevice < static_cast<int>(BLE_HID.getScanResults().size()) - 1) {
-      _selectedDevice++;
-      requestUpdate();
-    }
-    return;
-  }
-
-  // Left = Connect to selected
-  if (mappedInput.wasReleased(MappedInputManager::Button::Left)) {
-    const auto& results = BLE_HID.getScanResults();
-    if (!results.empty() && _selectedDevice < static_cast<int>(results.size())) {
-      BLE_HID.stopScan();
-      BLE_HID.connectToDevice(results[_selectedDevice].address);
-      requestUpdate();
-    }
-    return;
-  }
-
-  // Right = Stop scan
-  if (mappedInput.wasReleased(MappedInputManager::Button::Right)) {
-    BLE_HID.stopScan();
-    _screen = Screen::Main;
-    requestUpdate();
-    return;
-  }
-}
-
-void BluetoothSettingsActivity::handleConnectedInput() {
-  if (mappedInput.wasReleased(MappedInputManager::Button::Back)) {
-    _screen = Screen::Main;
-    requestUpdate();
-    return;
-  }
-
-  // Left = Disconnect
-  if (mappedInput.wasReleased(MappedInputManager::Button::Left)) {
-    BLE_HID.disconnect();
-    _screen = Screen::Main;
-    requestUpdate();
-    return;
-  }
-
-  // Confirm = Learn Keys
-  if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
-    _learnStep = 0;
-    _screen = Screen::Learning;
-    BLE_HID.startLearnMode();
-    requestUpdate();
-    return;
-  }
-
-  // Right = Clear learned keys
-  if (mappedInput.wasReleased(MappedInputManager::Button::Right)) {
-    BLE_HID.clearLearnedKeys();
-    requestUpdate();
     return;
   }
 }
 
 void BluetoothSettingsActivity::handleLearningInput() {
-  // Track learn step for display
-  // BLE_HID updates _learnMode internally; we mirror the step here for the UI
   if (!BLE_HID.isLearning() && _learnStep < 2) {
     _learnStep = 2;
     requestUpdate();
     return;
   }
 
-  // Right = Cancel
   if (mappedInput.wasReleased(MappedInputManager::Button::Right)) {
     BLE_HID.cancelLearnMode();
-    _screen = Screen::Connected;
+    _screen = Screen::Main;
     requestUpdate();
     return;
   }
 
-  // Update displayed step based on BLE manager internal state
-  // We infer step from the manager's internal _learnStep but it's private,
-  // so we watch for the first keypress by checking if isLearning() is still true
-  // and update our display step accordingly via a simple frame counter
   requestUpdate();
 }
 

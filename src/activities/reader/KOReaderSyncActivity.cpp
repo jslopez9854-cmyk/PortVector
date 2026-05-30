@@ -20,6 +20,9 @@
 #include "activities/network/WifiSelectionActivity.h"
 #include "components/UITheme.h"
 #include "fontIds.h"
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 namespace {
 void syncTimeWithNTP() {
@@ -290,6 +293,9 @@ void KOReaderSyncActivity::performUpload() {
 
 void KOReaderSyncActivity::onEnter() {
   Activity::onEnter();
+  #ifdef BLE_ENABLED
+  BLE_HID.stopAdvertising();
+#endif
   ReaderUtils::applyOrientation(renderer, SETTINGS.orientation);
 
   // Check for credentials first
@@ -315,7 +321,11 @@ void KOReaderSyncActivity::onEnter() {
 void KOReaderSyncActivity::onExit() {
   Activity::onExit();
 
-  wifiOff();
+ wifiOff();
+  #ifdef BLE_ENABLED
+  delay(300);
+  BLE_HID.startAdvertising();
+#endif
 }
 
 void KOReaderSyncActivity::render(RenderLock&&) {
