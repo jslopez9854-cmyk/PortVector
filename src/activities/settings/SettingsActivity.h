@@ -23,6 +23,7 @@ enum class SettingAction {
   SdFirmwareUpdate,
   Language,
 DownloadFonts,
+  Restart,
 #ifdef BLE_ENABLED
   BluetoothSettings,
 #endif

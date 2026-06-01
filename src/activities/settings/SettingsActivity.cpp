@@ -63,6 +63,7 @@ void SettingsActivity::rebuildSettingsLists() {
   #ifdef BLE_ENABLED
   systemSettings.push_back(SettingInfo::Action(StrId::STR_BLUETOOTH, SettingAction::BluetoothSettings));
 #endif
+systemSettings.push_back(SettingInfo::Action(StrId::STR_RESTART, SettingAction::Restart));
   // Insert "Manage Fonts" right after the font family setting so users discover it naturally
   readerSettings.insert(readerSettings.begin() + 1,
                         SettingInfo::Action(StrId::STR_MANAGE_FONTS, SettingAction::DownloadFonts));
@@ -255,7 +256,10 @@ void SettingsActivity::toggleCurrentSetting() {
         startActivityForResult(std::make_unique<BluetoothSettingsActivity>(renderer, mappedInput), resultHandler);
         break;
 #endif
-      case SettingAction::None:
+case SettingAction::Restart:
+        ESP.restart();
+        break;      
+case SettingAction::None:
         // Do nothing
         break;
     }
