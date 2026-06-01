@@ -19,9 +19,10 @@ class BluetoothSettingsActivity : public Activity {
  private:
 enum class Screen {
     Main,
+    Scanning,
+    Connected,
     Learning,
-  };
-  
+  };  
   Screen _screen = Screen::Main;
 
   // Index of selected device in scan results

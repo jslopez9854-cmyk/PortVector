@@ -4,8 +4,6 @@
 
 #include <Arduino.h>
 #include <NimBLEDevice.h>
-#include <NimBLEHIDDevice.h>
-#include <NimBLEServer.h>
 
 class BluetoothHIDManager {
  public:
@@ -14,47 +12,49 @@ class BluetoothHIDManager {
     return instance;
   }
 
-  // Call once at startup
   void begin();
-
-  // Call once per main loop frame — clears single-frame flags
   void update();
 
-  // True if a phone/device is currently connected
-  bool isConnected() const { return _connected; }
+  void startScan();
+  void stopScan();
+  void connectToDevice(const std::string& address);
+  void disconnect();
 
-  // Single-frame page turn flags — consumed by MappedInputManager each frame
+  void startLearnMode();
+  void cancelLearnMode();
+  bool isLearning() const { return _learnMode; }
+
+  bool isConnected() const { return _connected; }
+  bool isScanning() const { return _scanning; }
+
+  const std::string& getConnectedDeviceName() const { return _connectedName; }
+
   bool wasPageBackPressed() const { return _pageBackFlag; }
   bool wasPageForwardPressed() const { return _pageForwardFlag; }
 
-  // Called by server callbacks
-  void onConnect();
-  void onDisconnect();
+  struct ScanResult {
+    std::string address;
+    std::string name;
+  };
+  const std::vector<ScanResult>& getScanResults() const { return _scanResults; }
+  void clearScanResults() { _scanResults.clear(); }
 
-  // Save/load/clear learned keycodes
   void saveLearnedKeys();
   void loadLearnedKeys();
   void clearLearnedKeys();
   bool hasLearnedKeys() const { return _learnedBack != 0 || _learnedForward != 0; }
 
-  void startAdvertising();
-  void stopAdvertising();
-  // Learn Mode
-  void startLearnMode();
-  void cancelLearnMode();
-  bool isLearning() const { return _learnMode; }
-
-  // Called when a keypress report arrives from the connected phone
   void onHIDReport(const uint8_t* data, size_t length);
-
-  // Send a keypress from X4 to phone (not needed for page turning but useful)
-  void sendKey(uint8_t keycode);
+  void onDeviceFound(const std::string& address, const std::string& name);
+  void onConnect();
+  void onDisconnect();
 
  private:
   BluetoothHIDManager() = default;
 
   bool _initialized = false;
   bool _connected = false;
+  bool _scanning = false;
   bool _learnMode = false;
 
   bool _pageBackFlag = false;
@@ -63,12 +63,17 @@ class BluetoothHIDManager {
   uint16_t _learnedBack = 0;
   uint16_t _learnedForward = 0;
   uint16_t _learnFirst = 0;
+  uint16_t _learnSecond = 0;
   uint8_t _learnStep = 0;
 
-  NimBLEHIDDevice* _hid = nullptr;
-  NimBLECharacteristic* _inputReport = nullptr;
+  std::string _connectedAddress;
+  std::string _connectedName;
+  std::vector<ScanResult> _scanResults;
 
-  friend class BLEServerCallback;
+  NimBLEClient* _client = nullptr;
+
+  friend class BLEScanCallback;
+  friend class BLEClientCallback;
 };
 
 #define BLE_HID BluetoothHIDManager::getInstance()
