@@ -14,12 +14,12 @@ void BluetoothSettingsActivity::onEnter() {
   Activity::onEnter();
   _bleEnabled = SETTINGS.bleEnabled;
   _screen = Screen::Main;
-  if (_bleEnabled) {
+  if (_bleEnabled && !BLE_HID.isInitialized()) {
     BLE_HID.begin();
   }
+  _enterTime = millis();
   requestUpdate();
 }
-
 void BluetoothSettingsActivity::onExit() {
   Activity::onExit();
   if (BLE_HID.isScanning()) BLE_HID.stopScan();
@@ -80,7 +80,7 @@ void BluetoothSettingsActivity::drawMain() {
       "Back",
       BLE_HID.isConnected() ? "Learn Keys" : "",
       BLE_HID.isConnected() ? "Disconnect" : "Scan",
-      "");
+      "Disable");
     GUI.drawButtonHints(renderer, labels.btn1, labels.btn2, labels.btn3, labels.btn4);
   } else {
     const auto labels = mappedInput.mapLabels("Back", "Enable", "", "");
@@ -154,8 +154,10 @@ void BluetoothSettingsActivity::handleMainInput() {
     return;
   }
 
+  if (millis() - _enterTime < 500) return;
+
   if (!_bleEnabled) {
-    if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
+        if (mappedInput.wasReleased(MappedInputManager::Button::Confirm)) {
       _bleEnabled = true;
       SETTINGS.bleEnabled = true;
       SETTINGS.saveToFile();
@@ -186,6 +188,17 @@ void BluetoothSettingsActivity::handleMainInput() {
       BLE_HID.startLearnMode();
       requestUpdate();
     }
+    return;
+  }
+  if (mappedInput.wasReleased(MappedInputManager::Button::Right)) {
+    if (BLE_HID.isConnected()) {
+      BLE_HID.clearLearnedKeys();
+    } else {
+      _bleEnabled = false;
+      SETTINGS.bleEnabled = false;
+      SETTINGS.saveToFile();
+    }
+    requestUpdate();
     return;
   }
 }

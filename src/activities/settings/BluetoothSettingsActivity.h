@@ -44,6 +44,7 @@ enum class Screen {
   void handleScanningInput();
   void handleConnectedInput();
   void handleLearningInput();
+  unsigned long _enterTime = 0;
 };
 
 #endif  // BLE_ENABLED

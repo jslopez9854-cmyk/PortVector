@@ -31,6 +31,7 @@ class BluetoothHIDManager {
 
   bool wasPageBackPressed() const { return _pageBackFlag; }
   bool wasPageForwardPressed() const { return _pageForwardFlag; }
+  bool isInitialized() const { return _initialized; }
 
   struct ScanResult {
     std::string address;
@@ -59,6 +60,7 @@ class BluetoothHIDManager {
 
   bool _pageBackFlag = false;
   bool _pageForwardFlag = false;
+  
 
   uint16_t _learnedBack = 0;
   uint16_t _learnedForward = 0;
