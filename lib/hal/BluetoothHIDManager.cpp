@@ -1159,8 +1159,18 @@ void BluetoothHIDManager::onHIDNotify(NimBLERemoteCharacteristic* pChar, uint8_t
   // Detect button PRESS transition.
   // For most remotes, key changes while held are treated as a new press event.
   // For Game Brick, ignore key-change retriggers while held to avoid duplicate events.
+  // For custom learned profiles, suppress re-triggers when keycode alternates
+  // between the two learned keycodes mid-hold (Free 2 rolling sequence behavior)
+  const bool isLearnedKeyChange = device->simpleFallbackEnabled == false &&
+      device->profile && strcmp(device->profile->name, "Custom BLE Remote") == 0 &&
+      device->lastButtonState && isPressed &&
+      keycode != device->lastHIDKeycode &&
+      ((keycode == device->profile->pageUpCode && device->lastHIDKeycode == device->profile->pageDownCode) ||
+       (keycode == device->profile->pageDownCode && device->lastHIDKeycode == device->profile->pageUpCode));
+
   bool isNewPressEvent =
-      isPressed && (!device->lastButtonState || (!isGameBrickProfile && keycode != device->lastHIDKeycode));
+      isPressed && (!device->lastButtonState || (!isGameBrickProfile && keycode != device->lastHIDKeycode)) &&
+      !isLearnedKeyChange;
 
   // Free2 reports rolling keycodes while one button is held.
   // Collapse that family to one logical press and ignore family flips until release.

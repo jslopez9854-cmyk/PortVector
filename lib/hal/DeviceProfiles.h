@@ -72,7 +72,7 @@ constexpr DeviceProfile KNOWN_DEVICES[] = {
     {"Free2 Style", nullptr, STANDARD_PAGE_UP, STANDARD_PAGE_DOWN, true, 2, false},
 
     // Free2-M page turner (common keyboard-mode mapping)
-    {"Free2-M", nullptr, 0x02, 0x01, false, 2, false},
+    {"Free2-M", nullptr, 0x50, 0x4F, false, 2, false},
 
     // Free3-M page turner (confirmed working keycodes from setup wizard)
     {"Free3-M", nullptr, 0x02, 0x01, false, 2, false},

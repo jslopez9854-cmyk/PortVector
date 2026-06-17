@@ -16,6 +16,9 @@
 #include "components/UITheme.h"
 #include "fontIds.h"
 #include "util/QrUtils.h"
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 namespace {
 // AP Mode configuration
@@ -46,6 +49,13 @@ void CrossPointWebServerActivity::onEnter() {
   Activity::onEnter();
 
   LOG_DBG("WEBACT", "Free heap at onEnter: %d bytes", ESP.getFreeHeap());
+
+  #ifdef BLE_ENABLED
+  if (BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("WEBACT", "Disabling BLE to free memory for web server");
+    BluetoothHIDManager::getInstance().disable();
+  }
+#endif
 
   // Reset state
   state = WebServerActivityState::MODE_SELECTION;
@@ -106,9 +116,18 @@ void CrossPointWebServerActivity::onExit() {
   WiFi.mode(WIFI_OFF);
   delay(30);  // Allow WiFi hardware to power down
 
-  LOG_DBG("WEBACT", "Free heap at onExit end: %d bytes", ESP.getFreeHeap());
-}
+LOG_DBG("WEBACT", "Free heap at onExit end: %d bytes", ESP.getFreeHeap());
 
+#ifdef BLE_ENABLED
+  if (SETTINGS.bleEnabled && !BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("WEBACT", "Re-enabling BLE after web server exit");
+    BluetoothHIDManager::getInstance().enable();
+    if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      BluetoothHIDManager::getInstance().setBondedDevice(SETTINGS.bleBondedDeviceAddr, SETTINGS.bleBondedDeviceName);
+    }
+  }
+#endif
+}
 void CrossPointWebServerActivity::onNetworkModeSelected(const NetworkMode mode) {
   const char* modeName = "Join Network";
   if (mode == NetworkMode::CONNECT_CALIBRE) {
