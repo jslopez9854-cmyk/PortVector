@@ -20,6 +20,9 @@
 #include "activities/network/WifiSelectionActivity.h"
 #include "components/UITheme.h"
 #include "fontIds.h"
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 namespace {
 void syncTimeWithNTP() {
@@ -292,6 +295,13 @@ void KOReaderSyncActivity::onEnter() {
   Activity::onEnter();
   ReaderUtils::applyOrientation(renderer, SETTINGS.orientation);
 
+#ifdef BLE_ENABLED
+  if (BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("KOSync", "Disabling BLE to free memory for sync");
+    BluetoothHIDManager::getInstance().disable();
+  }
+#endif
+
   // Check for credentials first
   if (!KOREADER_STORE.hasCredentials()) {
     state = NO_CREDENTIALS;
@@ -315,6 +325,16 @@ void KOReaderSyncActivity::onEnter() {
 void KOReaderSyncActivity::onExit() {
   Activity::onExit();
   wifiOff();
+
+#ifdef BLE_ENABLED
+  if (SETTINGS.bleEnabled && !BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("KOSync", "Re-enabling BLE after sync");
+    BluetoothHIDManager::getInstance().enable();
+    if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      BluetoothHIDManager::getInstance().setBondedDevice(SETTINGS.bleBondedDeviceAddr, SETTINGS.bleBondedDeviceName);
+    }
+  }
+#endif
 }
 
 void KOReaderSyncActivity::render(RenderLock&&) {
