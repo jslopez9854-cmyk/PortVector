@@ -228,6 +228,10 @@ class CrossPointSettings {
 #ifdef BLE_ENABLED
   // Bluetooth HID page turner (0 = disabled, 1 = enabled)
   uint8_t bleEnabled = 0;
+   // Bonded BLE remote (for auto-reconnect)
+  char bleBondedDeviceAddr[18] = "";
+  char bleBondedDeviceName[32] = "";
+  uint8_t bleBondedDeviceAddrType = 0;
 #endif
   ~CrossPointSettings() = default;
 

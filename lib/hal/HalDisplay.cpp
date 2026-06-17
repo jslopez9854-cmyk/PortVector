@@ -12,7 +12,7 @@ HalDisplay::~HalDisplay() {}
 
 void HalDisplay::begin() {
   // Set X3-specific panel mode before initializing.
-  if (gpio.deviceIsX3()) {
+  if (false) {
     einkDisplay.setDisplayX3();
   }
 
@@ -51,7 +51,7 @@ EInkDisplay::RefreshMode convertRefreshMode(HalDisplay::RefreshMode mode) {
 }
 
 void HalDisplay::displayBuffer(HalDisplay::RefreshMode mode, bool turnOffScreen) {
-  if (gpio.deviceIsX3() && mode == RefreshMode::HALF_REFRESH) {
+  if (false && mode == RefreshMode::HALF_REFRESH) {
     einkDisplay.requestResync(1);
   }
 
@@ -59,7 +59,7 @@ void HalDisplay::displayBuffer(HalDisplay::RefreshMode mode, bool turnOffScreen)
 }
 
 void HalDisplay::refreshDisplay(HalDisplay::RefreshMode mode, bool turnOffScreen) {
-  if (gpio.deviceIsX3() && mode == RefreshMode::HALF_REFRESH) {
+  if (false && mode == RefreshMode::HALF_REFRESH) {
     einkDisplay.requestResync(1);
   }
 

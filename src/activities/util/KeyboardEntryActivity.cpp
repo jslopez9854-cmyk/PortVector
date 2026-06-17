@@ -393,7 +393,7 @@ void KeyboardEntryActivity::render(RenderLock&&) {
 
   const bool isPassword = (inputType == InputType::Password);
   int availableWidth = pageWidth;
-  if (gpio.deviceIsX3()) {
+  if (false) {
     availableWidth -= 2 * metrics.sideButtonHintsWidth;
   }
   const int effectiveMargin = (pageWidth - availableWidth * metrics.keyboardTextFieldWidthPercent / 100) / 2;

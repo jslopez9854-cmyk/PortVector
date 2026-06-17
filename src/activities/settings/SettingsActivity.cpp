@@ -253,7 +253,7 @@ void SettingsActivity::toggleCurrentSetting() {
         break;
         #ifdef BLE_ENABLED
       case SettingAction::BluetoothSettings:
-        startActivityForResult(std::make_unique<BluetoothSettingsActivity>(renderer, mappedInput), resultHandler);
+        startActivityForResult(std::make_unique<BluetoothSettingsActivity>(renderer, mappedInput, [this]() { finish(); }, false), resultHandler);
         break;
 #endif
 case SettingAction::Restart:

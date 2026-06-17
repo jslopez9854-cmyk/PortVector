@@ -30,6 +30,9 @@
 #include "fontIds.h"
 #include "util/ButtonNavigator.h"
 #include "util/ScreenshotUtil.h"
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 MappedInputManager mappedInputManager(gpio);
 GfxRenderer renderer(display);
@@ -254,7 +257,7 @@ void setup() {
   }
 #endif
 
-  LOG_INF("MAIN", "Hardware detect: %s", gpio.deviceIsX3() ? "X3" : "X4");
+  LOG_INF("MAIN", "Hardware detect: %s", false ? "X3" : "X4");
 
   // SD Card Initialization
   // We need 6 open files concurrently when parsing a new chapter
@@ -278,8 +281,7 @@ void setup() {
   switch (wakeupReason) {
     case HalGPIO::WakeupReason::PowerButton:
       LOG_DBG("MAIN", "Verifying power button press duration");
-      gpio.verifyPowerButtonWakeup(SETTINGS.getPowerButtonDuration(),
-                                   SETTINGS.shortPwrBtn == CrossPointSettings::SHORT_PWRBTN::SLEEP);
+      verifyPowerButtonDuration();
       break;
     case HalGPIO::WakeupReason::AfterUSBPower:
       // If USB power caused a cold boot, go back to sleep
@@ -343,6 +345,20 @@ void setup() {
     activityManager.goToReader(path);
   }
 
+  #ifdef BLE_ENABLED
+  {
+    auto& btMgr = BluetoothHIDManager::getInstance();
+    btMgr.setButtonInjector([](uint8_t buttonIndex, bool pressed) { gpio.setVirtualButtonState(buttonIndex, pressed); });
+    btMgr.setButtonActivityNotifier([](uint8_t buttonIndex) { gpio.updateVirtualButtonActivity(buttonIndex); });
+    if (SETTINGS.bleEnabled) {
+      btMgr.enable();
+      if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+        btMgr.setBondedDevice(SETTINGS.bleBondedDeviceAddr, SETTINGS.bleBondedDeviceName);
+      }
+    }
+  }
+#endif
+
   // Ensure we're not still holding the power button before leaving setup
   waitForPowerRelease();
 }
@@ -355,6 +371,10 @@ void loop() {
   gpio.update();
   halTiltSensor.update(SETTINGS.tiltPageTurn, SETTINGS.orientation, activityManager.isReaderActivity());
 
+#ifdef BLE_ENABLED
+  BluetoothHIDManager::getInstance().updateActivity();
+  BluetoothHIDManager::getInstance().checkAutoReconnect(gpio.wasAnyPressed() || gpio.wasAnyReleased());
+#endif
   renderer.setFadingFix(SETTINGS.fadingFix);
 
   if (Serial && millis() - lastMemPrint >= 10000) {

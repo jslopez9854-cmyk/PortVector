@@ -52,17 +52,16 @@ bool HalTiltSensor::readGyro(float& gx, float& gy, float& gz) const {
 }
 
 void HalTiltSensor::begin() {
-  if (!gpio.deviceIsX3()) {
-    _available = false;
-    return;
-  }
+  // X4 does not have a tilt sensor
+  _available = false;
+  return;
 
   // Try primary address, then alternate
   uint8_t whoami = 0;
-  _i2cAddr = I2C_ADDR_QMI8658;
-  if (!readReg(QMI8658_WHO_AM_I_REG, &whoami) || whoami != QMI8658_WHO_AM_I_VALUE) {
-    _i2cAddr = I2C_ADDR_QMI8658_ALT;
-    if (!readReg(QMI8658_WHO_AM_I_REG, &whoami) || whoami != QMI8658_WHO_AM_I_VALUE) {
+  _i2cAddr = 0x6A;
+  if (!readReg(0x0F, &whoami) || whoami != 0x05) {
+    _i2cAddr = 0x6B;
+    if (!readReg(0x0F, &whoami) || whoami != 0x05) {
       LOG_ERR("GYR", "QMI8658 IMU not found");
       _available = false;
       return;
