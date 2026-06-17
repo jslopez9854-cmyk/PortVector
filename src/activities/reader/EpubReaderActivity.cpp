@@ -29,6 +29,9 @@
 #include "components/UITheme.h"
 #include "fontIds.h"
 #include "util/ScreenshotUtil.h"
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 namespace {
 // pagesPerRefresh now comes from SETTINGS.getRefreshFrequency()
@@ -218,12 +221,23 @@ void EpubReaderActivity::loop() {
                              }
                            });
   }
-
-  // Long press BACK (1s+) goes to file selection
-  if (mappedInput.isPressed(MappedInputManager::Button::Back) && mappedInput.getHeldTime() >= ReaderUtils::GO_HOME_MS) {
-    activityManager.goToFileBrowser(epub ? epub->getPath() : "");
-    return;
+#ifdef BLE_ENABLED
+  // Long press BACK (500ms+) reconnects bonded BLE remote
+  static bool bleReconnectTriggered = false;
+  if (mappedInput.isPressed(MappedInputManager::Button::Back) && mappedInput.getHeldTime() >= 500 &&
+      !bleReconnectTriggered) {
+    bleReconnectTriggered = true;
+    auto& btMgr = BluetoothHIDManager::getInstance();
+    if (btMgr.isEnabled() && !btMgr.getConnectedDevices().empty() == false &&
+        SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      LOG_INF("BT", "Long press Back: reconnecting bonded remote");
+      btMgr.connectToDevice(SETTINGS.bleBondedDeviceAddr);
+    }
   }
+  if (!mappedInput.isPressed(MappedInputManager::Button::Back)) {
+    bleReconnectTriggered = false;
+  }
+#endif
 
   // Short press BACK goes directly to home (or restores position if viewing footnote)
   if (mappedInput.wasReleased(MappedInputManager::Button::Back) &&
