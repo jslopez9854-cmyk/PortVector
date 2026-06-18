@@ -30,7 +30,7 @@ class GfxRenderer {
   };
 
  private:
-  static constexpr size_t BW_BUFFER_CHUNK_SIZE = 6000;  // 6KB chunks to allow for non-contiguous memory
+  static constexpr size_t BW_BUFFER_CHUNK_SIZE = 4000;  // 4KB chunks to allow for non-contiguous memory
 
   HalDisplay& display;
   RenderMode renderMode;

@@ -228,9 +228,12 @@ void EpubReaderActivity::loop() {
       !bleReconnectTriggered) {
     bleReconnectTriggered = true;
     auto& btMgr = BluetoothHIDManager::getInstance();
-    if (btMgr.isEnabled() && !btMgr.getConnectedDevices().empty() == false &&
-        SETTINGS.bleBondedDeviceAddr[0] != '\0') {
-      LOG_INF("BT", "Long press Back: reconnecting bonded remote");
+    if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      if (!btMgr.isEnabled()) {
+        LOG_INF("BT", "Long press Back: enabling BLE");
+        btMgr.enable();
+      }
+      LOG_INF("BT", "Long press Back: connecting bonded remote");
       btMgr.connectToDevice(SETTINGS.bleBondedDeviceAddr);
     }
   }
