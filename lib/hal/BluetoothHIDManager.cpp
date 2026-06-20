@@ -1674,6 +1674,13 @@ void BluetoothHIDManager::updateActivity() {
   if (!inactiveAddress.empty()) {
     LOG_INF("BT", "Device %s inactive for %lu ms, disconnecting", inactiveAddress.c_str(), inactiveTimeMs);
     disconnectFromDevice(inactiveAddress);
+
+    // No devices left connected after this disconnect: fully disable BLE to
+    // free the NimBLE stack's RAM instead of just sitting idle and connected.
+    if (_connectedDevices.empty()) {
+      LOG_INF("BT", "No devices connected after inactivity timeout, disabling BLE to free memory");
+      disable();
+    }
   }
 }
 

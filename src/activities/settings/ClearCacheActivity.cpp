@@ -99,9 +99,34 @@ void ClearCacheActivity::clearCache() {
       String fullPath = "/.crosspoint/" + itemName;
       LOG_DBG("CLEAR_CACHE", "Removing cache: %s", fullPath.c_str());
 
-      file.close();  // Close before attempting to delete
+      // Recursively delete all files inside the directory first, since removeDir
+      // requires an empty directory.
+      bool allFilesRemoved = true;
+      for (auto innerFile = file.openNextFile(); innerFile; innerFile = file.openNextFile()) {
+        char innerName[128];
+        innerFile.getName(innerName, sizeof(innerName));
+        String innerPath = fullPath + "/" + String(innerName);
+        bool innerIsDir = innerFile.isDirectory();
+        innerFile.close();
 
-      if (Storage.removeDir(fullPath.c_str())) {
+        if (innerIsDir) {
+          // One level of subdirectory support (epub cache dirs are flat in practice,
+          // but guard against nested dirs anyway).
+          if (!Storage.removeDir(innerPath.c_str())) {
+            LOG_ERR("CLEAR_CACHE", "Failed to remove subdir: %s", innerPath.c_str());
+            allFilesRemoved = false;
+          }
+        } else {
+          if (!Storage.remove(innerPath.c_str())) {
+            LOG_ERR("CLEAR_CACHE", "Failed to remove file: %s", innerPath.c_str());
+            allFilesRemoved = false;
+          }
+        }
+      }
+
+      file.close();  // Close before attempting to delete the now-empty directory
+
+      if (allFilesRemoved && Storage.removeDir(fullPath.c_str())) {
         clearedCount++;
       } else {
         LOG_ERR("CLEAR_CACHE", "Failed to remove: %s", fullPath.c_str());

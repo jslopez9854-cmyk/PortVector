@@ -51,7 +51,7 @@ EInkDisplay::RefreshMode convertRefreshMode(HalDisplay::RefreshMode mode) {
 }
 
 void HalDisplay::displayBuffer(HalDisplay::RefreshMode mode, bool turnOffScreen) {
-  if (false && mode == RefreshMode::HALF_REFRESH) {
+  if (true && mode == RefreshMode::HALF_REFRESH) {
     einkDisplay.requestResync(1);
   }
 
@@ -59,7 +59,7 @@ void HalDisplay::displayBuffer(HalDisplay::RefreshMode mode, bool turnOffScreen)
 }
 
 void HalDisplay::refreshDisplay(HalDisplay::RefreshMode mode, bool turnOffScreen) {
-  if (false && mode == RefreshMode::HALF_REFRESH) {
+  if (true && mode == RefreshMode::HALF_REFRESH) {
     einkDisplay.requestResync(1);
   }
 
