@@ -1296,71 +1296,6 @@ void GfxRenderer::freeBwBufferChunks() {
   }
 }
 
-size_t GfxRenderer::packBitsEncode(const uint8_t* src, size_t srcLen, uint8_t* dst, size_t dstCapacity) {
-  size_t srcPos = 0;
-  size_t dstPos = 0;
-
-  while (srcPos < srcLen) {
-    // Count run of identical bytes
-    size_t runStart = srcPos;
-    uint8_t runByte = src[srcPos];
-    size_t runLen = 1;
-    while (srcPos + runLen < srcLen && src[srcPos + runLen] == runByte && runLen < 128) {
-      runLen++;
-    }
-
-    if (runLen >= 2) {
-      // Encode run: header byte = -(runLen-1), then the repeated byte
-      if (dstPos + 2 > dstCapacity) return 0;  // overflow
-      dst[dstPos++] = static_cast<uint8_t>(-(int)(runLen - 1) & 0xFF);
-      dst[dstPos++] = runByte;
-      srcPos += runLen;
-    } else {
-      // Count literal bytes (no run follows)
-      size_t litLen = 1;
-      while (srcPos + litLen < srcLen && litLen < 128) {
-        uint8_t next = src[srcPos + litLen];
-        // Stop if we see a run of 2+ ahead
-        if (srcPos + litLen + 1 < srcLen && next == src[srcPos + litLen + 1]) break;
-        litLen++;
-      }
-      // Encode literal: header byte = litLen-1, then litLen bytes
-      if (dstPos + 1 + litLen > dstCapacity) return 0;  // overflow
-      dst[dstPos++] = static_cast<uint8_t>(litLen - 1);
-      memcpy(dst + dstPos, src + srcPos, litLen);
-      dstPos += litLen;
-      srcPos += litLen;
-    }
-  }
-
-  return dstPos;
-}
-
-bool GfxRenderer::packBitsDecode(const uint8_t* src, size_t srcLen, uint8_t* dst, size_t dstLen) {
-  size_t srcPos = 0;
-  size_t dstPos = 0;
-
-  while (srcPos < srcLen) {
-    int8_t header = static_cast<int8_t>(src[srcPos++]);
-    if (header >= 0) {
-      // Literal run: copy header+1 bytes
-      size_t count = static_cast<size_t>(header) + 1;
-      if (srcPos + count > srcLen || dstPos + count > dstLen) return false;
-      memcpy(dst + dstPos, src + srcPos, count);
-      dstPos += count;
-      srcPos += count;
-    } else {
-      // Repeated run: repeat next byte -(header)+1 times
-      size_t count = static_cast<size_t>(-header) + 1;
-      if (srcPos >= srcLen || dstPos + count > dstLen) return false;
-      uint8_t val = src[srcPos++];
-      memset(dst + dstPos, val, count);
-      dstPos += count;
-    }
-  }
-
-  return dstPos == dstLen;
-}
 /**
  * This should be called before grayscale buffers are populated.
  * A `restoreBwBuffer` call should always follow the grayscale render if this method was called.
@@ -1368,59 +1303,30 @@ bool GfxRenderer::packBitsDecode(const uint8_t* src, size_t srcLen, uint8_t* dst
  * Returns true if buffer was stored successfully, false if allocation failed.
  */
 bool GfxRenderer::storeBwBuffer() {
-  // Free any previous compressed buffer
-  if (_compressedBwBuffer) {
-    free(_compressedBwBuffer);
-    _compressedBwBuffer = nullptr;
-    _compressedBwSize = 0;
-  }
-
-  // Try PackBits with whatever contiguous memory is available, down to a minimum
-  const size_t worstCase = frameBufferSize + (frameBufferSize / 128) + 1;
-  const size_t available = ESP.getMaxAllocHeap();
-  const size_t minUseful = 8192;  // Less than this won't compress enough to help
-  const size_t maxCompressed = available > worstCase ? worstCase : available;
-  uint8_t* tempBuf = maxCompressed >= minUseful ? static_cast<uint8_t*>(malloc(maxCompressed)) : nullptr;
-  if (!tempBuf || maxCompressed < minUseful) {
-    if (tempBuf) { free(tempBuf); tempBuf = nullptr; }
-    LOG_INF("GFX", "PackBits skipped (avail=%zu), falling back to chunks", available);
-    // Fall back to chunked allocation
-    for (size_t i = 0; i < bwBufferChunks.size(); i++) {
-      if (bwBufferChunks[i]) {
-        free(bwBufferChunks[i]);
-        bwBufferChunks[i] = nullptr;
-      }
-      const size_t offset = i * BW_BUFFER_CHUNK_SIZE;
-      const size_t chunkSize = std::min(BW_BUFFER_CHUNK_SIZE, static_cast<size_t>(frameBufferSize - offset));
-      bwBufferChunks[i] = static_cast<uint8_t*>(malloc(chunkSize));
-      if (!bwBufferChunks[i]) {
-        LOG_ERR("GFX", "!! Chunk fallback also failed at chunk %zu", i);
-        freeBwBufferChunks();
-        return false;
-      }
-      memcpy(bwBufferChunks[i], frameBuffer + offset, chunkSize);
+  // Allocate and copy each chunk
+  for (size_t i = 0; i < bwBufferChunks.size(); i++) {
+    // Check if any chunks are already allocated
+    if (bwBufferChunks[i]) {
+      LOG_ERR("GFX", "!! BW buffer chunk %zu already stored - this is likely a bug, freeing chunk", i);
+      free(bwBufferChunks[i]);
+      bwBufferChunks[i] = nullptr;
     }
-    LOG_DBG("GFX", "Stored BW buffer via chunk fallback");
-    return true;
+
+    const size_t offset = i * BW_BUFFER_CHUNK_SIZE;
+    const size_t chunkSize = std::min(BW_BUFFER_CHUNK_SIZE, static_cast<size_t>(frameBufferSize - offset));
+    bwBufferChunks[i] = static_cast<uint8_t*>(malloc(chunkSize));
+
+    if (!bwBufferChunks[i]) {
+      LOG_ERR("GFX", "!! Failed to allocate BW buffer chunk %zu (%zu bytes)", i, chunkSize);
+      // Free previously allocated chunks
+      freeBwBufferChunks();
+      return false;
+    }
+
+    memcpy(bwBufferChunks[i], frameBuffer + offset, chunkSize);
   }
 
-  size_t compressedSize = packBitsEncode(frameBuffer, frameBufferSize, tempBuf, maxCompressed);
-  if (compressedSize == 0) {
-    LOG_ERR("GFX", "!! PackBits encode failed");
-    free(tempBuf);
-    return false;
-  }
-
-  // Shrink to actual compressed size
-  _compressedBwBuffer = static_cast<uint8_t*>(realloc(tempBuf, compressedSize));
-  if (!_compressedBwBuffer) {
-    // realloc failed but tempBuf still valid, just use it
-    _compressedBwBuffer = tempBuf;
-  }
-  _compressedBwSize = compressedSize;
-
-  LOG_DBG("GFX", "Stored BW buffer: %lu -> %zu bytes (%.0f%%)",
-          frameBufferSize, compressedSize, 100.0f * compressedSize / frameBufferSize);
+  LOG_DBG("GFX", "Stored BW buffer in %zu chunks (%zu bytes each)", bwBufferChunks.size(), BW_BUFFER_CHUNK_SIZE);
   return true;
 }
 
@@ -1430,39 +1336,30 @@ bool GfxRenderer::storeBwBuffer() {
  * Uses chunked restoration to match chunked storage.
  */
 void GfxRenderer::restoreBwBuffer() {
-  // Handle chunk fallback path
-  if (!_compressedBwBuffer || _compressedBwSize == 0) {
-    bool missingChunks = false;
-    for (const auto& chunk : bwBufferChunks) {
-      if (!chunk) { missingChunks = true; break; }
+  // Check if all chunks are allocated
+  bool missingChunks = false;
+  for (const auto& bwBufferChunk : bwBufferChunks) {
+    if (!bwBufferChunk) {
+      missingChunks = true;
+      break;
     }
-    if (missingChunks) {
-      freeBwBufferChunks();
-      LOG_ERR("GFX", "!! restoreBwBuffer: no buffer available");
-      return;
-    }
-    for (size_t i = 0; i < bwBufferChunks.size(); i++) {
-      const size_t offset = i * BW_BUFFER_CHUNK_SIZE;
-      const size_t chunkSize = std::min(BW_BUFFER_CHUNK_SIZE, static_cast<size_t>(frameBufferSize - offset));
-      memcpy(frameBuffer + offset, bwBufferChunks[i], chunkSize);
-    }
-    display.cleanupGrayscaleBuffers(frameBuffer);
+  }
+
+  if (missingChunks) {
     freeBwBufferChunks();
-    LOG_DBG("GFX", "Restored BW buffer via chunk fallback");
     return;
   }
 
-  bool ok = packBitsDecode(_compressedBwBuffer, _compressedBwSize, frameBuffer, frameBufferSize);
-  if (!ok) {
-    LOG_ERR("GFX", "!! PackBits decode failed");
+  for (size_t i = 0; i < bwBufferChunks.size(); i++) {
+    const size_t offset = i * BW_BUFFER_CHUNK_SIZE;
+    const size_t chunkSize = std::min(BW_BUFFER_CHUNK_SIZE, static_cast<size_t>(frameBufferSize - offset));
+    memcpy(frameBuffer + offset, bwBufferChunks[i], chunkSize);
   }
 
-  free(_compressedBwBuffer);
-  _compressedBwBuffer = nullptr;
-  _compressedBwSize = 0;
-
   display.cleanupGrayscaleBuffers(frameBuffer);
-  LOG_DBG("GFX", "Restored and freed compressed BW buffer");
+
+  freeBwBufferChunks();
+  LOG_DBG("GFX", "Restored and freed BW buffer chunks");
 }
 
 /**
