@@ -42,6 +42,8 @@ class GfxRenderer {
   uint16_t panelWidthBytes = HalDisplay::DISPLAY_WIDTH_BYTES;
   uint32_t frameBufferSize = HalDisplay::BUFFER_SIZE;
   std::vector<uint8_t*> bwBufferChunks;
+  uint8_t* _compressedBwBuffer = nullptr;
+  size_t _compressedBwSize = 0;
   std::map<int, EpdFontFamily> fontMap;
   // Mutable because ensureSdCardFontReady() is const (called from layout code
   // that holds a const GfxRenderer&) but triggers SD card reads and heap
@@ -174,6 +176,8 @@ class GfxRenderer {
   void displayGrayBuffer() const;
   bool storeBwBuffer();    // Returns true if buffer was stored successfully
   void restoreBwBuffer();  // Restore and free the stored buffer
+  static size_t packBitsEncode(const uint8_t* src, size_t srcLen, uint8_t* dst, size_t dstCapacity);
+  static bool packBitsDecode(const uint8_t* src, size_t srcLen, uint8_t* dst, size_t dstLen);
   void cleanupGrayscaleWithFrameBuffer() const;
 
   // Font helpers
