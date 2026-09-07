@@ -264,6 +264,11 @@ void KOReaderSyncActivity::performUpload() {
   }
   requestUpdateAndWait();
 
+  // Epub may still be loaded from performSync()'s remote-progress mapping (SHOWING_RESULT
+  // needs it for chapter names). Release it now, same as before the initial TLS handshake,
+  // so it isn't competing for heap during the upload's handshake.
+  epub.reset();
+
   // localProgress was pre-computed in EpubReaderActivity before the Epub was released.
   KOReaderProgress progress;
   progress.document = documentHash;

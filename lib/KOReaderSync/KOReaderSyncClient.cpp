@@ -4,6 +4,7 @@
 #include <Logging.h>
 #include <base64.h>
 #include <esp_crt_bundle.h>
+#include <esp_heap_caps.h>
 #include <esp_http_client.h>
 
 #include <ctime>
@@ -25,9 +26,31 @@ constexpr int HTTP_BUF_SIZE = 2048;
 // Cloudflare tunnels send a 3-cert Google Trust Services chain. During the TLS handshake
 // mbedTLS makes many small allocations that collectively consume ~48KB of heap. With only
 // ~50KB free after WiFi connects, the session drove min-free-ever down to 2600 bytes before
-// failing with MBEDTLS_ERR_X509_ALLOC_FAILED (-0x2880). Check total free heap (not max
-// contiguous block) because the failure mode is aggregate exhaustion, not one large alloc.
+// failing with MBEDTLS_ERR_X509_ALLOC_FAILED (-0x2880).
 constexpr uint32_t MIN_HEAP_FOR_TLS = 55000;
+
+// Aggregate free bytes alone isn't a complete picture: mbedTLS's SSL buffer grows on demand
+// during handshake (CONFIG_MBEDTLS_SSL_VARIABLE_BUFFER_LENGTH) to hold each certificate in the
+// chain, which needs a single contiguous block, not just enough free bytes in aggregate. Belt
+// and suspenders alongside MIN_HEAP_FOR_TLS.
+constexpr size_t MIN_CONTIGUOUS_BLOCK_FOR_TLS = 20000;
+
+bool hasHeapForTls() {
+  const uint32_t freeHeap = ESP.getFreeHeap();
+  const size_t largestBlock = heap_caps_get_largest_free_block(MALLOC_CAP_8BIT);
+  LOG_DBG("KOSync", "Heap check: %u free, %u largest contiguous block", (unsigned)freeHeap,
+          (unsigned)largestBlock);
+  if (freeHeap < MIN_HEAP_FOR_TLS) {
+    LOG_ERR("KOSync", "Insufficient heap for TLS handshake: %u bytes free (need %u)", freeHeap, MIN_HEAP_FOR_TLS);
+    return false;
+  }
+  if (largestBlock < MIN_CONTIGUOUS_BLOCK_FOR_TLS) {
+    LOG_ERR("KOSync", "Heap too fragmented for TLS handshake: largest block %u bytes (need %u)",
+            (unsigned)largestBlock, (unsigned)MIN_CONTIGUOUS_BLOCK_FOR_TLS);
+    return false;
+  }
+  return true;
+}
 
 // Response buffer for reading HTTP body
 struct ResponseBuffer {
@@ -99,6 +122,60 @@ esp_http_client_handle_t createClient(const char* url, ResponseBuffer* buf,
 
   return client;
 }
+
+// esp_http_client_perform() result, with a couple of retries on transient network/TLS errors.
+struct PerformResult {
+  esp_err_t err;
+  int httpCode;
+};
+
+constexpr int RETRY_DELAYS_MS[] = {200, 600};
+
+PerformResult performWithRetry(esp_http_client_handle_t client) {
+  esp_err_t err = esp_http_client_perform(client);
+  int httpCode = esp_http_client_get_status_code(client);
+  for (int delayMs : RETRY_DELAYS_MS) {
+    if (err == ESP_OK) break;
+    LOG_DBG("KOSync", "Request failed (err %d), retrying in %dms", err, delayMs);
+    delay(delayMs);
+    err = esp_http_client_perform(client);
+    httpCode = esp_http_client_get_status_code(client);
+  }
+  return {err, httpCode};
+}
+
+// ESP-IDF's documented alternative to esp_http_client_set_post_field() + perform() for sending
+// a request body: open()/write()/fetch_headers() avoids set_post_field()'s undocumented
+// Content-Type override (see esp-idf#2092).
+PerformResult openWriteFetchWithRetry(esp_http_client_handle_t client, const std::string& body) {
+  auto attempt = [&]() -> PerformResult {
+    esp_err_t err = esp_http_client_open(client, body.length());
+    int httpCode = 0;
+    if (err == ESP_OK) {
+      if (esp_http_client_write(client, body.c_str(), body.length()) < 0) {
+        err = ESP_FAIL;
+      } else if (esp_http_client_fetch_headers(client) < 0) {
+        err = ESP_FAIL;
+      } else {
+        char discard[256];
+        while (esp_http_client_read(client, discard, sizeof(discard)) > 0) {
+        }
+        httpCode = esp_http_client_get_status_code(client);
+      }
+    }
+    esp_http_client_close(client);
+    return {err, httpCode};
+  };
+
+  PerformResult result = attempt();
+  for (int delayMs : RETRY_DELAYS_MS) {
+    if (result.err == ESP_OK) break;
+    LOG_DBG("KOSync", "Request failed (err %d), retrying in %dms", result.err, delayMs);
+    delay(delayMs);
+    result = attempt();
+  }
+  return result;
+}
 }  // namespace
 
 KOReaderSyncClient::Error KOReaderSyncClient::authenticate() {
@@ -109,19 +186,14 @@ KOReaderSyncClient::Error KOReaderSyncClient::authenticate() {
   }
 
   std::string url = KOREADER_STORE.getBaseUrl() + "/users/auth";
-  const uint32_t freeHeap = ESP.getFreeHeap();
-  LOG_DBG("KOSync", "Authenticating: %s (heap: %u)", url.c_str(), (unsigned)freeHeap);
-  if (freeHeap < MIN_HEAP_FOR_TLS) {
-    LOG_ERR("KOSync", "Insufficient heap for TLS handshake: %u bytes free (need %u)", freeHeap, MIN_HEAP_FOR_TLS);
-    return LOW_MEMORY;
-  }
+  LOG_DBG("KOSync", "Authenticating: %s (heap: %u)", url.c_str(), (unsigned)ESP.getFreeHeap());
+  if (!hasHeapForTls()) return LOW_MEMORY;
 
   ResponseBuffer buf;
   esp_http_client_handle_t client = createClient(url.c_str(), &buf);
   if (!client) return NETWORK_ERROR;
 
-  esp_err_t err = esp_http_client_perform(client);
-  const int httpCode = esp_http_client_get_status_code(client);
+  const auto [err, httpCode] = performWithRetry(client);
   lastHttpCode = httpCode;
   esp_http_client_cleanup(client);
 
@@ -142,19 +214,14 @@ KOReaderSyncClient::Error KOReaderSyncClient::getProgress(const std::string& doc
   }
 
   std::string url = KOREADER_STORE.getBaseUrl() + "/syncs/progress/" + documentHash;
-  const uint32_t freeHeap = ESP.getFreeHeap();
-  LOG_DBG("KOSync", "Getting progress: %s (heap: %u)", url.c_str(), (unsigned)freeHeap);
-  if (freeHeap < MIN_HEAP_FOR_TLS) {
-    LOG_ERR("KOSync", "Insufficient heap for TLS handshake: %u bytes free (need %u)", freeHeap, MIN_HEAP_FOR_TLS);
-    return LOW_MEMORY;
-  }
+  LOG_DBG("KOSync", "Getting progress: %s (heap: %u)", url.c_str(), (unsigned)ESP.getFreeHeap());
+  if (!hasHeapForTls()) return LOW_MEMORY;
 
   ResponseBuffer buf;
   esp_http_client_handle_t client = createClient(url.c_str(), &buf);
   if (!client) return NETWORK_ERROR;
 
-  esp_err_t err = esp_http_client_perform(client);
-  const int httpCode = esp_http_client_get_status_code(client);
+  const auto [err, httpCode] = performWithRetry(client);
   lastHttpCode = httpCode;
   esp_http_client_cleanup(client);
 
@@ -195,23 +262,23 @@ KOReaderSyncClient::Error KOReaderSyncClient::updateProgress(const KOReaderProgr
   }
 
   std::string url = KOREADER_STORE.getBaseUrl() + "/syncs/progress";
-  const uint32_t freeHeap = ESP.getFreeHeap();
-  LOG_DBG("KOSync", "Updating progress: %s (heap: %u)", url.c_str(), (unsigned)freeHeap);
-  if (freeHeap < MIN_HEAP_FOR_TLS) {
-    LOG_ERR("KOSync", "Insufficient heap for TLS handshake: %u bytes free (need %u)", freeHeap, MIN_HEAP_FOR_TLS);
-    return LOW_MEMORY;
-  }
+  LOG_DBG("KOSync", "Updating progress: %s (heap: %u)", url.c_str(), (unsigned)ESP.getFreeHeap());
+  if (!hasHeapForTls()) return LOW_MEMORY;
 
-  // Build JSON body
-  JsonDocument doc;
-  doc["document"] = progress.document;
-  doc["progress"] = progress.progress;
-  doc["percentage"] = progress.percentage;
-  doc["device"] = DEVICE_NAME;
-  doc["device_id"] = DEVICE_ID;
-
+  // Build JSON body. Scoped so JsonDocument's own pool allocations are freed before opening
+  // the connection — every prior test showed the TLS handshake succeeds with a zero-length
+  // body and fails with this exact body, and this is the only remaining live heap allocation
+  // unique to the failing path once Content-Type and body-length-alone were both ruled out.
   std::string body;
-  serializeJson(doc, body);
+  {
+    JsonDocument doc;
+    doc["document"] = progress.document;
+    doc["progress"] = progress.progress;
+    doc["percentage"] = progress.percentage;
+    doc["device"] = DEVICE_NAME;
+    doc["device_id"] = DEVICE_ID;
+    serializeJson(doc, body);
+  }
 
   LOG_DBG("KOSync", "Request body: %s", body.c_str());
 
@@ -219,15 +286,13 @@ KOReaderSyncClient::Error KOReaderSyncClient::updateProgress(const KOReaderProgr
   esp_http_client_handle_t client = createClient(url.c_str(), &buf, HTTP_METHOD_PUT);
   if (!client) return NETWORK_ERROR;
 
-  if (esp_http_client_set_header(client, "Content-Type", "application/json") != ESP_OK ||
-      esp_http_client_set_post_field(client, body.c_str(), body.length()) != ESP_OK) {
-    LOG_ERR("KOSync", "Failed to set request body");
+  if (esp_http_client_set_header(client, "Content-Type", "application/json") != ESP_OK) {
+    LOG_ERR("KOSync", "Failed to set request headers");
     esp_http_client_cleanup(client);
     return NETWORK_ERROR;
   }
 
-  esp_err_t err = esp_http_client_perform(client);
-  const int httpCode = esp_http_client_get_status_code(client);
+  const auto [err, httpCode] = openWriteFetchWithRetry(client, body);
   lastHttpCode = httpCode;
   esp_http_client_cleanup(client);
 
