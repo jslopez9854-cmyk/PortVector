@@ -6,6 +6,9 @@
 #include <GfxRenderer.h>
 #include <I18n.h>
 #include <WiFi.h>
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 #include <cstddef>
 
@@ -66,6 +69,14 @@ void CrossPointWebServerActivity::onEnter() {
 
   LOG_DBG("WEBACT", "Free heap at onEnter: %d bytes", ESP.getFreeHeap());
 
+#ifdef BLE_ENABLED
+  // ESP32-C3 can't run WiFi and BLE at once; free the heap/radio for the web server.
+  if (BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("WEBACT", "Disabling BLE to free memory for web server");
+    BluetoothHIDManager::getInstance().disable();
+  }
+#endif
+
   // Heap-critical transition: WiFi (~45KB) plus the web server have to fit in
   // what's left of the ~380KB parts. SD-font caches retained for the CJK UI
   // fallback (mini glyph/kern arenas, kern class tables) are rebuildable on
@@ -118,6 +129,19 @@ void CrossPointWebServerActivity::onExit() {
   }
 
   LOG_DBG("WEBACT", "Free heap at onExit end: %d bytes", ESP.getFreeHeap());
+
+#ifdef BLE_ENABLED
+  // Restore BLE if it was on before the web server ran. When WiFi was
+  // activated, the silent restart above re-inits BLE from SETTINGS on next
+  // boot anyway, so this only really matters for the never-activated path.
+  if (SETTINGS.bleEnabled && !BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("WEBACT", "Re-enabling BLE after web server exit");
+    BluetoothHIDManager::getInstance().enable();
+    if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      BluetoothHIDManager::getInstance().setBondedDevice(SETTINGS.bleBondedDeviceAddr, SETTINGS.bleBondedDeviceName);
+    }
+  }
+#endif
 }
 
 void CrossPointWebServerActivity::onNetworkModeSelected(const NetworkMode mode) {

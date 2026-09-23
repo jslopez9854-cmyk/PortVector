@@ -287,6 +287,14 @@ class CrossPointSettings : public PersistableStore<CrossPointSettings> {
   // Focus Reading - emphasizes the first part of words with bold
   uint8_t focusReadingEnabled = 0;
   uint8_t readerMenuStyle = READER_MENU_LIST;
+#ifdef BLE_ENABLED
+  // Bluetooth HID remote (1 = enabled, 0 = disabled)
+  uint8_t bleEnabled = 0;
+  // Bonded BLE remote address ("XX:XX:XX:XX:XX:XX", empty = none bonded)
+  char bleBondedDeviceAddr[18] = "";
+  char bleBondedDeviceName[32] = "";
+  uint8_t bleBondedDeviceAddrType = 0;
+#endif
   // SD card font family name (empty = use built-in fontFamily)
   char sdFontFamilyName[32] = "";
   // Dictionary folder name under /dictionaries (empty = no dictionary)

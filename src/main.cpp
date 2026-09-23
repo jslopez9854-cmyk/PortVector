@@ -13,6 +13,9 @@
 #include <HalSystem.h>
 #include <HalTiltSensor.h>
 #include <I18n.h>
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 #include <Logging.h>
 #include <SPI.h>
 #include <WiFi.h>
@@ -573,6 +576,21 @@ void setup() {
     gpio.update();
   }
 
+#ifdef BLE_ENABLED
+  {
+    auto& btMgr = BluetoothHIDManager::getInstance();
+    btMgr.setButtonInjector(
+        [](uint8_t buttonIndex, bool pressed) { gpio.setVirtualButtonState(buttonIndex, pressed); });
+    btMgr.setButtonActivityNotifier([](uint8_t buttonIndex) { gpio.updateVirtualButtonActivity(buttonIndex); });
+    if (SETTINGS.bleEnabled) {
+      btMgr.enable();
+      if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+        btMgr.setBondedDevice(SETTINGS.bleBondedDeviceAddr, SETTINGS.bleBondedDeviceName);
+      }
+    }
+  }
+#endif
+
   allowSleepAt = millis() + 2000;
 }
 
@@ -583,6 +601,11 @@ void loop() {
 
   gpio.setSharedConfirmPowerShortPressEmitsPower(SETTINGS.shortPwrBtn == CrossPointSettings::SHORT_PWRBTN::SLEEP);
   mappedInputManager.update();
+
+#ifdef BLE_ENABLED
+  BluetoothHIDManager::getInstance().updateActivity();
+  BluetoothHIDManager::getInstance().checkAutoReconnect(gpio.wasAnyPressed() || gpio.wasAnyReleased());
+#endif
 
   if (activityManager.requiresExclusiveStorageLoop()) {
     // USB Drive handed the raw SD card to the host. Do not run screenshots,

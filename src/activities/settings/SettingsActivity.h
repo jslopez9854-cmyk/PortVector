@@ -25,6 +25,9 @@ enum class SettingAction {
   DownloadFonts,
   TextSettings,
   KeyboardLayouts,
+#ifdef BLE_ENABLED
+  BluetoothSettings,
+#endif
 };
 
 struct SettingInfo {

@@ -110,6 +110,16 @@ void CrossPointSettings::toJson(JsonDocument& doc) const {
   if (keyboardLayouts != 0) {
     doc["keyboardLayouts"] = keyboardLayouts;
   }
+
+#ifdef BLE_ENABLED
+  // Bluetooth HID remote — managed by BluetoothSettingsActivity, not in SettingsList.
+  doc["bleEnabled"] = bleEnabled;
+  if (bleBondedDeviceAddr[0] != '\0') {
+    doc["bleBondedDeviceAddr"] = bleBondedDeviceAddr;
+    doc["bleBondedDeviceName"] = bleBondedDeviceName;
+    doc["bleBondedDeviceAddrType"] = bleBondedDeviceAddrType;
+  }
+#endif
 }
 
 bool CrossPointSettings::fromJson(JsonVariantConst doc) {
@@ -232,6 +242,14 @@ bool CrossPointSettings::fromJson(JsonVariantConst doc) {
   if (doc["keyboardLayouts"].is<uint16_t>()) {
     keyboardLayouts = doc["keyboardLayouts"].as<uint16_t>();
   }
+
+#ifdef BLE_ENABLED
+  // Bluetooth HID remote — managed by BluetoothSettingsActivity, not in SettingsList.
+  bleEnabled = doc["bleEnabled"] | (uint8_t)0;
+  copyToField(bleBondedDeviceAddr, doc["bleBondedDeviceAddr"] | "", sizeof(bleBondedDeviceAddr));
+  copyToField(bleBondedDeviceName, doc["bleBondedDeviceName"] | "", sizeof(bleBondedDeviceName));
+  bleBondedDeviceAddrType = doc["bleBondedDeviceAddrType"] | (uint8_t)0;
+#endif
 
   if (needsResave) {
     LOG_DBG("CPS", "Resaving settings to update format");

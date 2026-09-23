@@ -2,6 +2,9 @@
 
 #include <Epub/Page.h>
 #include <Epub/blocks/TextBlock.h>
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 #include <FontCacheManager.h>
 #include <FsHelpers.h>
 #include <GfxRenderer.h>
@@ -328,6 +331,21 @@ void EpubReaderActivity::loop() {
     requestUpdate();
     return;
   }
+
+#ifdef BLE_ENABLED
+  // Long press Back (500ms+) reconnects the bonded BLE remote. Checked early,
+  // ahead of overlay/menu input handling below, so a hold isn't swallowed by
+  // whatever else currently owns Back.
+  if (mappedInput.wasLongPressed(MappedInputManager::Button::Back, 500)) {
+    auto& btMgr = BluetoothHIDManager::getInstance();
+    if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      if (!btMgr.isEnabled()) {
+        btMgr.enable();
+      }
+      btMgr.connectToDevice(SETTINGS.bleBondedDeviceAddr);
+    }
+  }
+#endif
 
   constexpr unsigned long IDLE_PREWARM_DEBOUNCE_MS = 400;
   if (section && !section->isBuilding() && !RenderLock::peek() && renderer.hasFrameBuffer() &&

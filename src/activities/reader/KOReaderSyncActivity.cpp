@@ -6,6 +6,9 @@
 #include <Logging.h>
 #include <WiFi.h>
 #include <esp_wifi.h>
+#ifdef BLE_ENABLED
+#include <BluetoothHIDManager.h>
+#endif
 
 #include <algorithm>
 #include <cassert>
@@ -364,6 +367,14 @@ void KOReaderSyncActivity::onEnter() {
   Activity::onEnter();
   ReaderUtils::applyOrientation(renderer, SETTINGS.orientation);
 
+#ifdef BLE_ENABLED
+  // ESP32-C3 can't run WiFi and BLE at once; free the heap/radio for sync.
+  if (BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("KOSync", "Disabling BLE to free memory for sync");
+    BluetoothHIDManager::getInstance().disable();
+  }
+#endif
+
   resetUi();
   app.on(ACTION_ROW, &KOReaderSyncActivity::onResultRow, this);
   app.setScreen(&KOReaderSyncActivity::resultScreen, this);
@@ -393,6 +404,19 @@ void KOReaderSyncActivity::onEnter() {
 
 void KOReaderSyncActivity::onExit() {
   Activity::onExit();
+
+#ifdef BLE_ENABLED
+  // Restore BLE if it was on before sync. When wifiActivated is true, the
+  // silent restart below re-inits BLE from SETTINGS on next boot anyway, so
+  // this only really matters for the no-credentials early-return path.
+  if (SETTINGS.bleEnabled && !BluetoothHIDManager::getInstance().isEnabled()) {
+    LOG_INF("KOSync", "Re-enabling BLE after sync");
+    BluetoothHIDManager::getInstance().enable();
+    if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+      BluetoothHIDManager::getInstance().setBondedDevice(SETTINGS.bleBondedDeviceAddr, SETTINGS.bleBondedDeviceName);
+    }
+  }
+#endif
 
   if (wifiActivated) {
     WiFi.disconnect(false);

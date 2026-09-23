@@ -20,9 +20,8 @@ class HalPowerManager {
   mutable int _batteryCachedPercent = 0;         // Last read battery percentage (0-100)
   mutable unsigned long _batteryLastPollMs = 0;  // Timestamp of last battery read in milliseconds
 
-  enum LockMode { None, NormalSpeed };
-  LockMode currentLockMode = None;
-  SemaphoreHandle_t modeMutex = nullptr;  // Protect access to currentLockMode
+  int lockCount = 0;
+  SemaphoreHandle_t modeMutex = nullptr;  // Protect access to lockCount
 
  public:
 #if BOARD_HAS_PSRAM
