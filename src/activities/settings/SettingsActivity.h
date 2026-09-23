@@ -29,6 +29,9 @@ enum class SettingAction {
   KeyboardLayouts,
   HomeButton,
   About,
+#ifdef BLE_ENABLED
+  BluetoothSettings,
+#endif
 };
 
 struct SettingInfo {

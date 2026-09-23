@@ -15,6 +15,9 @@
 
 #include "AboutActivity.h"
 #include "ButtonRemapActivity.h"
+#ifdef BLE_ENABLED
+#include "BluetoothSettingsActivity.h"
+#endif
 #include "ClearCacheActivity.h"
 #include "ClockSettingsActivity.h"
 #include "CrossPointSettings.h"
@@ -95,6 +98,9 @@ void SettingsActivity::rebuildSettingsLists() {
     controlsSettings.insert(controlsSettings.begin(),
                             SettingInfo::Action(StrId::STR_HOME_BUTTON, SettingAction::HomeButton));
   }
+#ifdef BLE_ENABLED
+  systemSettings.push_back(SettingInfo::Action(StrId::STR_BLUETOOTH, SettingAction::BluetoothSettings));
+#endif
   systemSettings.push_back(SettingInfo::Action(StrId::STR_WIFI_NETWORKS, SettingAction::Network));
   // Clock configuration only exists where the RTC probe found hardware; on
   // clockless boards there is nothing to set.
@@ -394,6 +400,13 @@ void SettingsActivity::toggleCurrentSetting() {
         });
         break;
       }
+#ifdef BLE_ENABLED
+      case SettingAction::BluetoothSettings:
+        startActivityForResult(std::make_unique<BluetoothSettingsActivity>(
+                                   renderer, mappedInput, [this]() { finish(); }, false),
+                               resultHandler);
+        break;
+#endif
       case SettingAction::ClearCache:
         startActivityForResult(std::make_unique<ClearCacheActivity>(renderer, mappedInput), resultHandler);
         break;
