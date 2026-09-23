@@ -29,6 +29,7 @@ enum class SettingAction {
   KeyboardLayouts,
   HomeButton,
   About,
+  Restart,
 #ifdef BLE_ENABLED
   BluetoothSettings,
 #endif
