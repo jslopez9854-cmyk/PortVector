@@ -25,6 +25,7 @@ enum class SettingAction {
   DownloadFonts,
   TextSettings,
   KeyboardLayouts,
+  Restart,
 #ifdef BLE_ENABLED
   BluetoothSettings,
 #endif
