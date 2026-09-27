@@ -792,7 +792,8 @@ SavedProgressPosition ProgressMapper::toSavedProgress(const std::shared_ptr<Epub
 
 std::optional<CrossPointPosition> ProgressMapper::fromRichPosition(const std::shared_ptr<Epub>& epub,
                                                                    const KOReaderRichPosition& rich,
-                                                                   GfxRenderer& renderer, bool xpathAlreadyTried) {
+                                                                   GfxRenderer& renderer, bool xpathAlreadyTried,
+                                                                   const ReaderRenderSpec* currentRenderSpec) {
   const int spineCount = epub->getSpineItemsCount();
   if (static_cast<int>(rich.spineIndex) >= spineCount) {
     LOG_DBG("PM", "Rich position spine %u out of range (%d spine items)", rich.spineIndex, spineCount);
@@ -808,14 +809,14 @@ std::optional<CrossPointPosition> ProgressMapper::fromRichPosition(const std::sh
   // XPath -- re-streaming the same chapter for the same failure is pure waste.
   if (!xpathAlreadyTried && !rich.xpath.empty()) {
     SavedProgressPosition saved{rich.xpath, static_cast<float>(rich.pctQ) / 1000000.0f};
-    auto contentMapped = toCrossPoint(epub, saved, renderer);
+    auto contentMapped = toCrossPoint(epub, saved, renderer, -1, 0, 0, currentRenderSpec);
     if (contentMapped.hasVisibleTextOffset) {
       return contentMapped;
     }
   }
 
   Section tempSection(epub, result.spineIndex, renderer);
-  const auto cachedCount = tempSection.getCachedPageCount();
+  const auto cachedCount = tempSection.getCachedPageCount(currentRenderSpec);
   if (!cachedCount || *cachedCount <= 0) {
     // No local layout for the target spine yet; the percentage/xpath mapping
     // handles density estimation better than a blind copy of remote pages.
@@ -857,7 +858,8 @@ std::optional<CrossPointPosition> ProgressMapper::fromRichPosition(const std::sh
 
 CrossPointPosition ProgressMapper::toCrossPoint(const std::shared_ptr<Epub>& epub, const SavedProgressPosition& koPos,
                                                 GfxRenderer& renderer, int currentSpineIndex,
-                                                int totalPagesInCurrentSpine, int fallbackTotalPages) {
+                                                int totalPagesInCurrentSpine, int fallbackTotalPages,
+                                                const ReaderRenderSpec* currentRenderSpec) {
   CrossPointPosition result{};
   const size_t bookSize = epub->getBookSize();
   if (bookSize == 0) return result;
@@ -904,7 +906,7 @@ CrossPointPosition ProgressMapper::toCrossPoint(const std::shared_ptr<Epub>& epu
 
   if (result.totalPages <= 0) {
     Section tempSection(epub, result.spineIndex, renderer);
-    if (auto cachedCount = tempSection.getCachedPageCount()) {
+    if (auto cachedCount = tempSection.getCachedPageCount(currentRenderSpec)) {
       result.totalPages = *cachedCount;
     } else if (fallbackTotalPages > 0) {
       result.totalPages = fallbackTotalPages;
@@ -982,7 +984,8 @@ CrossPointPosition ProgressMapper::toCrossPoint(const std::shared_ptr<Epub>& epu
     Section tempSection(epub, result.spineIndex, renderer);
     const bool imageAnchor = useAncestry && (strcasecmp(xpathSteps[xpathStepCount - 1].tag, "img") == 0 ||
                                              strcasecmp(xpathSteps[xpathStepCount - 1].tag, "image") == 0);
-    if (const auto offsetPage = tempSection.getPageForVisibleTextOffset(result.visibleTextOffset, imageAnchor)) {
+    if (const auto offsetPage =
+            tempSection.getPageForVisibleTextOffset(result.visibleTextOffset, imageAnchor, currentRenderSpec)) {
       result.pageNumber = *offsetPage;
       result.totalPages = std::max(result.totalPages, result.pageNumber + 1);
       LOG_DBG("PM", "XPath content offset %u -> spine=%d page=%d/%d", result.visibleTextOffset, result.spineIndex,

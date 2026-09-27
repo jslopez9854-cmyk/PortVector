@@ -53,7 +53,8 @@ const char* matchMethodName(const DocumentMatchMethod method) {
 KOReaderSyncActivity::KOReaderSyncActivity(GfxRenderer& renderer, MappedInputManager& mappedInput,
                                            const std::string& epubPath, int currentSpineIndex, int currentPage,
                                            int totalPagesInSpine, SavedProgressPosition localKoPos,
-                                           std::string localChapterName, std::optional<uint16_t> currentParagraphIndex)
+                                           std::string localChapterName, std::optional<uint16_t> currentParagraphIndex,
+                                           std::optional<ReaderRenderSpec> currentRenderSpec)
     : Activity("KOReaderSync", renderer, mappedInput),
       UiAppHost(renderer),
       epubPath(epubPath),
@@ -62,6 +63,7 @@ KOReaderSyncActivity::KOReaderSyncActivity(GfxRenderer& renderer, MappedInputMan
       currentPage(currentPage),
       totalPagesInSpine(totalPagesInSpine),
       currentParagraphIndex(currentParagraphIndex),
+      currentRenderSpec(currentRenderSpec),
       remoteProgress{},
       remotePosition{},
       localProgress(std::move(localKoPos)) {}
@@ -237,13 +239,16 @@ void KOReaderSyncActivity::performSync() {
 
   // The standard KOReader progress XPath is the authoritative content anchor.
   // The CrossPoint server's existing rich page hints remain a legacy fallback.
+  const ReaderRenderSpec* renderSpecPtr = currentRenderSpec ? &*currentRenderSpec : nullptr;
   SavedProgressPosition koPos = {remoteProgress.progress, remoteProgress.percentage};
-  remotePosition = ProgressMapper::toCrossPoint(epub, koPos, renderer, currentSpineIndex, totalPagesInSpine);
+  remotePosition =
+      ProgressMapper::toCrossPoint(epub, koPos, renderer, currentSpineIndex, totalPagesInSpine, 0, renderSpecPtr);
   if (!remotePosition.hasVisibleTextOffset && remoteProgress.position.has_value()) {
     // toCrossPoint above already tried koPos.xpath; if the rich position carries the same XPath,
     // tell fromRichPosition to skip re-resolving it and use its page hints directly.
     const bool sameXPath = remoteProgress.position->xpath == remoteProgress.progress;
-    if (const auto richMapped = ProgressMapper::fromRichPosition(epub, *remoteProgress.position, renderer, sameXPath)) {
+    if (const auto richMapped =
+            ProgressMapper::fromRichPosition(epub, *remoteProgress.position, renderer, sameXPath, renderSpecPtr)) {
       remotePosition = *richMapped;
     }
   }

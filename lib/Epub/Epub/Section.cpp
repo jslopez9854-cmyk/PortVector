@@ -69,6 +69,38 @@ constexpr uint32_t HEADER_SIZE = sizeof(uint8_t) + sizeof(int) + sizeof(float) +
                                  sizeof(uint16_t) + sizeof(uint16_t) + sizeof(uint16_t) + sizeof(bool) + sizeof(bool) +
                                  sizeof(uint8_t) + sizeof(bool) + sizeof(uint32_t) + sizeof(uint32_t) +
                                  sizeof(uint32_t) + sizeof(uint32_t) + sizeof(uint32_t);
+
+// Reads the render-spec block written right after the version byte (see
+// writeSectionFileHeader) and reports whether it matches `spec`. Leaves the file
+// positioned right after the spec fields -- i.e. at the pageCount field -- either
+// way, since every field is read sequentially regardless of the outcome.
+bool sectionSpecMatches(HalFile& f, const ReaderRenderSpec& spec) {
+  int fileFontId;
+  float fileLineCompression;
+  bool fileExtraParagraphSpacing;
+  uint8_t fileParagraphAlignment;
+  uint16_t fileViewportWidth, fileViewportHeight;
+  bool fileHyphenationEnabled;
+  bool fileEmbeddedStyle;
+  uint8_t fileImageRendering;
+  bool fileFocusReadingEnabled;
+  serialization::readPod(f, fileFontId);
+  serialization::readPod(f, fileLineCompression);
+  serialization::readPod(f, fileExtraParagraphSpacing);
+  serialization::readPod(f, fileParagraphAlignment);
+  serialization::readPod(f, fileViewportWidth);
+  serialization::readPod(f, fileViewportHeight);
+  serialization::readPod(f, fileHyphenationEnabled);
+  serialization::readPod(f, fileEmbeddedStyle);
+  serialization::readPod(f, fileImageRendering);
+  serialization::readPod(f, fileFocusReadingEnabled);
+
+  return spec.fontId == fileFontId && spec.lineCompression == fileLineCompression &&
+         spec.extraParagraphSpacing == fileExtraParagraphSpacing && spec.paragraphAlignment == fileParagraphAlignment &&
+         spec.viewportWidth == fileViewportWidth && spec.viewportHeight == fileViewportHeight &&
+         spec.hyphenationEnabled == fileHyphenationEnabled && spec.embeddedStyle == fileEmbeddedStyle &&
+         spec.imageRendering == fileImageRendering && spec.focusReadingEnabled == fileFocusReadingEnabled;
+}
 }  // namespace
 
 // Out-of-line so the unique_ptr<ChapterHtmlSlimParser> in BuildContext can be
@@ -158,31 +190,7 @@ bool Section::loadSectionFile(const ReaderRenderSpec& spec) {
     }
     filePartial = (version == SECTION_FILE_PARTIAL_VERSION);
 
-    int fileFontId;
-    uint16_t fileViewportWidth, fileViewportHeight;
-    float fileLineCompression;
-    bool fileExtraParagraphSpacing;
-    uint8_t fileParagraphAlignment;
-    bool fileHyphenationEnabled;
-    bool fileEmbeddedStyle;
-    uint8_t fileImageRendering;
-    bool fileFocusReadingEnabled;
-    serialization::readPod(file, fileFontId);
-    serialization::readPod(file, fileLineCompression);
-    serialization::readPod(file, fileExtraParagraphSpacing);
-    serialization::readPod(file, fileParagraphAlignment);
-    serialization::readPod(file, fileViewportWidth);
-    serialization::readPod(file, fileViewportHeight);
-    serialization::readPod(file, fileHyphenationEnabled);
-    serialization::readPod(file, fileEmbeddedStyle);
-    serialization::readPod(file, fileImageRendering);
-    serialization::readPod(file, fileFocusReadingEnabled);
-
-    if (spec.fontId != fileFontId || spec.lineCompression != fileLineCompression ||
-        spec.extraParagraphSpacing != fileExtraParagraphSpacing || spec.paragraphAlignment != fileParagraphAlignment ||
-        spec.viewportWidth != fileViewportWidth || spec.viewportHeight != fileViewportHeight ||
-        spec.hyphenationEnabled != fileHyphenationEnabled || spec.embeddedStyle != fileEmbeddedStyle ||
-        spec.imageRendering != fileImageRendering || spec.focusReadingEnabled != fileFocusReadingEnabled) {
+    if (!sectionSpecMatches(file, spec)) {
       file.close();
       LOG_ERR("SCT", "Deserialization failed: Parameters do not match");
       clearCache();
@@ -813,7 +821,7 @@ std::string Section::getTextFromSectionFile() {
   return fullText;
 }
 
-std::optional<uint16_t> Section::getCachedPageCount() const {
+std::optional<uint16_t> Section::getCachedPageCount(const ReaderRenderSpec* expectedSpec) const {
   HalFile f;
   if (!Storage.openFileForRead("SCT", filePath, f)) {
     return std::nullopt;
@@ -833,7 +841,16 @@ std::optional<uint16_t> Section::getCachedPageCount() const {
     return std::nullopt;
   }
 
-  f.seek(HEADER_SIZE - sizeof(uint32_t) * 5 - sizeof(uint16_t));
+  if (expectedSpec) {
+    // A cache built under different render settings (font/margins/viewport) lays out
+    // different page boundaries for the same content -- its page count doesn't
+    // describe the current layout, so treat it the same as a missing cache.
+    if (!sectionSpecMatches(f, *expectedSpec)) {
+      return std::nullopt;
+    }
+  } else {
+    f.seek(HEADER_SIZE - sizeof(uint32_t) * 5 - sizeof(uint16_t));
+  }
   uint16_t count;
   serialization::readPod(f, count);
   return count;
@@ -1025,8 +1042,8 @@ std::optional<uint32_t> Section::getVisibleTextOffsetForPage(const uint16_t page
   return result;
 }
 
-std::optional<uint16_t> Section::getPageForVisibleTextOffset(const uint32_t offset,
-                                                             const bool preferFirstAtOffset) const {
+std::optional<uint16_t> Section::getPageForVisibleTextOffset(const uint32_t offset, const bool preferFirstAtOffset,
+                                                             const ReaderRenderSpec* expectedSpec) const {
   const auto findInEntries = [offset, preferFirstAtOffset](const auto& entries) -> std::optional<uint16_t> {
     if (entries.empty()) return std::nullopt;
     uint16_t result = 0;
@@ -1061,7 +1078,15 @@ std::optional<uint16_t> Section::getPageForVisibleTextOffset(const uint32_t offs
   }
   const bool partial = version == SECTION_FILE_PARTIAL_VERSION;
 
-  f.seek(HEADER_SIZE - sizeof(uint32_t) * 5 - sizeof(uint16_t));
+  if (expectedSpec) {
+    // See getCachedPageCount: a cache built under different render settings lays out
+    // different page boundaries, so its offset LUT doesn't describe the current layout.
+    if (!sectionSpecMatches(f, *expectedSpec)) {
+      return std::nullopt;
+    }
+  } else {
+    f.seek(HEADER_SIZE - sizeof(uint32_t) * 5 - sizeof(uint16_t));
+  }
   uint16_t count;
   serialization::readPod(f, count);
   if (count == 0) {

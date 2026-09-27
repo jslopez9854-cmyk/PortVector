@@ -1,5 +1,6 @@
 #pragma once
 #include <Epub.h>
+#include <Epub/ReaderRenderSpec.h>
 
 #include <functional>
 #include <memory>
@@ -25,7 +26,8 @@ class KOReaderSyncActivity final : public Activity, private UiAppHost {
   explicit KOReaderSyncActivity(GfxRenderer& renderer, MappedInputManager& mappedInput, const std::string& epubPath,
                                 int currentSpineIndex, int currentPage, int totalPagesInSpine,
                                 SavedProgressPosition localKoPos, std::string localChapterName,
-                                std::optional<uint16_t> currentParagraphIndex = std::nullopt);
+                                std::optional<uint16_t> currentParagraphIndex = std::nullopt,
+                                std::optional<ReaderRenderSpec> currentRenderSpec = std::nullopt);
 
   void onEnter() override;
   void onExit() override;
@@ -54,6 +56,10 @@ class KOReaderSyncActivity final : public Activity, private UiAppHost {
   int currentPage;
   int totalPagesInSpine;
   std::optional<uint16_t> currentParagraphIndex;
+  // The render spec the reader was using when sync was launched. Passed through to
+  // ProgressMapper so a stale/differently-rendered section cache for a target chapter
+  // is treated as unusable instead of confidently answering with the wrong layout.
+  std::optional<ReaderRenderSpec> currentRenderSpec;
 
   State state = WIFI_SELECTION;
   std::string statusMessage;

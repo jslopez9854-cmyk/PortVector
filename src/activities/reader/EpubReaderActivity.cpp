@@ -960,6 +960,13 @@ bool EpubReaderActivity::launchKOReaderSync() {
   const int tocIdx = epub->getTocIndexForSpineIndex(currentSpineIndex);
   std::string localChapterName = (tocIdx >= 0) ? epub->getTocItem(tocIdx).title : "";
   const std::string savedEpubPath = epub->getPath();
+  // The spec the currently-open section's cache was built/loaded under. Passed through
+  // to ProgressMapper so a pull that lands on a different chapter never trusts that
+  // chapter's on-disk cache unless it was built under this same render spec.
+  std::optional<ReaderRenderSpec> currentRenderSpec;
+  if (buildViewportWidth > 0 && buildViewportHeight > 0) {
+    currentRenderSpec = SETTINGS.readerRenderSpec(buildViewportWidth, buildViewportHeight);
+  }
 
   if (!saveProgress(currentSpineIndex, currentPage, totalPages)) {
     LOG_ERR("KOSync", "Aborting sync because current progress could not be saved");
@@ -982,7 +989,7 @@ bool EpubReaderActivity::launchKOReaderSync() {
 
   activityManager.replaceActivity(std::make_unique<KOReaderSyncActivity>(
       renderer, mappedInput, savedEpubPath, currentSpineIndex, currentPage, totalPages, std::move(localKoPos),
-      std::move(localChapterName), paragraphIndex));
+      std::move(localChapterName), paragraphIndex, currentRenderSpec));
   return true;
 }
 

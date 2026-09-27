@@ -1,5 +1,6 @@
 #pragma once
 #include <Epub.h>
+#include <Epub/ReaderRenderSpec.h>
 #include <GfxRenderer.h>
 
 #include <memory>
@@ -65,11 +66,17 @@ class ProgressMapper {
    * @param renderer GfxRenderer for page count estimation
    * @param currentSpineIndex Index of the currently open spine item (for density estimation)
    * @param totalPagesInCurrentSpine Total pages in the current spine item (for density estimation)
+   * @param currentRenderSpec When given, a target chapter's on-disk section cache is only
+   *        trusted for its page count/content-offset lookups if it was built under this
+   *        exact render spec (font/margins/viewport/etc). A stale cache from before a
+   *        settings change is otherwise indistinguishable from an up-to-date one and would
+   *        answer confidently with a page count that no longer matches the current layout.
    * @return CrossPoint position
    */
   static CrossPointPosition toCrossPoint(const std::shared_ptr<Epub>& epub, const SavedProgressPosition& savedPos,
                                          GfxRenderer& renderer, int currentSpineIndex = -1,
-                                         int totalPagesInCurrentSpine = 0, int fallbackTotalPages = 0);
+                                         int totalPagesInCurrentSpine = 0, int fallbackTotalPages = 0,
+                                         const ReaderRenderSpec* currentRenderSpec = nullptr);
 
   /**
    * Convert a rich CrossPoint position (downloaded from a crosspoint-sync
@@ -86,7 +93,8 @@ class ProgressMapper {
    */
   static std::optional<CrossPointPosition> fromRichPosition(const std::shared_ptr<Epub>& epub,
                                                             const KOReaderRichPosition& rich, GfxRenderer& renderer,
-                                                            bool xpathAlreadyTried = false);
+                                                            bool xpathAlreadyTried = false,
+                                                            const ReaderRenderSpec* currentRenderSpec = nullptr);
 
  private:
   /**
