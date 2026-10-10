@@ -24,7 +24,8 @@ class KOReaderSyncActivity final : public Activity, private UiAppHost {
  public:
   explicit KOReaderSyncActivity(GfxRenderer& renderer, MappedInputManager& mappedInput, const std::string& epubPath,
                                 CrossPointPosition localPosition, SavedProgressPosition localKoPos,
-                                std::string localChapterName);
+                                std::string localChapterName,
+                                std::optional<ReaderRenderSpec> currentRenderSpec = std::nullopt);
 
   void onEnter() override;
   void onExit() override;
@@ -50,6 +51,7 @@ class KOReaderSyncActivity final : public Activity, private UiAppHost {
   std::string epubPath;
   std::string localChapterName;
   CrossPointPosition localPosition;
+  std::optional<ReaderRenderSpec> currentRenderSpec;
 
   State state = WIFI_SELECTION;
   std::string statusMessage;

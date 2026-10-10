@@ -392,7 +392,8 @@ void EpubReaderActivity::loop() {
 #ifdef BLE_ENABLED
   // Long press Back (500ms+) reconnects the bonded BLE remote. Checked early,
   // ahead of overlay/menu input handling below, so a hold isn't swallowed by
-  // whatever else currently owns Back.
+  // whatever else currently owns Back. Inert on hardware with no physical Back
+  // button (X4 Pro/X4C) -- the touch long-press below covers that case instead.
   if (mappedInput.wasLongPressed(MappedInputManager::Button::Back, 500)) {
     auto& btMgr = BluetoothHIDManager::getInstance();
     if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
@@ -400,6 +401,21 @@ void EpubReaderActivity::loop() {
         btMgr.enable();
       }
       btMgr.connectToDevice(SETTINGS.bleBondedDeviceAddr);
+    }
+  }
+  // Same action via a touch long-press anywhere on the screen, for touch
+  // devices (X4 Pro) that have no physical Back button to hold -- page turning
+  // there is swipe-only, so this is the only available trigger.
+  if (mappedInput.hasTouch()) {
+    int touchX = 0, touchY = 0;
+    if (mappedInput.wasScreenLongPress(touchX, touchY)) {
+      auto& btMgr = BluetoothHIDManager::getInstance();
+      if (SETTINGS.bleBondedDeviceAddr[0] != '\0') {
+        if (!btMgr.isEnabled()) {
+          btMgr.enable();
+        }
+        btMgr.connectToDevice(SETTINGS.bleBondedDeviceAddr);
+      }
     }
   }
 #endif
@@ -991,6 +1007,12 @@ bool EpubReaderActivity::launchKOReaderSync() {
   const int tocIdx = epub->getTocIndexForSpineIndex(currentSpineIndex);
   std::string localChapterName = (tocIdx >= 0) ? epub->getTocItem(tocIdx).title : "";
   const std::string savedEpubPath = epub->getPath();
+  // So the sync activity can tell a target chapter's cached page count/offset
+  // apart from one built under different settings (see ProgressMapper::toCrossPoint).
+  std::optional<ReaderRenderSpec> syncRenderSpec;
+  if (buildViewportWidth > 0 && buildViewportHeight > 0) {
+    syncRenderSpec = SETTINGS.readerRenderSpec(buildViewportWidth, buildViewportHeight);
+  }
 
   if (!saveProgress(currentSpineIndex, currentPage, totalPages)) {
     LOG_ERR("KOSync", "Aborting sync because current progress could not be saved");
@@ -1020,8 +1042,9 @@ bool EpubReaderActivity::launchKOReaderSync() {
   }
   LOG_DBG("KOSync", "Epub released (heap after: %u)", (unsigned)ESP.getFreeHeap());
 
-  activityManager.replaceActivity(std::make_unique<KOReaderSyncActivity>(
-      renderer, mappedInput, savedEpubPath, localPos, std::move(localKoPos), std::move(localChapterName)));
+  activityManager.replaceActivity(std::make_unique<KOReaderSyncActivity>(renderer, mappedInput, savedEpubPath, localPos,
+                                                                         std::move(localKoPos),
+                                                                         std::move(localChapterName), syncRenderSpec));
   return true;
 }
 

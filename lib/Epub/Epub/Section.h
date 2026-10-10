@@ -137,7 +137,11 @@ class Section {
   std::optional<uint16_t> findAnchorDuringBuild(const std::string& anchor) const;
 
   // Get the page count from the section cache file without fully loading it.
-  std::optional<uint16_t> getCachedPageCount() const;
+  // When expectedSpec is given, a cache built under a different render spec
+  // (font/margins/viewport/etc) is treated as missing rather than trusted --
+  // for callers peeking at a cache without having loaded it via
+  // loadSectionFile() first, which validates the spec itself.
+  std::optional<uint16_t> getCachedPageCount(const ReaderRenderSpec* expectedSpec = nullptr) const;
 
   // Look up the page number for a synthetic paragraph index from XPath p[N].
   std::optional<uint16_t> getPageForParagraphIndex(uint16_t pIndex) const;
@@ -154,8 +158,10 @@ class Section {
 
   // Derive the local page containing an exact visible-text offset. When
   // preferFirstAtOffset is true, ties caused by zero-width content such as an
-  // image-only page select the first page at that offset.
-  std::optional<uint16_t> getPageForVisibleTextOffset(uint32_t offset, bool preferFirstAtOffset = false) const;
+  // image-only page select the first page at that offset. expectedSpec: see
+  // getCachedPageCount() above -- same stale-cache guard, same default.
+  std::optional<uint16_t> getPageForVisibleTextOffset(uint32_t offset, bool preferFirstAtOffset = false,
+                                                      const ReaderRenderSpec* expectedSpec = nullptr) const;
 
   // True once the active build has laid out a page starting at or past `offset`, i.e.
   // getPageForVisibleTextOffset() can resolve it from the build without laying out more.
