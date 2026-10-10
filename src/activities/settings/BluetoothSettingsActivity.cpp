@@ -206,7 +206,33 @@ void BluetoothSettingsActivity::handleMainMenuInput() {
     requestUpdate();
   }
 
-  if (mappedInput.wasPressed(MappedInputManager::Button::Confirm)) {
+  // Touch boards (no physical Confirm button, e.g. X4 Pro) select a row by
+  // tapping it down and activate it with a full tap, matching the rest of
+  // the Settings UI (see HomeActivity's rowTouch() usage).
+  bool confirmActivated = false;
+  if (mappedInput.hasTouch()) {
+    const Rect listRect = mainMenuListRect();
+    const int rowHeight = BaseMetrics::values.listRowHeight;
+    const int pageItems = std::max(1, listRect.height / rowHeight);
+    const int pageStartIndex = selectedIndex / pageItems * pageItems;
+    const int rowsOnPage = std::min(pageItems, kMainMenuItemCount - pageStartIndex);
+    int row = -1;
+    const auto touch = mappedInput.rowTouch(row, listRect.y, rowHeight, rowsOnPage, 0, INT32_MAX, rowHeight);
+    if (touch != MappedInputManager::RowTouch::None) {
+      const int touchedIndex = pageStartIndex + row;
+      if (touch == MappedInputManager::RowTouch::Down) {
+        if (selectedIndex != touchedIndex) {
+          selectedIndex = touchedIndex;
+          requestUpdate();
+        }
+      } else {
+        selectedIndex = touchedIndex;
+        confirmActivated = true;
+      }
+    }
+  }
+
+  if (mappedInput.wasPressed(MappedInputManager::Button::Confirm) || confirmActivated) {
     if (!btMgr) {
       lastError = tr(STR_BT_NOT_AVAILABLE);
       LOG_ERR("BT", "BLE manager not available");
@@ -433,6 +459,15 @@ void BluetoothSettingsActivity::handleLearnInput() {
     }
   }
 
+  // Touch boards have no physical Confirm button, so a tap anywhere on this
+  // full-screen status prompt stands in for it at the two steps that wait on
+  // Confirm (WAIT_TEST's "I'm done testing" and DONE's "continue").
+  bool tappedAnywhere = false;
+  if (mappedInput.hasTouch()) {
+    int tapX = 0, tapY = 0;
+    tappedAnywhere = mappedInput.wasScreenTapped(tapX, tapY);
+  }
+
   if (learnStep == LearnStep::WAIT_TEST && millis() > learnTestDeadlineMs) {
     if (btMgr) {
       btMgr->setLearnInputCallback(nullptr);
@@ -444,7 +479,8 @@ void BluetoothSettingsActivity::handleLearnInput() {
     return;
   }
 
-  if (learnStep == LearnStep::WAIT_TEST && mappedInput.wasPressed(MappedInputManager::Button::Confirm)) {
+  if (learnStep == LearnStep::WAIT_TEST &&
+      (mappedInput.wasPressed(MappedInputManager::Button::Confirm) || tappedAnywhere)) {
     DeviceProfiles::setCustomProfile(learnedPrevKey, learnedNextKey, learnedReportIndex);
     if (btMgr) {
       const auto& connected = btMgr->getConnectedDevices();
@@ -470,7 +506,7 @@ void BluetoothSettingsActivity::handleLearnInput() {
     return;
   }
 
-  if (learnStep == LearnStep::DONE && mappedInput.wasPressed(MappedInputManager::Button::Confirm)) {
+  if (learnStep == LearnStep::DONE && (mappedInput.wasPressed(MappedInputManager::Button::Confirm) || tappedAnywhere)) {
     if (btMgr) {
       btMgr->setLearnInputCallback(nullptr);
     }
@@ -501,6 +537,31 @@ void BluetoothSettingsActivity::handleDeviceListInput() {
     requestUpdate();
   }
 
+  // Touch boards select a row by tapping it down and activate it with a full
+  // tap, same pattern as handleMainMenuInput().
+  bool confirmActivated = false;
+  if (mappedInput.hasTouch()) {
+    const Rect listRect = deviceListRect();
+    const int rowHeight = BaseMetrics::values.listRowHeight;
+    const int pageItems = std::max(1, listRect.height / rowHeight);
+    const int pageStartIndex = selectedIndex / pageItems * pageItems;
+    const int rowsOnPage = std::min(pageItems, menuItems - pageStartIndex);
+    int row = -1;
+    const auto touch = mappedInput.rowTouch(row, listRect.y, rowHeight, rowsOnPage, 0, INT32_MAX, rowHeight);
+    if (touch != MappedInputManager::RowTouch::None) {
+      const int touchedIndex = pageStartIndex + row;
+      if (touch == MappedInputManager::RowTouch::Down) {
+        if (selectedIndex != touchedIndex) {
+          selectedIndex = touchedIndex;
+          requestUpdate();
+        }
+      } else {
+        selectedIndex = touchedIndex;
+        confirmActivated = true;
+      }
+    }
+  }
+
   // Left/Right for back/refresh
   if (mappedInput.wasPressed(MappedInputManager::Button::Left)) {
     // Go back to main menu
@@ -524,7 +585,7 @@ void BluetoothSettingsActivity::handleDeviceListInput() {
     return;
   }
 
-  if (mappedInput.wasPressed(MappedInputManager::Button::Confirm)) {
+  if (mappedInput.wasPressed(MappedInputManager::Button::Confirm) || confirmActivated) {
     // Check if "Refresh" is selected
     if (selectedIndex == static_cast<int>(devices.size())) {
       LOG_INF("BT", "Refreshing scan...");
@@ -600,13 +661,49 @@ void BluetoothSettingsActivity::handleDebugInput() {
     return;
   }
 
-  if (mappedInput.wasPressed(MappedInputManager::Button::Confirm)) {
+  // Touch boards have no physical Confirm button; a tap anywhere on this
+  // full-screen status prompt toggles capture the same as Confirm.
+  bool tappedAnywhere = false;
+  if (mappedInput.hasTouch()) {
+    int tapX = 0, tapY = 0;
+    tappedAnywhere = mappedInput.wasScreenTapped(tapX, tapY);
+  }
+
+  if (mappedInput.wasPressed(MappedInputManager::Button::Confirm) || tappedAnywhere) {
     const bool next = !btMgr->isDebugCaptureEnabled();
     btMgr->setDebugCaptureEnabled(next);
     lastError = next ? tr(STR_BT_DEBUG_CAPTURE_ON) : tr(STR_BT_DEBUG_CAPTURE_OFF);
     requestUpdate();
     return;
   }
+}
+
+int BluetoothSettingsActivity::mainMenuListOffsetY() const {
+  if (btMgr && btMgr->isEnabled() && SETTINGS.bleBondedDeviceName[0] != '\0') {
+    return renderer.getLineHeight(UI_10_FONT_ID) + 4;
+  }
+  return 0;
+}
+
+Rect BluetoothSettingsActivity::mainMenuListRect() const {
+  auto metrics = UITheme::getInstance().getMetrics();
+  const auto pageWidth = renderer.getScreenWidth();
+  const auto pageHeight = renderer.getScreenHeight();
+  const int listOffsetY = mainMenuListOffsetY();
+  return Rect{0,
+              metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + metrics.verticalSpacing + listOffsetY,
+              pageWidth,
+              pageHeight - (metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight +
+                            metrics.buttonHintsHeight + metrics.verticalSpacing * 2 + listOffsetY)};
+}
+
+Rect BluetoothSettingsActivity::deviceListRect() const {
+  auto metrics = UITheme::getInstance().getMetrics();
+  const auto pageWidth = renderer.getScreenWidth();
+  const auto pageHeight = renderer.getScreenHeight();
+  return Rect{0, metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + metrics.verticalSpacing, pageWidth,
+              pageHeight - (metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight +
+                            metrics.buttonHintsHeight + metrics.verticalSpacing * 2)};
 }
 
 void BluetoothSettingsActivity::renderMainMenu() {
@@ -641,7 +738,6 @@ void BluetoothSettingsActivity::renderMainMenu() {
   GUI.drawSubHeader(renderer, Rect{0, metrics.topPadding + metrics.headerHeight, pageWidth, metrics.tabBarHeight},
                     statusLine.c_str());
 
-  int listOffsetY = 0;
   if (btMgr && btMgr->isEnabled() && SETTINGS.bleBondedDeviceName[0] != '\0') {
     const int nameY = metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + 4;
     char remoteBuf[64];
@@ -649,7 +745,6 @@ void BluetoothSettingsActivity::renderMainMenu() {
     std::string deviceLine =
         renderer.truncatedText(UI_10_FONT_ID, remoteBuf, pageWidth - metrics.contentSidePadding * 2);
     renderer.drawText(UI_10_FONT_ID, metrics.contentSidePadding, nameY, deviceLine.c_str(), true);
-    listOffsetY = renderer.getLineHeight(UI_10_FONT_ID) + 4;
   }
 
   // Use drawSimpleList for consistent formatting with main settings
@@ -671,12 +766,8 @@ void BluetoothSettingsActivity::renderMainMenu() {
   }
 
   drawSimpleList(
-      renderer,
-      Rect{0, metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + metrics.verticalSpacing + listOffsetY,
-           pageWidth,
-           pageHeight - (metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + metrics.buttonHintsHeight +
-                         metrics.verticalSpacing * 2 + listOffsetY)},
-      static_cast<int>(itemLabels.size()), selectedIndex, [&itemLabels](int index) { return itemLabels[index]; },
+      renderer, mainMenuListRect(), static_cast<int>(itemLabels.size()), selectedIndex,
+      [&itemLabels](int index) { return itemLabels[index]; },
       [this](int i) {
         if (i == 0) {
           return std::string(btMgr && btMgr->isEnabled() ? tr(STR_STATE_ON) : tr(STR_STATE_OFF));
@@ -777,11 +868,8 @@ void BluetoothSettingsActivity::renderDeviceList() {
 
   // Render the list using the local drawSimpleList helper (see top of file)
   drawSimpleList(
-      renderer,
-      Rect{0, metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + metrics.verticalSpacing, pageWidth,
-           pageHeight - (metrics.topPadding + metrics.headerHeight + metrics.tabBarHeight + metrics.buttonHintsHeight +
-                         metrics.verticalSpacing * 2)},
-      static_cast<int>(deviceLabels.size()), selectedIndex, [&deviceLabels](int index) { return deviceLabels[index]; },
+      renderer, deviceListRect(), static_cast<int>(deviceLabels.size()), selectedIndex,
+      [&deviceLabels](int index) { return deviceLabels[index]; },
       [&deviceValues](int i) { return i < (int)deviceValues.size() ? deviceValues[i] : std::string(""); });
 
   // Help text

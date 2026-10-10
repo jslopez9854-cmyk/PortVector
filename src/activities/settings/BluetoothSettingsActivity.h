@@ -7,6 +7,7 @@
 
 #include "MappedInputManager.h"
 #include "activities/Activity.h"
+#include "components/themes/BaseTheme.h"
 
 class BluetoothSettingsActivity : public Activity {
  private:
@@ -62,6 +63,11 @@ class BluetoothSettingsActivity : public Activity {
   void renderLearnKeys();
   void renderDebugMonitor();
   std::string getSignalStrengthIndicator(const int32_t rssi) const;
+  // Shared geometry so touch hit-testing in handle*Input() can never drift
+  // from what render*() actually draws.
+  int mainMenuListOffsetY() const;
+  Rect mainMenuListRect() const;
+  Rect deviceListRect() const;
 
   const std::function<void()> onComplete;
 };
